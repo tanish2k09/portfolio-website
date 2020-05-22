@@ -1,0 +1,33 @@
+@tailwind base;
+
+.nav-hover #underline-nav {
+  @apply w-1;
+  @apply h-1;
+  @apply transition-all;
+  @apply duration-500;
+}
+
+.nav-hover:hover #underline-nav {
+  @apply w-quarter;
+  @apply h-tenth;
+}
+
+@tailwind components;
+
+@tailwind utilities;
+
+body::-webkit-scrollbar {
+  @apply w-4;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: #102027;
+}
+
+body::-webkit-scrollbar-thumb {
+  @apply bg-accent;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}

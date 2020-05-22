@@ -1,0 +1,7 @@
+.scrolling-wrapper {
+  -webkit-overflow-scrolling: touch;
+}
+
+.lottie-smurf-container {
+  background-color: #14d2b3;
+}
