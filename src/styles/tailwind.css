@@ -1,15 +1,65 @@
 @tailwind base;
 
-.nav-hover #underline-nav {
+.nav-blob-wrapper {
+  @apply w-3;
+  @apply min-w-1;
+  @apply h-6;
+}
+
+.nav-blob {
   @apply w-1;
   @apply h-1;
   @apply transition-all;
   @apply duration-500;
 }
 
-.nav-hover:hover #underline-nav {
-  @apply w-quarter;
-  @apply h-tenth;
+.nav-blob:before {
+  content: "\200D";
+}
+
+@media screen and (min-width: 768px) {
+  .nav-hover:hover .nav-blob {
+    @apply w-tenth;
+    @apply h-full;
+  }
+
+  .accented-button {
+    @apply transition;
+    @apply duration-500;
+    @apply ease-out;
+    @apply transform;
+  }
+
+  .accented-button:hover {
+    @apply scale-110;
+  }
+}
+
+.work-card {
+  @apply overflow-hidden;
+  @apply rounded-lg;
+  @apply bg-cards;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0, 0.8);
+  @apply inline-block;
+  @apply m-4;
+}
+
+.tag {
+  @apply rounded-md;
+  @apply my-1;
+  @apply py-1;
+  @apply px-2;
+  @apply ml-2;
+}
+
+.repo-button {
+  @apply transition-colors;
+  @apply duration-500;
+}
+
+.repo-button:hover {
+  @apply text-primary;
+  @apply bg-black;
 }
 
 @tailwind components;

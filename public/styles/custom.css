@@ -1,7 +1,136 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+}
+
 .scrolling-wrapper {
   -webkit-overflow-scrolling: touch;
 }
 
-.lottie-smurf-container {
-  background-color: #14d2b3;
+@media screen and (max-width: 640px) {
+  .big-text-main {
+    font-size: 5rem;
+  }
+  .big-text-heading {
+    font-size: 2.25rem;
+  }
+
+  .big-text-sec {
+    font-size: 1.25rem;
+  }
+
+  .work-grid {
+    width: 100%;
+  }
+
+  .nav-shadow {
+    box-shadow: 0px -4px 3px rgba(50, 50, 50, 0.25);
+  }
+}
+
+@media screen and (max-width: 768px) and (min-width: 640px) {
+  .big-text-main {
+    font-size: 6rem;
+  }
+  .big-text-heading {
+    font-size: 4rem;
+  }
+
+  .big-text-sec {
+    font-size: 1.75rem;
+  }
+
+  .work-grid {
+    width: 100%;
+  }
+
+  .nav-shadow {
+    box-shadow: 0px -4px 3px rgba(50, 50, 50, 0.25);
+  }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+  .big-text-main {
+    font-size: min(12vw, 18vh);
+  }
+  .big-text-heading {
+    font-size: min(6vw, 12vh);
+  }
+
+  .big-text-sec {
+    font-size: min(2vw, 4vh);
+  }
+
+  .work-grid {
+    width: 0.1%;
+  }
+}
+
+@media screen and (max-width:1200px) and (min-width: 1024px) {
+  .big-text-main {
+    font-size: min(14vw, 12rem);
+  }
+  .big-text-heading {
+    font-size: min(8vw, 6rem);
+  }
+
+  .big-text-sec {
+    font-size: min(3vw, 3rem);
+  }
+
+  .work-grid {
+    width: 0.1%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .big-text-main {
+    font-size: min(12vw, 18vh);
+  }
+  .big-text-heading {
+    font-size: min(6vw, 12vh);
+  }
+
+  .big-text-sec {
+    font-size: min(2vw, 4vh);
+  }
+
+  .work-grid {
+    width: 0.1%;
+  }
+}
+
+.binary-bg {
+  background-image: url(../assets/binary.svg);
+  background-repeat: repeat;
+}
+
+@media screen and (min-width: 768px) {
+  .text-shadow {
+    text-shadow: 2px 2px #101924;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .text-shadow {
+    text-shadow: 1px 1px #101924;
+  }
+}
+
+.fade-section {
+  transition: opacity 750ms ease;
+}
+
+.light-button-bg {
+  transition: all 1s ease;
+  background-color: rgba(255, 255, 255, 0.50);
+}
+
+.light-button-bg:hover {
+  background-color: rgba(255, 255, 255, 1);
+  scale: 1.1;
 }

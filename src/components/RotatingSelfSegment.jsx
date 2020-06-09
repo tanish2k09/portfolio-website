@@ -7,7 +7,7 @@ function RotatingSelfSegment() {
       <span>am a Software Developer</span>
       <span>care about accessibility</span>
       <span>make some cool stuff</span>
-      <span>constantly push my boundaries</span>
+      <span>constantly expand my limits</span>
       <span>really like minimalism</span>
       <span>am a UI/UX Enthusiast</span>
       <span>enjoy open source</span>

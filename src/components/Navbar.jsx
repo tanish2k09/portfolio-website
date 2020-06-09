@@ -1,27 +1,29 @@
 import React from "react";
 import ResponsiveNavItem from "./ResponsiveNavItem.jsx";
-import WorkIcon from "../assets/work_code.svg";
-import ContactMeIcon from "../assets/contact_me.svg";
-import DocumentIcon from "../assets/document.svg";
 
 function Navbar() {
   return (
-    <div className="m-0 p-0 flex items-center">
+    <div id="nav_child_wrapper" className="xl:mt-4 min:pb-4 sticky h-full w-full min:flex md:inline-block justify-evenly min:overflow-x-hidden min:float-right min:bg-accent md:bg-transparent">
       <ResponsiveNavItem
-        text="Work"
-        resource={WorkIcon}
-        alt="Work icon"
+        text="My Work"
+        smallText="Work"
         link="#work_showcase_text"
       />
       <ResponsiveNavItem
-        text="Resume"
-        resource={DocumentIcon}
-        alt="Document icon"
+        text="About me"
+        smallText="About"
+        link="#about_me_text"
       />
       <ResponsiveNavItem
         text="Contact me"
-        resource={ContactMeIcon}
-        alt="Contact me icon"
+        smallText="Contact"
+        link="#contact_section"
+      />
+      <ResponsiveNavItem
+        text="Résumé"
+        smallText="Résumé"
+        link={"https://www.manku.dev/assets/tmanku_resume_23082020.pdf"}
+        download="tmanku_resume_23-Aug-2020.pdf"
       />
     </div>
   );

@@ -3,8 +3,10 @@ import ReactDOM from "react-dom";
 import BigName from "./components/BigName.jsx";
 import AccentedButton from "./components/AccentedButton.jsx";
 import Navbar from "./components/Navbar.jsx";
-import ScrollingCardsContent from "./components/ScrollingCardsContent.jsx";
-require("./components/BlobOverlay.js");
+import WorkGridMasonry from "./components/WorkGridMasonry.jsx";
+import ContactSpace from "./components/ContactSpace.jsx";
+
+require('./components/BlobOverlay');
 
 ReactDOM.render(
   <React.StrictMode>
@@ -21,9 +23,13 @@ ReactDOM.render(
 );
 
 ReactDOM.render(
+  <WorkGridMasonry />,
+  document.getElementById("work_grid_container")
+);
+
+ReactDOM.render(
   <React.StrictMode>
     <AccentedButton
-      type="primary"
       text="Check out my work"
       link="#work_showcase_text"
     />
@@ -33,7 +39,9 @@ ReactDOM.render(
 
 ReactDOM.render(
   <React.StrictMode>
-    <ScrollingCardsContent />
+    <ContactSpace />
   </React.StrictMode>,
-  document.getElementById("scroll_work_container")
+  document.getElementById("contacts_container")
 );
+
+require('./scripts/ContactBG');
