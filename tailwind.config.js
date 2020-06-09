@@ -25,7 +25,7 @@ module.exports = {
     textColor: {
       primary: "#eceff1",
       secondary: "#859299",
-      accent: "#1de9b6",
+      accent: "#33FFCC",
       danger: "#e57373",
       dark: "#000a12",
     },
@@ -33,7 +33,7 @@ module.exports = {
       colors: {
         dark: "#1f2933",
         primary: "#cbd2d9",
-        accent: "#1de9b6",
+        accent: "#33FFCC",
         danger: "#e57373",
         cards: "#37404f",
       },
