@@ -8,6 +8,7 @@ module.exports = {
     fontFamily: {
       display: ["Work Sans", "sans-serif"],
       mono: ["Fira Code"],
+      body: ["Work Sans"]
     },
     screens: {
       sm: "640px",
