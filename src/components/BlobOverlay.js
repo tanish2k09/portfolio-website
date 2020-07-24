@@ -4,7 +4,7 @@
 // Modified by Tanish Manku - 2020
 
 const canvas = document.getElementById("vector_canvas");
-const c = canvas.getContext("2d");
+const ctx = canvas.getContext("2d");
 
 const blobStates = {
   EXPANDED: 0,
@@ -13,10 +13,11 @@ const blobStates = {
   COLLAPSING: 3
 }
 
-const framesToTarget = 60;
+const duration = 1000; // milliseconds
+const fillColor = "#33FFCC"; // gotta have some teal, you know what I'm sayin
 
 class Blob {
-  constructor(number, sectorAngle, minDeviation, ) {
+  constructor(number, sectorAngle, minDeviation) {
     // use this to change the size of the screen estate to cover, in the minimum dimension
     this.screenEstateCoverageV = 0.8;
     this.screenEstateCoverageH = 0.8;
@@ -62,22 +63,13 @@ class Blob {
 
     // Track state
     this.state = blobStates.REGULAR;
-
-    // Track callback handle numbers
-    this.expansionHandle = undefined;
-    this.collapseHandle = undefined;
-
-    // Fill color
-    this.fillColor = "#33FFCC";
+    this.lastTimeFraction = 0;
+    this.currentTimeFraction = 0;
   }
 
   updateValues() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-
-    if (this.isMaximized) {
-      this.radiusOffset = this.getDiagonal();
-    }
 
     this.baseRadius = Math.min(
       canvas.width * this.screenEstateCoverageH,
@@ -86,14 +78,20 @@ class Blob {
   }
 
   update() {
-    if (this.isMaximized) {
-      c.fillStyle = this.fillColor;
-      c.fill();
-      return;
-    }
-
     this.updateValues();
+    this.updateAnchors();
 
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+
+    bezierSkin(this.anchors, false);
+
+    ctx.lineTo(canvas.width, 0);
+    ctx.fillStyle = fillColor;
+    ctx.fill();
+  }
+
+  updateAnchors() {
     this.thetaRamp += (this.thetaRampDest - this.thetaRamp) / this.rampDamp;
     this.theta += 0.02;
     this.anchors = [canvas.width, this.baseRadius];
@@ -105,20 +103,36 @@ class Blob {
       const y = rad * Math.cos(this.step * i);
       this.anchors.push(canvas.width - x, y);
     }
-
-
-    c.beginPath();
-    c.moveTo(0, 0);
-
-    bezierSkin(this.anchors, false);
-
-    c.lineTo(canvas.width, 0);
-    c.fillStyle = this.fillColor;
-    c.fill();
   }
 
   getDiagonal() {
     return Math.hypot(canvas.width, canvas.height);
+  }
+
+  animate() {
+    switch (this.state) {
+      case blobStates.EXPANDING:
+        this.expandRadius(false);
+        break;
+
+      case blobStates.COLLAPSING:
+        this.collapseRadius(false);
+        break;
+    }
+  }
+
+  cueExpansion() {
+    if (this.state !== blobStates.EXPANDED) {
+      this.trackTime()
+      this.state = blobStates.EXPANDING
+    }
+  }
+
+  cueCollapse() {
+    if (this.state !== blobStates.REGULAR) {
+      this.trackTime()
+      this.state = blobStates.COLLAPSING
+    }
   }
 
   expandRadius() {
@@ -126,28 +140,15 @@ class Blob {
       return;
     }
 
-    if (this.baseRadius + this.radiusOffset > this.getDiagonal()) {
+    if (this.isMaximized()) {
       this.state = blobStates.EXPANDED;
-      this.radiusOffset = this.getDiagonal();
+      this.radiusOffset = this.getMaxRadius();
+      this.currentTimeFraction = 1;
       return;
     }
 
-    if (this.collapseHandle) {
-      cancelAnimationFrame(this.collapseHandle);
-      this.collapseHandle = undefined;
-    }
-
-    this.state = blobStates.EXPANDING;
-
-    this.radiusOffset += this.getDiagonal() / framesToTarget;
-    this.expansionHandle = requestAnimationFrame(this.expandRadius.bind(this));
-  }
-
-  fillCanvas() {
-    c.save();
-    c.fillStyle = this.fillColor;
-    c.fill(0, 0, canvas.width, canvas.height);
-    c.restore();
+    this.currentTimeFraction = this.clampTimeFraction(this.getTimeFraction() + this.lastTimeFraction);
+    this.radiusOffset = this.getMultiplierToOffset(this.getMultiplierFromInterpolator(this.currentTimeFraction));
   }
 
   collapseRadius() {
@@ -155,41 +156,72 @@ class Blob {
       return;
     }
 
-    if (this.radiusOffset <= 0) {
+    if (this.currentTimeFraction === 0) {
       this.state = blobStates.REGULAR;
       this.radiusOffset = 0;
-
       return;
     }
 
-    if (this.expansionHandle) {
-      cancelAnimationFrame(this.expansionHandle);
-      this.expansionHandle = undefined;
+    this.currentTimeFraction = this.clampTimeFraction(this.lastTimeFraction - this.getTimeFraction())
+    this.radiusOffset = this.getMultiplierToOffset(this.getMultiplierFromInterpolator(this.currentTimeFraction));
+  }
+
+  trackTime() {
+    this.recordedTime = performance.now();
+    this.lastTimeFraction = this.currentTimeFraction;
+  }
+
+  getTimeFraction() {
+    let difference = performance.now() - this.recordedTime;
+    let timeFraction = difference / duration;
+
+    return this.clampTimeFraction(timeFraction);
+  }
+
+  clampTimeFraction(timeFraction) {
+    if (timeFraction > 1) {
+      return 1;
+    } else if (this.currentTimeFraction < 0) {
+      return 0;
     }
 
-    if (this.state === blobStates.EXPANDED) {
-      this.radiusOffset = this.getDiagonal();
-    }
+    return timeFraction;
+  }
 
-    this.state = blobStates.COLLAPSING;
+  getMultiplierFromInterpolator(timeFraction) {
+    // The interpolator (Ease-in-out-quint) equation:
+    var multiplier = timeFraction < 0.5 ? 8 * Math.pow(timeFraction, 4) : 1 - Math.pow(-2 * timeFraction + 2, 4) / 2;
 
-    this.radiusOffset -= (this.getDiagonal() - this.baseRadius - 40) / framesToTarget;
-    this.collapseHandle = requestAnimationFrame(this.collapseRadius.bind(this));
+    console.log("TF :" + timeFraction + " Spec: " + multiplier)
+    return multiplier;
+  }
+
+  getMultiplierToOffset(multiplier) {
+    return (this.getMaxRadius() - this.baseRadius) * multiplier;
+  }
+
+  getMaxRadius() {
+    return this.getDiagonal() + this.bumpRadius;
+  }
+
+  isMaximized() {
+    return (this.baseRadius + this.radiusOffset) >= this.getDiagonal();
   }
 }
 
 const blob = new Blob(10, Math.PI / 2, Math.PI / 2);
 
 canvas.addEventListener("mouseenter", function (event) {
-  blob.expandRadius();
+  blob.cueExpansion();
 }, false);
 
 canvas.addEventListener("mouseout", function (event) {
-  blob.collapseRadius();
+  blob.cueCollapse();
 }, false);
 
 function loop() {
-  c.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  blob.animate();
   blob.update();
   window.requestAnimationFrame(loop);
 }
@@ -203,24 +235,24 @@ function bezierSkin(bez, closed = true) {
   const leng = bez.length;
 
   if (closed) {
-    c.moveTo(avg[0], avg[1]);
+    ctx.moveTo(avg[0], avg[1]);
 
     for (let i = 2; i < leng; i += 2) {
       let n = i + 1;
-      c.quadraticCurveTo(bez[i], bez[n], avg[i], avg[n]);
+      ctx.quadraticCurveTo(bez[i], bez[n], avg[i], avg[n]);
     }
 
-    c.quadraticCurveTo(bez[0], bez[1], avg[0], avg[1]);
+    ctx.quadraticCurveTo(bez[0], bez[1], avg[0], avg[1]);
   } else {
-    c.moveTo(bez[0], bez[1]);
-    c.lineTo(avg[0], avg[1]);
+    ctx.moveTo(bez[0], bez[1]);
+    ctx.lineTo(avg[0], avg[1]);
 
     for (let i = 2; i < leng - 2; i += 2) {
       let n = i + 1;
-      c.quadraticCurveTo(bez[i], bez[n], avg[i], avg[n]);
+      ctx.quadraticCurveTo(bez[i], bez[n], avg[i], avg[n]);
     }
 
-    c.lineTo(bez[leng - 2], bez[leng - 1]);
+    ctx.lineTo(bez[leng - 2], bez[leng - 1]);
   }
 }
 
