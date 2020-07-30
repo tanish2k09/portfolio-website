@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     fontFamily: {
       display: ["Work Sans", "sans-serif"],
-      mono: ["Fira Code"],
+      mono: ["Space Mono"],
       body: ["Work Sans"]
     },
     screens: {
@@ -26,17 +26,16 @@ module.exports = {
     textColor: {
       primary: "#eceff1",
       secondary: "#859299",
-      accent: "#33FFCC",
-      danger: "#e57373",
+      accent: "#41ffc9",
       dark: "#000a12",
     },
     extend: {
       colors: {
-        dark: "#1f2933",
+        dark: "#101924",
+        textdark: "#000a12",
         primary: "#cbd2d9",
-        accent: "#33FFCC",
-        danger: "#e57373",
-        cards: "#37404f",
+        accent: "#41ffc9",
+        cards: "#101924"
       },
       fontSize: {
         "009": "0.9rem",
@@ -49,24 +48,23 @@ module.exports = {
         "90": "0.90",
       },
       height: {
-        tenth: "0.1rem",
         quarter: "25%",
-        half: "50%",
-        threequarters: "75%",
+        half: "50%"
       },
       width: {
         tenth: "0.1rem",
-        quarter: "25%",
+        quarter: "25%"
       },
       margin: {
         quarter: "25%",
       },
       minHeight: {
-        "100px": "100px",
+        "100px": "100px"
       },
       minWidth: {
         thirty: "30%",
         "100px": "100px",
+        "1": "0.25rem"
       },
       borderRadius: {
         bigg: "16px",

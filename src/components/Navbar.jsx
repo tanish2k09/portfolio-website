@@ -6,7 +6,7 @@ import DocumentIcon from "../assets/document.svg";
 
 function Navbar() {
   return (
-    <div className="m-0 p-0 flex items-center">
+    <div id="nav_child_wrapper" className="xl:mt-4 sticky h-full w-full">
       <ResponsiveNavItem
         text="Work"
         resource={WorkIcon}
@@ -19,7 +19,7 @@ function Navbar() {
         alt="Document icon"
       />
       <ResponsiveNavItem
-        text="Contact me"
+        text="Contact Me"
         resource={ContactMeIcon}
         alt="Contact me icon"
       />

@@ -42,7 +42,7 @@ export default function ProjectCard(props) {
   return (
     <div
       id={props.id}
-      className="h-threequarters mx-16 xl:min-w-thirty text-primary transition-all transform duration-500 hover:scale-110"
+      className="h-threequarters mx-16 xl:min-w-thirty text-primary transition-all transform duration-500 hover:scale-110 shadow-xl"
     >
       <div id="resource_container" className={resourceContainerStyle}>
         {resource}
@@ -57,20 +57,14 @@ export default function ProjectCard(props) {
         >
           {props.text}
         </div>
-        <div id="description" className="font-mono mx-8 mt-8">
+        <div id="description" className="font-mono mx-8">
           This is a whole bunch of hipster ipsum:
           <br />
           I'm baby tote bag gentrify biodiesel offal. Authentic kickstarter
           hoodie pinterest chambray, mixtape listicle XOXO forage meh occupy
           jean shorts tumblr yr. Tofu mlkshk bespoke poutine lumbersexual.
           Mumblecore chillwave cray pabst ugh kinfolk lo-fi kickstarter
-          affogato, bitters literally readymade. Tumblr 3 wolf moon lumbersexual
-          squid, food truck you probably haven't heard of them wayfarers DIY
-          tattooed pitchfork small batch coloring book williamsburg 8-bit VHS.
-          Raw denim 90's hexagon green juice heirloom, retro taiyaki vinyl
-          glossier before they sold out bespoke. Fam chillwave tousled glossier
-          mumblecore mlkshk. Fanny pack narwhal venmo, vinyl synth selvage
-          letterpress +1 roof party twee mixtape dreamcatcher.
+          affogato, bitters literally readymade.
           <br />
         </div>
       </div>

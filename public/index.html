@@ -8,38 +8,36 @@
   <meta name="description" content="Home page for Tanish Manku's personal website" />
   <link rel="stylesheet" type="text/css" href="./styles/tailwind.css" />
   <link rel="stylesheet" type="text/css" href="./styles/custom.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Work+Sans:wght@400;600&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&family=Work+Sans:wght@400;600&display=swap"
     rel="stylesheet" />
 </head>
 
 <body class="bg-dark m-0">
-  <nav id="nav_section" class="
-      font-body
-      absolute
-      z-20
-      xl:right-0 xl:mr-16 xl:inline-block xl:bottom-auto
-      sm:bottom-0 sm:block"></nav>
+  <nav id="nav_section" class="fixed font-body font-semibold z-20
+      xl:right-0 xl:inline-block xl:bottom-auto
+      xl:w-48 xl:h-full">
+  </nav>
 
-  <section id="first_screen_block" class="h-screen relative">
-    <div id="vector_container" class="absolute left-0 z-0">
-      <canvas id="vector_canvas" class="w-full h-full stroke-2"></canvas>
-    </div>
+  <div id="vector_container" class="fixed left-0 z-0 h-full">
+    <canvas id="vector_canvas" class="w-full h-full stroke-2"></canvas>
+  </div>
 
+  <section id="first_screen_block" class="h-screen relative block">
     <div id="corner_block" class="absolute bottom-0">
       <div id="big_name_container"></div>
       <div id="click_button_container" class="xl:m-16 xl:ml-12"></div>
     </div>
   </section>
 
-  <section id="second_screen_block" class="h-screen relative xl:mt-64">
-    <div id="scroll_work_container" class="h-threequarters">
-    </div>
+  <section id="second_screen_block" class="h-screen mt-16 relative block">
     <div id="work_showcase_text"
       class="absolute bottom-0 xl:font-semibold font-display xl:ml-12 xl:text-8xl text-secondary">
-      <span class="text-primary">Work</span>
-      showcase.
+      <span class="text-primary">Work</span> showcase.
     </div>
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  </section>
+
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.9/fullpage.min.jstr"></script>
 </body>
 
 </html>

@@ -3,8 +3,8 @@ import ReactDOM from "react-dom";
 import BigName from "./components/BigName.jsx";
 import AccentedButton from "./components/AccentedButton.jsx";
 import Navbar from "./components/Navbar.jsx";
-import ScrollingCardsContent from "./components/ScrollingCardsContent.jsx";
-require("./components/BlobOverlay.js");
+
+require('./components/BlobOverlay');
 
 ReactDOM.render(
   <React.StrictMode>
@@ -29,11 +29,4 @@ ReactDOM.render(
     />
   </React.StrictMode>,
   document.getElementById("click_button_container")
-);
-
-ReactDOM.render(
-  <React.StrictMode>
-    <ScrollingCardsContent />
-  </React.StrictMode>,
-  document.getElementById("scroll_work_container")
 );

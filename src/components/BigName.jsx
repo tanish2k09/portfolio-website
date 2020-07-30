@@ -11,7 +11,7 @@ function BigName() {
           <br />
           Manku
         </div>
-        <div className="flex xl:text-4xl xl:ml-4 xl:mt-2">
+        <div className="flex md:text-xs xl:text-4xl xl:ml-4 xl:mt-2">
           <div className="text-secondary ">and I&nbsp;</div>
           <div id="text_morph_container" className="text-accent">
             <RotatingSelfSegment />

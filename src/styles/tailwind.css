@@ -1,15 +1,25 @@
 @tailwind base;
 
-.nav-hover #underline-nav {
+.nav-blob-wrapper {
+  @apply w-3;
+  @apply min-w-1;
+  @apply h-6;
+}
+
+.nav-blob {
   @apply w-1;
   @apply h-1;
   @apply transition-all;
   @apply duration-500;
 }
 
-.nav-hover:hover #underline-nav {
-  @apply w-quarter;
-  @apply h-tenth;
+.nav-blob:before {
+  content: "\200D";
+}
+
+.nav-hover:hover .nav-blob {
+  @apply w-tenth;
+  @apply h-full;
 }
 
 @tailwind components;

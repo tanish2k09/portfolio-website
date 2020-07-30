@@ -6,6 +6,8 @@
 const canvas = document.getElementById("vector_canvas");
 const ctx = canvas.getContext("2d");
 
+var anchorResizeToken = null;
+
 const blobStates = {
   EXPANDED: 0,
   EXPANDING: 1,
@@ -14,13 +16,13 @@ const blobStates = {
 }
 
 const duration = 1000; // milliseconds
-const fillColor = "#33FFCC"; // gotta have some teal, you know what I'm sayin
+const fillColor = "#41ffc9"; // gotta have some teal, you know what I'm sayin
 
 class Blob {
   constructor(number, sectorAngle, minDeviation) {
     // use this to change the size of the screen estate to cover, in the minimum dimension
-    this.screenEstateCoverageV = 0.8;
-    this.screenEstateCoverageH = 0.8;
+    this.screenEstateCoverageV = 0.6;
+    this.screenEstateCoverageH = 0.6;
 
     if (minDeviation > Math.PI * 2) {
       minDeviation = Math.PI * 2;
@@ -67,18 +69,19 @@ class Blob {
     this.currentTimeFraction = 0;
   }
 
-  updateValues() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+  shouldRefresh() {
+    return this.isAnimating() || (this.thetaRamp < this.thetaRampDest * 0.99);
+  }
 
-    this.baseRadius = Math.min(
-      canvas.width * this.screenEstateCoverageH,
-      canvas.height * this.screenEstateCoverageV
-    );
+  isAnimating() {
+    return (this.state === blobStates.EXPANDING || this.state === blobStates.COLLAPSING);
   }
 
   update() {
-    this.updateValues();
+    if (this.shouldRefresh()) {
+      this.updateValues();
+    }
+
     this.updateAnchors();
 
     ctx.beginPath();
@@ -89,6 +92,16 @@ class Blob {
     ctx.lineTo(canvas.width, 0);
     ctx.fillStyle = fillColor;
     ctx.fill();
+  }
+
+  updateValues() {
+    console.log("Updating values");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    this.baseRadius = this.getDiagonal() * 0.4;
+
+    console.log("Updated values = " + canvas.width + " " + canvas.height + " " + this.baseRadius);
   }
 
   updateAnchors() {
@@ -112,26 +125,29 @@ class Blob {
   animate() {
     switch (this.state) {
       case blobStates.EXPANDING:
-        this.expandRadius(false);
+        this.expandRadius();
         break;
 
       case blobStates.COLLAPSING:
-        this.collapseRadius(false);
+        this.collapseRadius();
         break;
+
+      default:
+        return;
     }
   }
 
   cueExpansion() {
     if (this.state !== blobStates.EXPANDED) {
-      this.trackTime()
-      this.state = blobStates.EXPANDING
+      this.trackTime();
+      this.state = blobStates.EXPANDING;
     }
   }
 
   cueCollapse() {
     if (this.state !== blobStates.REGULAR) {
-      this.trackTime()
-      this.state = blobStates.COLLAPSING
+      this.trackTime();
+      this.state = blobStates.COLLAPSING;
     }
   }
 
@@ -191,8 +207,6 @@ class Blob {
   getMultiplierFromInterpolator(timeFraction) {
     // The interpolator (Ease-in-out-quint) equation:
     var multiplier = timeFraction < 0.5 ? 8 * Math.pow(timeFraction, 4) : 1 - Math.pow(-2 * timeFraction + 2, 4) / 2;
-
-    console.log("TF :" + timeFraction + " Spec: " + multiplier)
     return multiplier;
   }
 
@@ -218,6 +232,19 @@ canvas.addEventListener("mouseenter", function (event) {
 canvas.addEventListener("mouseout", function (event) {
   blob.cueCollapse();
 }, false);
+
+window.addEventListener("resize", function (event) {
+  if (anchorResizeToken != null) {
+    clearTimeout(anchorResizeToken);
+  }
+
+  anchorResizeToken = setTimeout(commitResize, 200);
+}, false);
+
+function commitResize() {
+  blob.updateValues();
+  anchorResizeToken = null;
+}
 
 function loop() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -270,4 +297,8 @@ function calcAvgs(p) {
   // close
   avg.push((p[0] + p[leng - 2]) / 2, (p[1] + p[leng - 1]) / 2);
   return avg;
+}
+
+export function getBlob() {
+  return blob;
 }
