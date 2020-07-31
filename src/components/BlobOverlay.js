@@ -17,7 +17,7 @@ const blobStates = {
 
 const scaleDuration = 750; // milliseconds
 const fillColor = "#41ffc9"; // gotta have some teal, you know what I'm sayin
-const energyHoverMultiplier = 5;
+const thetaDeltaMax = 0.16;
 
 class Blob {
   constructor(number, sectorAngle, minDeviation) {
@@ -68,17 +68,11 @@ class Blob {
     this.state = blobStates.REGULAR;
     this.lastTimeFraction = 0;
     this.currentTimeFraction = 0;
-    this.isMouseIn = false;
+    this.energyMultiplier = 1;
   }
 
   shouldRefresh() {
     return this.isAnimating() || (this.thetaRamp < this.thetaRampDest * 0.99);
-  }
-
-  setMouseIn(mouseIn) {
-    console.log(`${mouseIn}`);
-    this.isMouseIn = Boolean(mouseIn);
-    this.updateThetaDelta();
   }
 
   isAnimating() {
@@ -117,11 +111,15 @@ class Blob {
   }
 
   updateThetaDelta() {
-    this.thetaDelta = (this.getDiagonal() / 2500) * 0.02;
+    var temp = this.getBaseThetaDelta() * this.energyMultiplier;
 
-    if (this.isMouseIn) {
-      this.thetaDelta *= energyHoverMultiplier;
-    }
+    temp = (temp > thetaDeltaMax) ? thetaDeltaMax : temp;
+    temp = (temp < this.getBaseThetaDelta()) ? this.getBaseThetaDelta() : temp;
+    this.thetaDelta = temp;
+  }
+
+  getBaseThetaDelta() {
+    return (this.getDiagonal() / 2500) * 0.02;
   }
 
   updateAnchors() {
@@ -244,8 +242,12 @@ class Blob {
     return (this.baseRadius + this.radiusOffset) >= this.getDiagonal();
   }
 
-  getBaseRadius() {
-    return this.baseRadius;
+  /* Converts given px acceleration to energyMultiplier value */
+  reactivePx(acceleration) {
+    // Formula: (+ve Acceleration pixels / Diagonal pixels) * 100
+    this.energyMultiplier = (Math.abs(acceleration) / this.getDiagonal()) * 400;
+    console.log("Calculated multiplier = " + this.energyMultiplier);
+    this.updateThetaDelta();
   }
 }
 
@@ -312,7 +314,7 @@ export function getBlob() {
   return blob;
 }
 
-/* ----------- Attack Listeners ---------- */
+/* ----------- Attach Listeners ----------- */
 
 canvas.addEventListener("mouseenter", function (event) {
   blob.cueExpansion();
@@ -330,15 +332,31 @@ window.addEventListener("resize", function (event) {
   anchorResizeToken = setTimeout(commitResize, 200);
 }, false);
 
-document.onmousemove = function (event) {
-  event = event || window.event;
+/* ----------- Attach Mouse Reaction ----------- */
+var lastEvent, currentEvent;
+var lastSpeed = 0;
 
-  if (blob.getBaseRadius() > Math.hypot(
-    canvas.width - event.pageX,
-    event.pageY - window.scrollY)
-  ) {
-    blob.setMouseIn(true);
-  } else {
-    blob.setMouseIn(false);
+document.onmousemove = function (event) {
+  currentEvent = event || window.event;
+}
+
+setInterval(motionReactiveHook, 20);
+
+function motionReactiveHook() {
+  var speed = 0;
+
+  // If we have information for two intances to diff, proceed.
+  if (lastEvent && currentEvent) {
+    var movementX = Math.abs(currentEvent.screenX - lastEvent.screenX);
+    var movementY = Math.abs(currentEvent.screenY - lastEvent.screenY);
+    var movement = Math.hypot(movementX, movementY);
+
+    speed = movement;
+    var acceleration = speed - lastSpeed;
+
+    blob.reactivePx(acceleration);
   }
+
+  lastEvent = currentEvent;
+  lastSpeed = speed;
 }
