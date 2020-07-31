@@ -15,8 +15,9 @@ const blobStates = {
   COLLAPSING: 3
 }
 
-const duration = 1000; // milliseconds
+const scaleDuration = 750; // milliseconds
 const fillColor = "#41ffc9"; // gotta have some teal, you know what I'm sayin
+const energyHoverMultiplier = 5;
 
 class Blob {
   constructor(number, sectorAngle, minDeviation) {
@@ -67,10 +68,17 @@ class Blob {
     this.state = blobStates.REGULAR;
     this.lastTimeFraction = 0;
     this.currentTimeFraction = 0;
+    this.isMouseIn = false;
   }
 
   shouldRefresh() {
     return this.isAnimating() || (this.thetaRamp < this.thetaRampDest * 0.99);
+  }
+
+  setMouseIn(mouseIn) {
+    console.log(`${mouseIn}`);
+    this.isMouseIn = Boolean(mouseIn);
+    this.updateThetaDelta();
   }
 
   isAnimating() {
@@ -78,6 +86,12 @@ class Blob {
   }
 
   update() {
+    if (this.state === blobStates.EXPANDED) {
+      return;
+    }
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
     if (this.shouldRefresh()) {
       this.updateValues();
     }
@@ -95,18 +109,26 @@ class Blob {
   }
 
   updateValues() {
-    console.log("Updating values");
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-
     this.baseRadius = this.getDiagonal() * 0.4;
 
-    console.log("Updated values = " + canvas.width + " " + canvas.height + " " + this.baseRadius);
+    this.updateThetaDelta();
+  }
+
+  updateThetaDelta() {
+    this.thetaDelta = (this.getDiagonal() / 2500) * 0.02;
+
+    if (this.isMouseIn) {
+      this.thetaDelta *= energyHoverMultiplier;
+    }
   }
 
   updateAnchors() {
     this.thetaRamp += (this.thetaRampDest - this.thetaRamp) / this.rampDamp;
-    this.theta += 0.02;
+    this.theta += this.thetaDelta;
+
+    // Recreate anchors, initially with first anchor
     this.anchors = [canvas.width, this.baseRadius];
 
     for (let i = 0; i <= this.segments + 2; i++) {
@@ -189,7 +211,7 @@ class Blob {
 
   getTimeFraction() {
     let difference = performance.now() - this.recordedTime;
-    let timeFraction = difference / duration;
+    let timeFraction = difference / scaleDuration;
 
     return this.clampTimeFraction(timeFraction);
   }
@@ -221,25 +243,13 @@ class Blob {
   isMaximized() {
     return (this.baseRadius + this.radiusOffset) >= this.getDiagonal();
   }
+
+  getBaseRadius() {
+    return this.baseRadius;
+  }
 }
 
 const blob = new Blob(10, Math.PI / 2, Math.PI / 2);
-
-canvas.addEventListener("mouseenter", function (event) {
-  blob.cueExpansion();
-}, false);
-
-canvas.addEventListener("mouseout", function (event) {
-  blob.cueCollapse();
-}, false);
-
-window.addEventListener("resize", function (event) {
-  if (anchorResizeToken != null) {
-    clearTimeout(anchorResizeToken);
-  }
-
-  anchorResizeToken = setTimeout(commitResize, 200);
-}, false);
 
 function commitResize() {
   blob.updateValues();
@@ -247,7 +257,6 @@ function commitResize() {
 }
 
 function loop() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
   blob.animate();
   blob.update();
   window.requestAnimationFrame(loop);
@@ -301,4 +310,35 @@ function calcAvgs(p) {
 
 export function getBlob() {
   return blob;
+}
+
+/* ----------- Attack Listeners ---------- */
+
+canvas.addEventListener("mouseenter", function (event) {
+  blob.cueExpansion();
+}, false);
+
+canvas.addEventListener("mouseout", function (event) {
+  blob.cueCollapse();
+}, false);
+
+window.addEventListener("resize", function (event) {
+  if (anchorResizeToken != null) {
+    clearTimeout(anchorResizeToken);
+  }
+
+  anchorResizeToken = setTimeout(commitResize, 200);
+}, false);
+
+document.onmousemove = function (event) {
+  event = event || window.event;
+
+  if (blob.getBaseRadius() > Math.hypot(
+    canvas.width - event.pageX,
+    event.pageY - window.scrollY)
+  ) {
+    blob.setMouseIn(true);
+  } else {
+    blob.setMouseIn(false);
+  }
 }

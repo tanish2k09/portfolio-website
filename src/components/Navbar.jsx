@@ -8,7 +8,7 @@ function Navbar() {
   return (
     <div id="nav_child_wrapper" className="xl:mt-4 sticky h-full w-full">
       <ResponsiveNavItem
-        text="Work"
+        text="My Work"
         resource={WorkIcon}
         alt="Work icon"
         link="#work_showcase_text"

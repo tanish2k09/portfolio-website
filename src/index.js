@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import BigName from "./components/BigName.jsx";
 import AccentedButton from "./components/AccentedButton.jsx";
 import Navbar from "./components/Navbar.jsx";
+import WorkGrid from "./components/WorkGrid.jsx";
 
 require('./components/BlobOverlay');
 
@@ -18,6 +19,13 @@ ReactDOM.render(
     <BigName />
   </React.StrictMode>,
   document.getElementById("big_name_container")
+);
+
+ReactDOM.render(
+  <React.StrictMode>
+    <WorkGrid />
+  </React.StrictMode>,
+  document.getElementById("work_grid_container")
 );
 
 ReactDOM.render(

@@ -5,7 +5,7 @@ function AccentedButton(props) {
   let style = "";
 
   const common =
-    "transition duration-500 linear transform hover:scale-110 font-mono relative";
+    "transition duration-500 linear transform hover:scale-110 font-mono font-bold";
 
   if (props.type === "primary") {
     style = "bg-accent hover:bg-opacity-90 text-black py-4 px-4 rounded flex";
