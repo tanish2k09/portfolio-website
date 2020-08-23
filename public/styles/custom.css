@@ -14,3 +14,28 @@ html {
 .lottie-smurf-container {
   background-color: #14d2b3;
 }
+
+.big-text-main {
+  font-size: min(12vw, 18vh);
+}
+
+.big-text-heading {
+  font-size: min(6vw, 12vh);
+}
+
+.big-text-sec {
+  font-size: min(2vw, 4vh);
+}
+
+.binary-bg {
+  background-image: url(../assets/binary.svg);
+  background-repeat: repeat;
+}
+
+.text-shadow {
+  text-shadow: 2px 2px #101924;
+}
+
+.work-grid {
+  width: 1%;
+}

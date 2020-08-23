@@ -8,13 +8,12 @@
   <meta name="description" content="Home page for Tanish Manku's personal website" />
   <link rel="stylesheet" type="text/css" href="./styles/tailwind.css" />
   <link rel="stylesheet" type="text/css" href="./styles/custom.css" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Work+Sans:wght@400;600&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono&family=Work+Sans:wght@400;500;600;700&display=swap"
     rel="stylesheet" />
 </head>
 
-<body class="bg-dark m-0">
-  <nav id="nav_section" class="fixed font-display z-20
+<body class="bg-dark m-0 binary-bg">
+  <nav id="nav_section" class="fixed font-mono z-20
       xl:right-0 xl:inline-block xl:bottom-auto
       xl:w-48 xl:h-full">
   </nav>
@@ -26,20 +25,68 @@
   <section id="first_screen_block" class="h-screen relative block">
     <div id="corner_block" class="absolute bottom-0">
       <div id="big_name_container"></div>
-      <div id="click_button_container" class="xl:m-16 xl:ml-12"></div>
+      <p id="click_button_container" class="xl:mt-16 xl:mb-12 xl:ml-12"></p>
     </div>
   </section>
 
-  <section id="second_screen_block" class="h-screen mt-16 relative block">
-    <div id="work_grid_container"></div>
+  <section id="second_block" class="mt-32 relative inline-block w-full pr-48">
     <div id="work_showcase_text"
-      class="absolute bottom-0 xl:font-semibold font-display xl:ml-12 xl:text-8xl text-secondary">
-      <span class="text-primary">Work</span> showcase.
+      class="xl:font-semibold font-display big-text-heading text-secondary text-shadow xl:ml-12">
+      <span class="text-primary">Work</span> showcase:
     </div>
+    <div id="work_grid_container" class="xl:mt-4 xl:ml-8 w-full"></div>
   </section>
 
-  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.9/fullpage.min.jstr"></script>
+  <section id="third_block" class="mt-32 relative block">
+    <div id="about_me_text" class="xl:font-semibold font-display big-text-heading text-secondary text-shadow xl:ml-12">
+      <span class="text-primary">About</span> me:
+    </div>
+    <div class="work-card xl:ml-12 text-primary xl:max-w-80p xl:text-lg font-body p-8">
+      <p>
+        So, you made it this far into my website. Hopefully you found it interesting so far!
+      </p>
+      <br>
+      <p>
+        <span class="text-accent">Let me introduce myself:</span> I'm Tanish Manku, an originally self-taught and later
+        professionally-trained Software
+        Developer based in Vancouver, Canada.
+      </p>
+      <br>
+      <p>
+        I started coding basic logical programs at the age of 12, and the first ever programming language I used was C.
+        Over the years I've picked up many skills and I've dipped my feet in Android, iOS, Flutter, Linux, Unity, Visual
+        Basic and Web Development.
+        I believe I found my sweet spot in the software industry in mobile app development for Android and iOS at around
+        age 17,
+        and I devoted most of my free time to it, learning patterns like MVVM and MVC, while keeping up-to-date with the
+        latest frameworks
+        like AndroidX and Jetpack. I got my first tech job at age 18 as a contract Junior Web Developer at
+        <a href="https://design2web.ca"><span
+            class="bg-accent px-2 py-01 text-dark rounded-md font-medium">Design2Web</span></a>,
+        without a formal CS degree since I was still studying at the time.
+      </p>
+      <br>
+      <p>
+        Besides just being a Software Developer, <span class="text-accent">I'm also pretty good at 2D cartesian
+          mathematics.</span>
+        This allows me to build some nice fluid user-interfaces and Bézier curves seem to be all the rage in animations
+        these days.
+        Pairing it with my <span class="text-accent">decent UI design skills</span>, I can create some delicious
+        eye-candy custom effects.
+        The blob you see in the background is one example.
+      </p>
+      <br>
+      <br>
+      <p>
+        <span class="text-accent text-xl block">Languages:</span>
+        <span class="font-mono mt-2 text-hintyellow">Java, Kotlin, Swift, Dart, C, C++, C#, JS, HTML, SQL</span>
+        <br><br>
+        <span class="text-accent text-xl block">Have used:</span>
+        <span class="font-mono mt-2 text-hintyellow">Android SDK, iOS SDK, Flutter SDK, Discord bot API, Twitter bot
+          API, ReactJS, TailwindCSS, Git, Unity</span>
+      </p>
+    </div>
+  </section>
 </body>
 
 </html>

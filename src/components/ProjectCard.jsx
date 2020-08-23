@@ -1,80 +1,50 @@
-import React from "react";
+import React from 'react';
+import Tag from './Tag';
+import SourceButton from './SourceButton';
 
+/*
+ * Props used:
+ * 1) cardClasses
+ * 2) bgColor
+ * 3) OPTIONAL (use for svgs): svgOptions
+ * 4) asset
+ * 5) assetAlt
+ * 6) imageClasses
+ * 7) cardColor
+ * 8) tags
+ * 9) name
+ * 10) description
+ * 11) OPTIONAL (use for source code): repo
+ * 12) OPTIONAL (use for play store links): isPlayStore + url
+ */
 export default function ProjectCard(props) {
-  const gradient_bg = {
-    backgroundImage: `linear-gradient(to bottom right, ${props.begin} 0%, ${props.end})`,
-  };
-
-  const dimens_100 = {
-    height: "100px",
-    width: "100px",
-  };
-
-  const imgClass =
-    "w-0 xl:min-w-100px h-0 xl:min-h-100px self-center inline-block rounded-lg ml-auto";
-
-  const imgContainerStyle = "text-center rounded-lg";
-  const lottieContainerStyle =
-    "lottie-smurf-container w-0 xl:min-w-100px self-center mx-auto rounded-lg";
-
-  var resource;
-  var resourceContainerStyle;
-
-  if (props.text === "Smurf Config Editor") {
-    resourceContainerStyle = lottieContainerStyle;
-    resource = (
-      <lottie-player
-        src="https://assets3.lottiefiles.com/packages/lf20_mbwmRj.json"
-        background="transparent"
-        speed="1"
-        style={dimens_100}
-        autoplay
-        loop
-      ></lottie-player>
-    );
-  } else {
-    resourceContainerStyle = imgContainerStyle;
-    resource = (
-      <img src={props.resource} alt={props.desc} className={imgClass} />
-    );
-  }
-
   return (
-    <div
-      id={props.id}
-      className="h-threequarters mx-16 xl:min-w-thirty text-primary transition-all transform duration-500 hover:scale-110 shadow-xl"
-    >
-      <div id="resource_container" className={resourceContainerStyle}>
-        {resource}
+    <div className={"work-card " + props.cardClasses}>
+      <div className={props.bgColor + " w-full " + props.svgOptions}>
+        <img src={props.asset} alt={props.assetAlt} className={props.imageClasses + " mx-auto"} />
       </div>
-      <div
-        id="content"
-        className="overflow-y-scroll h-full rounded-t-bigg bg-cards"
-      >
-        <div
-          id="title"
-          className="font-display xl:text-2xl text-center my-4 underline"
-        >
-          {props.text}
+      <div className={props.cardColor + " font-body relative inline-block w-full"}>
+        <div className="mt-2 ml-2 mr-4 inline-block font-mono">
+          {props.tags.map(tag => (
+            <Tag key={tag.id.toString()} text={tag.text} colorClass={props.bgColor} />
+          ))}
         </div>
-        <div id="description" className="font-mono mx-8">
-          This is a whole bunch of hipster ipsum:
-          <br />
-          I'm baby tote bag gentrify biodiesel offal. Authentic kickstarter
-          hoodie pinterest chambray, mixtape listicle XOXO forage meh occupy
-          jean shorts tumblr yr. Tofu mlkshk bespoke poutine lumbersexual.
-          Mumblecore chillwave cray pabst ugh kinfolk lo-fi kickstarter
-          affogato, bitters literally readymade.
-          <br />
+        <br />
+        <div className="inline-block">
+          <div className="mt-8 mx-4 text-lg w-full">
+            <span className="border-b-2 border-black pb-1 font-medium">
+              {props.name}
+            </span>
+          </div>
+          <div className="my-4 mx-4 inline-block text-sm font-normal">
+            {props.description}
+          </div>
+        </div>
+        <div className="flex mt-2 pb-4 px-2">
+          <SourceButton repo={props.repo} />
+          <SourceButton isPlayStore={props.isPlayStore} url={props.url} />
         </div>
       </div>
-      <span
-        id="drop"
-        className="absolute bottom-0 w-full -bottom-bigg self-center gradient-drop rounded-b-bigg"
-        style={gradient_bg}
-      >
-        &nbsp;
-      </span>
     </div>
-  );
+  )
 }

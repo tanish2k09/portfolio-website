@@ -4,6 +4,7 @@ import BigName from "./components/BigName.jsx";
 import AccentedButton from "./components/AccentedButton.jsx";
 import Navbar from "./components/Navbar.jsx";
 import WorkGrid from "./components/WorkGrid.jsx";
+import WorkGridMasonry from "./components/WorkGridMasonry.jsx";
 
 require('./components/BlobOverlay');
 
@@ -22,16 +23,13 @@ ReactDOM.render(
 );
 
 ReactDOM.render(
-  <React.StrictMode>
-    <WorkGrid />
-  </React.StrictMode>,
+  <WorkGridMasonry />,
   document.getElementById("work_grid_container")
 );
 
 ReactDOM.render(
   <React.StrictMode>
     <AccentedButton
-      type="primary"
       text="Check out my work"
       link="#work_showcase_text"
     />

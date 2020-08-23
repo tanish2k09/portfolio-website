@@ -13,11 +13,19 @@ const blobStates = {
   EXPANDING: 1,
   REGULAR: 2,
   COLLAPSING: 3
-}
+};
+
+const blobEnergyStates = {
+  REST: 0,
+  INCREASING: 1,
+  DECREASING: 2,
+  MAXIMUM: 3
+};
 
 const scaleDuration = 750; // milliseconds
 const fillColor = "#41ffc9"; // gotta have some teal, you know what I'm sayin
-const thetaDeltaMax = 0.16;
+const reactiveSpeedDuration = 750;
+const reactivePollInterval = 16.66;
 
 class Blob {
   constructor(number, sectorAngle, minDeviation) {
@@ -63,12 +71,16 @@ class Blob {
     this.thetaRamp = 0;
     this.thetaRampDest = 12;
     this.rampDamp = 25;
+    this.thetaDelta = this.getBaseThetaDelta();
 
     // Track state
     this.state = blobStates.REGULAR;
     this.lastTimeFraction = 0;
     this.currentTimeFraction = 0;
-    this.energyMultiplier = 1;
+    this.recordedEnergyTime = 0;
+    this.lastThetaFraction = 0;
+    this.currentThetaFraction = 0;
+    this.blobEnergyState = blobEnergyStates.REST;
   }
 
   shouldRefresh() {
@@ -99,6 +111,8 @@ class Blob {
 
     ctx.lineTo(canvas.width, 0);
     ctx.fillStyle = fillColor;
+    ctx.shadowBlur = 20;
+    ctx.shadowColor = "black";
     ctx.fill();
   }
 
@@ -106,20 +120,14 @@ class Blob {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     this.baseRadius = this.getDiagonal() * 0.4;
-
-    this.updateThetaDelta();
-  }
-
-  updateThetaDelta() {
-    var temp = this.getBaseThetaDelta() * this.energyMultiplier;
-
-    temp = (temp > thetaDeltaMax) ? thetaDeltaMax : temp;
-    temp = (temp < this.getBaseThetaDelta()) ? this.getBaseThetaDelta() : temp;
-    this.thetaDelta = temp;
   }
 
   getBaseThetaDelta() {
     return (this.getDiagonal() / 2500) * 0.02;
+  }
+
+  getMaxThetaDelta() {
+    return Math.min(this.getBaseThetaDelta() * 6, 0.12);
   }
 
   updateAnchors() {
@@ -195,7 +203,6 @@ class Blob {
     if (this.currentTimeFraction === 0) {
       this.state = blobStates.REGULAR;
       this.radiusOffset = 0;
-      return;
     }
 
     this.currentTimeFraction = this.clampTimeFraction(this.lastTimeFraction - this.getTimeFraction())
@@ -217,21 +224,25 @@ class Blob {
   clampTimeFraction(timeFraction) {
     if (timeFraction > 1) {
       return 1;
-    } else if (this.currentTimeFraction < 0) {
+    } else if (timeFraction < 0) {
       return 0;
     }
 
     return timeFraction;
   }
 
-  getMultiplierFromInterpolator(timeFraction) {
-    // The interpolator (Ease-in-out-quint) equation:
-    var multiplier = timeFraction < 0.5 ? 8 * Math.pow(timeFraction, 4) : 1 - Math.pow(-2 * timeFraction + 2, 4) / 2;
-    return multiplier;
+  getMultiplierFromInterpolator(tf) {
+    return tf < 0.5
+      ? (1 - Math.sqrt(1 - Math.pow(2 * tf, 2))) / 2
+      : (Math.sqrt(1 - Math.pow(-2 * tf + 2, 2)) + 1) / 2;
   }
 
   getMultiplierToOffset(multiplier) {
     return (this.getMaxRadius() - this.baseRadius) * multiplier;
+  }
+
+  getMultiplierToThetaDelta(multiplier) {
+    return (this.getMaxThetaDelta() - this.getBaseThetaDelta()) * multiplier + this.getBaseThetaDelta();
   }
 
   getMaxRadius() {
@@ -239,15 +250,81 @@ class Blob {
   }
 
   isMaximized() {
-    return (this.baseRadius + this.radiusOffset) >= this.getDiagonal();
+    return this.radiusOffset >= this.getDiagonal();
   }
 
-  /* Converts given px acceleration to energyMultiplier value */
-  reactivePx(acceleration) {
-    // Formula: (+ve Acceleration pixels / Diagonal pixels) * 100
-    this.energyMultiplier = (Math.abs(acceleration) / this.getDiagonal()) * 400;
-    console.log("Calculated multiplier = " + this.energyMultiplier);
-    this.updateThetaDelta();
+  trackEnergyTime() {
+    this.recordedEnergyTime = performance.now();
+    this.lastThetaFraction = this.currentThetaFraction;
+  }
+
+  getEnergyThetaFraction() {
+    let difference = performance.now() - this.recordedEnergyTime;
+    let thetaFraction = difference / reactiveSpeedDuration;
+
+    return this.clampTimeFraction(thetaFraction);
+  }
+
+  /* Converts given px acceleration to energy value */
+  reactivePx(speed) {
+    if (this.blobEnergyState === blobEnergyStates.INCREASING) {
+      return;
+    }
+
+    // Formula: (+ve Speed pixels / Diagonal pixels) * 100
+    // This is at max 1 / reactivePollInterval (0.06 at 60fps) and 0 at min
+    // We wanna normalize it to "0.1% screen in 1 interval" as threshold
+    let isAboveThreshold = Math.abs(speed) > (this.getDiagonal() * 0.001);
+
+    if (isAboveThreshold) {
+      this.trackEnergyTime();
+      this.blobEnergyState = blobEnergyStates.INCREASING;
+    } else if (this.blobEnergyState !== blobEnergyStates.DECREASING) {
+      this.trackEnergyTime();
+      this.blobEnergyState = blobEnergyStates.DECREASING;
+    }
+  }
+
+  energize() {
+    switch (this.blobEnergyState) {
+      case blobEnergyStates.INCREASING:
+        this.increaseEnergy();
+        break;
+
+      case blobEnergyStates.DECREASING:
+        this.reduceEnergy();
+        break;
+
+      default:
+        return;
+    }
+  }
+
+  reduceEnergy() {
+    if (this.blobEnergyState === blobEnergyStates.REST) {
+      return;
+    }
+
+    if (this.thetaDelta === this.getBaseThetaDelta() || this.currentThetaFraction < 0) {
+      this.blobEnergyState = blobEnergyStates.REST;
+    }
+
+    this.currentThetaFraction = this.clampTimeFraction(this.lastThetaFraction - this.getEnergyThetaFraction());
+    this.thetaDelta = this.getMultiplierToThetaDelta(this.getMultiplierFromInterpolator(this.currentThetaFraction));
+  }
+
+  increaseEnergy() {
+    if (this.blobEnergyState === blobEnergyStates.MAXIMUM) {
+      return;
+    }
+
+    if (this.currentThetaFraction === 1) {
+      this.blobEnergyState = blobEnergyStates.MAXIMUM;
+    }
+
+
+    this.currentThetaFraction = this.clampTimeFraction(this.lastThetaFraction + this.getEnergyThetaFraction());
+    this.thetaDelta = this.getMultiplierToThetaDelta(this.getMultiplierFromInterpolator(this.currentThetaFraction));
   }
 }
 
@@ -259,6 +336,7 @@ function commitResize() {
 }
 
 function loop() {
+  blob.energize();
   blob.animate();
   blob.update();
   window.requestAnimationFrame(loop);
@@ -316,13 +394,13 @@ export function getBlob() {
 
 /* ----------- Attach Listeners ----------- */
 
-canvas.addEventListener("mouseenter", function (event) {
-  blob.cueExpansion();
-}, false);
+// canvas.addEventListener("mouseenter", function (event) {
+//   blob.cueExpansion();
+// }, false);
 
-canvas.addEventListener("mouseout", function (event) {
-  blob.cueCollapse();
-}, false);
+// canvas.addEventListener("mouseout", function (event) {
+//   blob.cueCollapse();
+// }, false);
 
 window.addEventListener("resize", function (event) {
   if (anchorResizeToken != null) {
@@ -334,13 +412,14 @@ window.addEventListener("resize", function (event) {
 
 /* ----------- Attach Mouse Reaction ----------- */
 var lastEvent, currentEvent;
-var lastSpeed = 0;
+// var lastSpeed = 0;
 
 document.onmousemove = function (event) {
   currentEvent = event || window.event;
 }
 
-setInterval(motionReactiveHook, 20);
+// Should be about 60fps
+setInterval(motionReactiveHook, reactivePollInterval);
 
 function motionReactiveHook() {
   var speed = 0;
@@ -351,12 +430,12 @@ function motionReactiveHook() {
     var movementY = Math.abs(currentEvent.screenY - lastEvent.screenY);
     var movement = Math.hypot(movementX, movementY);
 
-    speed = movement;
-    var acceleration = speed - lastSpeed;
+    speed = movement / reactivePollInterval;
+    //var acceleration = (speed - lastSpeed) / reactivePollInterval;
 
-    blob.reactivePx(acceleration);
+    blob.reactivePx(speed);
   }
 
   lastEvent = currentEvent;
-  lastSpeed = speed;
+  // lastSpeed = speed;
 }

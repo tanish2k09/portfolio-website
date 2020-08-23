@@ -22,6 +22,33 @@
   @apply h-full;
 }
 
+.work-card {
+  @apply overflow-hidden;
+  @apply rounded-lg;
+  @apply bg-cards;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0, 0.8);
+  @apply inline-block;
+  @apply m-4;
+}
+
+.tag {
+  @apply rounded-md;
+  @apply my-1;
+  @apply py-1;
+  @apply px-2;
+  @apply ml-2;
+}
+
+.repo-button {
+  @apply transition-colors;
+  @apply duration-500;
+}
+
+.repo-button:hover {
+  @apply text-primary;
+  @apply bg-black;
+}
+
 @tailwind components;
 
 @tailwind utilities;
