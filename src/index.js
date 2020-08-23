@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import BigName from "./components/BigName.jsx";
 import AccentedButton from "./components/AccentedButton.jsx";
 import Navbar from "./components/Navbar.jsx";
-import WorkGrid from "./components/WorkGrid.jsx";
 import WorkGridMasonry from "./components/WorkGridMasonry.jsx";
 
 require('./components/BlobOverlay');

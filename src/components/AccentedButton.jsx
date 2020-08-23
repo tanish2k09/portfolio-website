@@ -4,18 +4,18 @@ import AnchorLink from "react-anchor-link-smooth-scroll";
 export default function AccentedButton(props) {
 
   const common =
-    "transition duration-500 linear transform hover:scale-110 " +
+    "accented-button " +
     "font-mono font-bold " +
     "bg-accent text-black " +
     "flex rounded shadow-xl " +
-    "py-4 px-4 m-0 ml-0";
+    "px-2 py-4 sm:p-4 m-0 ml-0 text-sm xl:text-base";
 
   return (
     <AnchorLink href={props.link}>
       <button className={common}>
         {props.text}
         <svg
-          className="ml-4 self-center stroke-0 w-5 stroke-current"
+          className="min:ml-3 sm:mr-0 sm:ml-4 self-center stroke-0 w-5 stroke-current"
           viewBox="0 0 24 24"
         >
           <path

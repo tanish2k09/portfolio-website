@@ -1,7 +1,5 @@
 import React from 'react';
 import Masonry from 'react-masonry-component';
-import Tag from './Tag';
-import SourceButton from './SourceButton';
 import ProjectCard from './ProjectCard';
 
 import SCE from "../assets/sce-p4xl-mock.png";
@@ -37,7 +35,7 @@ export default function WorkGridMasonry() {
                 ]}
                 name={"Smurf Config Editor"}
                 description={"A beautiful, fast and modern Android companion app for SmurfKernel."}
-                repo={"SmurfConfigEditor.git"}
+                repo={"SmurfConfigEditor"}
                 isPlayStore={true}
                 url={"https://play.google.com/store/apps/details?id=com.tanish2k09.sce"}
 
@@ -58,7 +56,7 @@ export default function WorkGridMasonry() {
                 ]}
                 name={"K-LAPSE"}
                 description={"A Linux kernel time-based and hook-based linear RGB interpolation module, used in hundreds of custom Android kernels for thousands of devices."}
-                repo={"klapse-livedisplay.git"}
+                repo={"klapse-livedisplay"}
 
             />
             {/* Musicbender */}
@@ -79,7 +77,7 @@ export default function WorkGridMasonry() {
                 ]}
                 name={"Musicbender"}
                 description={"A Discord bot focused on sound effects and media playback."}
-                repo={"musicbender-discord.git"}
+                repo={"musicbender-discord"}
 
             />
             {/* DT2W */}
@@ -99,7 +97,7 @@ export default function WorkGridMasonry() {
                 ]}
                 name={"Double Tap 2 Wake"}
                 description={"An Android Linux kernel display tap-detection driver for waking up the device display or sleeping."}
-                repo={"doubletap2wake-2.0.git"}
+                repo={"doubletap2wake-2.0"}
 
             />
             {/* T2S */}
@@ -119,7 +117,7 @@ export default function WorkGridMasonry() {
                 ]}
                 name={"Trace 2 Sleep"}
                 description={"An Android Linux kernel display parabolic corner-to-corner customizable gesture driver for waking up the device display or sleeping."}
-                repo={"trace2sleep.git"}
+                repo={"trace2sleep"}
 
             />
             {/* Personal website */}

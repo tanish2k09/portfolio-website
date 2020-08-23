@@ -403,6 +403,10 @@ export function getBlob() {
 // }, false);
 
 window.addEventListener("resize", function (event) {
+  if (window.innerWidth < 768) {
+    return;
+  }
+
   if (anchorResizeToken != null) {
     clearTimeout(anchorResizeToken);
   }

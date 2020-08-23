@@ -17,9 +17,22 @@
   content: "\200D";
 }
 
-.nav-hover:hover .nav-blob {
-  @apply w-tenth;
-  @apply h-full;
+@media screen and (min-width: 768px) {
+  .nav-hover:hover .nav-blob {
+    @apply w-tenth;
+    @apply h-full;
+  }
+
+  .accented-button {
+    @apply transition;
+    @apply duration-500;
+    @apply ease-out;
+    @apply transform;
+  }
+
+  .accented-button:hover {
+    @apply scale-110;
+  }
 }
 
 .work-card {

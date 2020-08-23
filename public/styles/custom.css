@@ -15,16 +15,42 @@ html {
   background-color: #14d2b3;
 }
 
-.big-text-main {
-  font-size: min(12vw, 18vh);
+@media screen and (max-width: 768px) {
+  .big-text-main {
+    font-size: 5rem;
+  }
+  .big-text-heading {
+    font-size: 2.25rem;
+  }
+
+  .big-text-sec {
+    font-size: 1.25rem;
+  }
+
+  .work-grid {
+    width: 100%;
+  }
+
+  .nav-shadow {
+    box-shadow: 0px -4px 3px rgba(50, 50, 50, 0.25);
+  }
 }
 
-.big-text-heading {
-  font-size: min(6vw, 12vh);
-}
+@media screen and (min-width: 768px) {
+  .big-text-main {
+    font-size: min(12vw, 18vh);
+  }
+  .big-text-heading {
+    font-size: min(6vw, 12vh);
+  }
 
-.big-text-sec {
-  font-size: min(2vw, 4vh);
+  .big-text-sec {
+    font-size: min(2vw, 4vh);
+  }
+
+  .work-grid {
+    width: 1%;
+  }
 }
 
 .binary-bg {
@@ -34,8 +60,4 @@ html {
 
 .text-shadow {
   text-shadow: 2px 2px #101924;
-}
-
-.work-grid {
-  width: 1%;
 }

@@ -11,6 +11,9 @@ module.exports = {
       body: ["Work Sans"]
     },
     screens: {
+      min: "360px",
+      // => @media (min-width: 360px) { ... }
+
       sm: "640px",
       // => @media (min-width: 640px) { ... }
 
@@ -72,21 +75,27 @@ module.exports = {
       minHeight: {
         "100px": "100px",
         "56": "14rem",
-        "64": "16rem"
+        "64": "16rem",
+        "1": "0.25rem"
       },
       minWidth: {
         thirty: "30%",
         "100px": "100px",
-        "1": "0.25rem"
+        "1": "0.25rem",
+        "25p": "25%",
+        "100v": "100vw"
       },
       maxHeight: {
         "50p": "50vh",
-        "64": "16rem"
+        "64": "16rem",
+        "1": "0.25rem"
       },
       maxWidth: {
+        "0": "0",
         "25p": "25vw",
         "30p": "30%",
-        "80p": "80vw"
+        "80p": "80vw",
+        "100v": "100vw"
       },
       borderRadius: {
         bigg: "16px",
@@ -95,7 +104,7 @@ module.exports = {
         "-3": "-3",
       },
       inset: {
-        "-bigg": "-16px",
+        "4": "4px"
       },
       spacing: {
         "01": "0.1rem"

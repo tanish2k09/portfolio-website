@@ -12,38 +12,39 @@
     rel="stylesheet" />
 </head>
 
-<body class="bg-dark m-0 binary-bg">
+<body class="bg-dark m-0 binary-bg overscroll-none">
   <nav id="nav_section" class="fixed font-mono z-20
-      xl:right-0 xl:inline-block xl:bottom-auto
-      xl:w-48 xl:h-full">
+      xl:right-0 xl:inline-block xl:bottom-auto xl:w-48 xl:h-full
+      min:bottom-0 min:min-w-full sm:min-w-0 nav-shadow">
   </nav>
 
-  <div id="vector_container" class="fixed left-0 z-0 h-full">
+  <div id="vector_container" class="sm:fixed left-0 z-0 h-full w-full absolute">
     <canvas id="vector_canvas" class="w-full h-full stroke-2"></canvas>
   </div>
 
   <section id="first_screen_block" class="h-screen relative block">
-    <div id="corner_block" class="absolute bottom-0">
+    <div id="corner_block" class="absolute bottom-0 sm:ml-8 min:pb-16 sm:pb-0 min:mb-16 sm:mb-4">
       <div id="big_name_container"></div>
-      <p id="click_button_container" class="xl:mt-16 xl:mb-12 xl:ml-12"></p>
+      <div id="click_button_container" class="min:mt-2 xl:mt-16 min:pb-24 sm:pb-0 xl:mb-16 px-4"></div>
     </div>
   </section>
 
-  <section id="second_block" class="mt-32 relative inline-block w-full pr-48">
+  <section id="second_block" class="min:mt-12 sm:mt-32 relative inline-block w-full md:pr-48">
     <div id="work_showcase_text"
-      class="xl:font-semibold font-display big-text-heading text-secondary text-shadow xl:ml-12">
+      class="font-semibold font-display big-text-heading text-secondary text-shadow pl-4 xl:pl-12 w-full">
       <span class="text-primary">Work</span> showcase:
     </div>
     <div id="work_grid_container" class="xl:mt-4 xl:ml-8 w-full"></div>
   </section>
 
   <section id="third_block" class="mt-32 relative block">
-    <div id="about_me_text" class="xl:font-semibold font-display big-text-heading text-secondary text-shadow xl:ml-12">
+    <div id="about_me_text"
+      class="font-semibold font-display big-text-heading text-secondary text-shadow min:pl-4 sm:pl-0 xl:ml-12">
       <span class="text-primary">About</span> me:
     </div>
-    <div class="work-card xl:ml-12 text-primary xl:max-w-80p xl:text-lg font-body p-8">
+    <div class="work-card xl:ml-12 text-primary xl:max-w-80p min:text-sm xl:text-lg font-body min:p-4 sm:p-8">
       <p>
-        So, you made it this far into my website. Hopefully you found it interesting so far!
+        So, you made it this far into my website. Hopefully you find it interesting!
       </p>
       <br>
       <p>
@@ -67,26 +68,28 @@
       </p>
       <br>
       <p>
-        Besides just being a Software Developer, <span class="text-accent">I'm also pretty good at 2D cartesian
+        Besides being a Software Developer, <span class="text-accent">I'm also pretty good at 2D cartesian
           mathematics.</span>
         This allows me to build some nice fluid user-interfaces and Bézier curves seem to be all the rage in animations
         these days.
         Pairing it with my <span class="text-accent">decent UI design skills</span>, I can create some delicious
-        eye-candy custom effects.
-        The blob you see in the background is one example.
+        eye-candy interactive custom effects.
+        The blob you see in the background is one example, it reacts when you move the mouse around too.
       </p>
       <br>
       <br>
-      <p>
-        <span class="text-accent text-xl block">Languages:</span>
-        <span class="font-mono mt-2 text-hintyellow">Java, Kotlin, Swift, Dart, C, C++, C#, JS, HTML, SQL</span>
+      <p class="font-mono">
+        <span class="text-accent text-md block">Languages:</span>
+        <span class="mt-2 text-hintyellow block">Java, Kotlin, Swift, Dart, C, C++, C#, JS, HTML, SQL</span>
         <br><br>
-        <span class="text-accent text-xl block">Have used:</span>
-        <span class="font-mono mt-2 text-hintyellow">Android SDK, iOS SDK, Flutter SDK, Discord bot API, Twitter bot
+        <span class="text-accent text-md block">Have used:</span>
+        <span class="mt-2 text-hintyellow block">Android SDK, iOS SDK, Flutter SDK, Discord bot API, Twitter bot
           API, ReactJS, TailwindCSS, Git, Unity</span>
       </p>
     </div>
   </section>
+
+  <section id="fourth_block" class="mt-32 relative block"></section>
 </body>
 
 </html>
