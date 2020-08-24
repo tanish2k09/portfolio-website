@@ -35,3 +35,5 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById("click_button_container")
 );
+
+require('./scripts/ContactBG');

@@ -11,7 +11,7 @@ module.exports = {
       body: ["Work Sans"]
     },
     screens: {
-      min: "360px",
+      min: "300px",
       // => @media (min-width: 360px) { ... }
 
       sm: "640px",
@@ -30,6 +30,8 @@ module.exports = {
       primary: "#eceff1",
       secondary: "#859299",
       accent: "#41ffc9",
+      accentDarker: "#207f64",
+      accentDark: "#2db28c",
       dark: "#000a12",
       scedark: "#0a6959",
       hintyellow: "#ffe0b2"
@@ -94,6 +96,8 @@ module.exports = {
         "0": "0",
         "25p": "25vw",
         "30p": "30%",
+        "45p": "45%",
+        "75p": "70vw",
         "80p": "80vw",
         "100v": "100vw"
       },

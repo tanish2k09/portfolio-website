@@ -14,22 +14,32 @@
 
 <body class="bg-dark m-0 binary-bg overscroll-none">
   <nav id="nav_section" class="fixed font-mono z-20
-      xl:right-0 xl:inline-block xl:bottom-auto xl:w-48 xl:h-full
-      min:bottom-0 min:min-w-full sm:min-w-0 nav-shadow">
+      md:right-0 md:inline-block md:bottom-auto md:w-40 xl:w-48 md:h-full
+      min:bottom-0 min:min-w-full md:min-w-0 nav-shadow">
   </nav>
 
-  <div id="vector_container" class="sm:fixed left-0 z-0 h-full w-full absolute">
+
+
+
+  <div id="vector_container" class="md:fixed left-0 z-0 h-full w-full absolute">
     <canvas id="vector_canvas" class="w-full h-full stroke-2"></canvas>
   </div>
 
+
+
+
   <section id="first_screen_block" class="h-screen relative block">
-    <div id="corner_block" class="absolute bottom-0 sm:ml-8 min:pb-16 sm:pb-0 min:mb-16 sm:mb-4">
+    <div id="corner_block" class="absolute bottom-0 sm:ml-8 min:pb-16 md:pb-0 min:mb-16 md:mb-4">
       <div id="big_name_container"></div>
-      <div id="click_button_container" class="min:mt-2 xl:mt-16 min:pb-24 sm:pb-0 xl:mb-16 px-4"></div>
+      <div id="click_button_container" class="min:mt-2 md:mt-16 min:pb-24 lg:pb-0 lg:mb-16 min:px-4 sm:px-0 xl:px-4">
+      </div>
     </div>
   </section>
 
-  <section id="second_block" class="min:mt-12 sm:mt-32 relative inline-block w-full md:pr-48">
+
+
+
+  <section id="second_block" class="min:mt-12 md:mt-32 relative inline-block w-full md:pr-48">
     <div id="work_showcase_text"
       class="font-semibold font-display big-text-heading text-secondary text-shadow pl-4 xl:pl-12 w-full">
       <span class="text-primary">Work</span> showcase:
@@ -37,12 +47,16 @@
     <div id="work_grid_container" class="xl:mt-4 xl:ml-8 w-full"></div>
   </section>
 
+
+
+
   <section id="third_block" class="mt-32 relative block">
     <div id="about_me_text"
-      class="font-semibold font-display big-text-heading text-secondary text-shadow min:pl-4 sm:pl-0 xl:ml-12">
+      class="font-semibold font-display big-text-heading text-secondary text-shadow min:pl-4 xl:ml-12">
       <span class="text-primary">About</span> me:
     </div>
-    <div class="work-card xl:ml-12 text-primary xl:max-w-80p min:text-sm xl:text-lg font-body min:p-4 sm:p-8">
+    <div
+      class="work-card xl:ml-12 text-primary md:max-w-75p lg:max-w-80p min:text-sm xl:text-lg font-body min:p-4 sm:p-8">
       <p>
         So, you made it this far into my website. Hopefully you find it interesting!
       </p>
@@ -89,7 +103,15 @@
     </div>
   </section>
 
-  <section id="fourth_block" class="mt-32 relative block"></section>
+
+
+
+  <section id="contact_section"
+    class="mt-32 h-screen w-full relative block fade-section min:bg-accent md:bg-transparent">
+    <div id="contact_me_text" class="font-semibold font-display big-text-heading text-accentDark min:pl-4 xl:ml-12">
+      <span class="text-accentDarker">Contact</span> me:
+    </div>
+  </section>
 </body>
 
 </html>

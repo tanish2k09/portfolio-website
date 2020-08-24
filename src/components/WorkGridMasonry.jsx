@@ -18,10 +18,10 @@ export default function WorkGridMasonry() {
     return (
         <Masonry options={masonryOptions}
         >
-            <div className="work-grid"></div>
+            <div className="work-grid md:m-0"></div>
             {/* SCE */}
             <ProjectCard
-                cardClasses={"xl:max-w-25p"}
+                cardClasses={"lg:max-w-45p xl:max-w-25p"}
                 bgColor={"bg-sceteal"}
                 asset={SCE}
                 assetAlt={"Smurf Config Editor mockup"}
@@ -42,7 +42,7 @@ export default function WorkGridMasonry() {
             />
             {/* K-LAPSE */}
             <ProjectCard
-                cardClasses={"xl:max-w-30p"}
+                cardClasses={"lg:max-w-45p xl:max-w-30p"}
                 bgColor={"bg-white"}
                 asset={KLAPSE}
                 assetAlt={"K-LAPSE banner image"}
@@ -61,7 +61,7 @@ export default function WorkGridMasonry() {
             />
             {/* Musicbender */}
             <ProjectCard
-                cardClasses={"xl:max-w-25p"}
+                cardClasses={"lg:max-w-45p xl:max-w-25p"}
                 bgColor={"bg-mbpinklight"}
                 svgOptions={"align-center justify-center flex min-h-56"}
                 asset={MUSICBENDER}
@@ -76,13 +76,13 @@ export default function WorkGridMasonry() {
                     { id: 5, text: ".NET Core" }
                 ]}
                 name={"Musicbender"}
-                description={"A Discord bot focused on sound effects and media playback."}
+                description={"A Discord bot focused on sound effects and media playback, with a basic CRUD interface."}
                 repo={"musicbender-discord"}
 
             />
             {/* DT2W */}
             <ProjectCard
-                cardClasses={"xl:max-w-25p"}
+                cardClasses={"lg:max-w-45p xl:max-w-25p"}
                 bgColor={"bg-dt2wblue"}
                 svgOptions={"align-center justify-center flex min-h-56 max-h-64"}
                 asset={DT2W}
@@ -102,12 +102,12 @@ export default function WorkGridMasonry() {
             />
             {/* T2S */}
             <ProjectCard
-                cardClasses={"xl:max-w-25p"}
+                cardClasses={"lg:max-w-45p xl:max-w-25p"}
                 bgColor={"bg-t2syellow"}
                 svgOptions={"align-center justify-center flex min-h-64"}
                 asset={T2S}
                 assetAlt={"T2S vector logo"}
-                imageClasses={"object-contain w-40"}
+                imageClasses={"object-contain w-64 h-64 transform scale-50"}
                 cardColor={"bg-t2syellowdark"}
                 tags={[
                     { id: 1, text: "Android" },

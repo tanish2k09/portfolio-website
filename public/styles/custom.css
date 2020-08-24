@@ -11,11 +11,7 @@ html {
   -webkit-overflow-scrolling: touch;
 }
 
-.lottie-smurf-container {
-  background-color: #14d2b3;
-}
-
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 640px) {
   .big-text-main {
     font-size: 5rem;
   }
@@ -36,7 +32,62 @@ html {
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 768px) and (min-width: 640px) {
+  .big-text-main {
+    font-size: 6rem;
+  }
+  .big-text-heading {
+    font-size: 4rem;
+  }
+
+  .big-text-sec {
+    font-size: 1.75rem;
+  }
+
+  .work-grid {
+    width: 100%;
+  }
+
+  .nav-shadow {
+    box-shadow: 0px -4px 3px rgba(50, 50, 50, 0.25);
+  }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 769px) {
+  .big-text-main {
+    font-size: min(12vw, 18vh);
+  }
+  .big-text-heading {
+    font-size: min(6vw, 12vh);
+  }
+
+  .big-text-sec {
+    font-size: min(2vw, 4vh);
+  }
+
+  .work-grid {
+    width: 1%;
+  }
+}
+
+@media screen and (max-width:1200px) and (min-width: 1024px) {
+  .big-text-main {
+    font-size: min(18vw, 12rem);
+  }
+  .big-text-heading {
+    font-size: min(10vw, 6rem);
+  }
+
+  .big-text-sec {
+    font-size: min(4vw, 3rem);
+  }
+
+  .work-grid {
+    width: 1%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
   .big-text-main {
     font-size: min(12vw, 18vh);
   }
@@ -58,6 +109,18 @@ html {
   background-repeat: repeat;
 }
 
-.text-shadow {
-  text-shadow: 2px 2px #101924;
+@media screen and (min-width: 768px) {
+  .text-shadow {
+    text-shadow: 2px 2px #101924;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .text-shadow {
+    text-shadow: 1px 1px #101924;
+  }
+}
+
+.fade-section {
+  transition: opacity 750ms ease;
 }
