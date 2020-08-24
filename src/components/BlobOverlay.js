@@ -166,14 +166,14 @@ class Blob {
   }
 
   cueExpansion() {
-    if (this.state !== blobStates.EXPANDED) {
+    if (this.state !== blobStates.EXPANDED && this.state !== blobStates.EXPANDING) {
       this.trackTime();
       this.state = blobStates.EXPANDING;
     }
   }
 
   cueCollapse() {
-    if (this.state !== blobStates.REGULAR) {
+    if (this.state !== blobStates.REGULAR && this.state !== blobStates.COLLAPSING) {
       this.trackTime();
       this.state = blobStates.COLLAPSING;
     }
