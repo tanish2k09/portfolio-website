@@ -394,14 +394,6 @@ export function getBlob() {
 
 /* ----------- Attach Listeners ----------- */
 
-// canvas.addEventListener("mouseenter", function (event) {
-//   blob.cueExpansion();
-// }, false);
-
-// canvas.addEventListener("mouseout", function (event) {
-//   blob.cueCollapse();
-// }, false);
-
 window.addEventListener("resize", function (event) {
   if (window.innerWidth < 768) {
     return;
