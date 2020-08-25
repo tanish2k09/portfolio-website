@@ -27,3 +27,6 @@ yarn-error.log*
 
 package.json
 *.code-workspace
+
+# Local Netlify folder
+.netlify
