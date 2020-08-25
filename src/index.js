@@ -4,6 +4,7 @@ import BigName from "./components/BigName.jsx";
 import AccentedButton from "./components/AccentedButton.jsx";
 import Navbar from "./components/Navbar.jsx";
 import WorkGridMasonry from "./components/WorkGridMasonry.jsx";
+import ContactSpace from "./components/ContactSpace.jsx";
 
 require('./components/BlobOverlay');
 
@@ -34,6 +35,13 @@ ReactDOM.render(
     />
   </React.StrictMode>,
   document.getElementById("click_button_container")
+);
+
+ReactDOM.render(
+  <React.StrictMode>
+    <ContactSpace />
+  </React.StrictMode>,
+  document.getElementById("contacts_container")
 );
 
 require('./scripts/ContactBG');

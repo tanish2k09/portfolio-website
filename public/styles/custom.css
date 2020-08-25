@@ -72,14 +72,14 @@ html {
 
 @media screen and (max-width:1200px) and (min-width: 1024px) {
   .big-text-main {
-    font-size: min(18vw, 12rem);
+    font-size: min(14vw, 12rem);
   }
   .big-text-heading {
-    font-size: min(10vw, 6rem);
+    font-size: min(8vw, 6rem);
   }
 
   .big-text-sec {
-    font-size: min(4vw, 3rem);
+    font-size: min(3vw, 3rem);
   }
 
   .work-grid {
@@ -123,4 +123,14 @@ html {
 
 .fade-section {
   transition: opacity 750ms ease;
+}
+
+.light-button-bg {
+  transition: all 1s ease;
+  background-color: rgba(255, 255, 255, 0.30);
+}
+
+.light-button-bg:hover {
+  background-color: rgba(255, 255, 255, 1);
+  scale: 1.1;
 }

@@ -1,4 +1,7 @@
 module.exports = {
+  future: {
+    removeDeprecatedGapUtilities: true,
+  },
   corePlugins: {
     purge: false,
     variants: false,
@@ -30,7 +33,7 @@ module.exports = {
       primary: "#eceff1",
       secondary: "#859299",
       accent: "#41ffc9",
-      accentDarker: "#207f64",
+      accentDarker: "#1a665a",
       accentDark: "#2db28c",
       dark: "#000a12",
       scedark: "#0a6959",
@@ -85,7 +88,8 @@ module.exports = {
         "100px": "100px",
         "1": "0.25rem",
         "25p": "25%",
-        "100v": "100vw"
+        "100v": "100vw",
+        "25v": "25vw"
       },
       maxHeight: {
         "50p": "50vh",
