@@ -104,11 +104,6 @@ html {
   }
 }
 
-.binary-bg {
-  background-image: url(../assets/binary.svg);
-  background-repeat: repeat;
-}
-
 @media screen and (min-width: 768px) {
   .text-shadow {
     text-shadow: 2px 2px #101924;
