@@ -3,10 +3,10 @@
 //
 // Modified by Tanish Manku - 2020
 
+import { BlobInterpolator, interpolatorValue } from "./BlobInterpolator.js";
+
 const canvas = document.getElementById("vector_canvas");
 const ctx = canvas.getContext("2d");
-
-var anchorResizeToken = null;
 
 const blobStates = {
   EXPANDED: 0,
@@ -24,8 +24,13 @@ const blobEnergyStates = {
 
 const scaleDuration = 750; // milliseconds
 const fillColor = "#41ffc9"; // gotta have some teal, you know what I'm sayin
-const reactiveSpeedDuration = 750;
 const reactivePollInterval = 16.66;
+const widthBreakPoint = 768;
+
+let scaleInterpolator = new BlobInterpolator(scaleDuration);
+let energyInterpolator = new BlobInterpolator(scaleDuration);
+
+var anchorResizeToken = null;
 
 class Blob {
   constructor(number, sectorAngle, minDeviation) {
@@ -75,11 +80,6 @@ class Blob {
 
     // Track state
     this.state = blobStates.REGULAR;
-    this.lastTimeFraction = 0;
-    this.currentTimeFraction = 0;
-    this.recordedEnergyTime = 0;
-    this.lastThetaFraction = 0;
-    this.currentThetaFraction = 0;
     this.blobEnergyState = blobEnergyStates.REST;
   }
 
@@ -127,7 +127,7 @@ class Blob {
   }
 
   getMaxThetaDelta() {
-    return Math.min(this.getBaseThetaDelta() * 6, 0.12);
+    return Math.min(this.getBaseThetaDelta() * 6, 0.10);
   }
 
   updateAnchors() {
@@ -167,14 +167,14 @@ class Blob {
 
   cueExpansion() {
     if (this.state !== blobStates.EXPANDED && this.state !== blobStates.EXPANDING) {
-      this.trackTime();
+      scaleInterpolator.trackTime();
       this.state = blobStates.EXPANDING;
     }
   }
 
   cueCollapse() {
     if (this.state !== blobStates.REGULAR && this.state !== blobStates.COLLAPSING) {
-      this.trackTime();
+      scaleInterpolator.trackTime();
       this.state = blobStates.COLLAPSING;
     }
   }
@@ -187,12 +187,14 @@ class Blob {
     if (this.isMaximized()) {
       this.state = blobStates.EXPANDED;
       this.radiusOffset = this.getMaxRadius();
-      this.currentTimeFraction = 1;
+      scaleInterpolator.currentTimeFraction = 1;
       return;
     }
 
-    this.currentTimeFraction = this.clampTimeFraction(this.getTimeFraction() + this.lastTimeFraction);
-    this.radiusOffset = this.getMultiplierToOffset(this.getMultiplierFromInterpolator(this.currentTimeFraction));
+    scaleInterpolator.syncAddFraction();
+    this.radiusOffset = this.getMultiplierToOffset(
+      interpolatorValue(scaleInterpolator.currentTimeFraction)
+    );
   }
 
   collapseRadius() {
@@ -200,41 +202,15 @@ class Blob {
       return;
     }
 
-    if (this.currentTimeFraction === 0) {
+    if (scaleInterpolator.currentTimeFraction === 0) {
       this.state = blobStates.REGULAR;
       this.radiusOffset = 0;
     }
 
-    this.currentTimeFraction = this.clampTimeFraction(this.lastTimeFraction - this.getTimeFraction())
-    this.radiusOffset = this.getMultiplierToOffset(this.getMultiplierFromInterpolator(this.currentTimeFraction));
-  }
-
-  trackTime() {
-    this.recordedTime = performance.now();
-    this.lastTimeFraction = this.currentTimeFraction;
-  }
-
-  getTimeFraction() {
-    let difference = performance.now() - this.recordedTime;
-    let timeFraction = difference / scaleDuration;
-
-    return this.clampTimeFraction(timeFraction);
-  }
-
-  clampTimeFraction(timeFraction) {
-    if (timeFraction > 1) {
-      return 1;
-    } else if (timeFraction < 0) {
-      return 0;
-    }
-
-    return timeFraction;
-  }
-
-  getMultiplierFromInterpolator(tf) {
-    return tf < 0.5
-      ? (1 - Math.sqrt(1 - Math.pow(2 * tf, 2))) / 2
-      : (Math.sqrt(1 - Math.pow(-2 * tf + 2, 2)) + 1) / 2;
+    scaleInterpolator.syncSubtractFraction();
+    this.radiusOffset = this.getMultiplierToOffset(
+      interpolatorValue(scaleInterpolator.currentTimeFraction)
+    );
   }
 
   getMultiplierToOffset(multiplier) {
@@ -253,18 +229,6 @@ class Blob {
     return this.radiusOffset >= this.getDiagonal();
   }
 
-  trackEnergyTime() {
-    this.recordedEnergyTime = performance.now();
-    this.lastThetaFraction = this.currentThetaFraction;
-  }
-
-  getEnergyThetaFraction() {
-    let difference = performance.now() - this.recordedEnergyTime;
-    let thetaFraction = difference / reactiveSpeedDuration;
-
-    return this.clampTimeFraction(thetaFraction);
-  }
-
   /* Converts given px acceleration to energy value */
   reactivePx(speed) {
     if (this.blobEnergyState === blobEnergyStates.INCREASING) {
@@ -277,10 +241,10 @@ class Blob {
     let isAboveThreshold = Math.abs(speed) > (this.getDiagonal() * 0.001);
 
     if (isAboveThreshold) {
-      this.trackEnergyTime();
+      energyInterpolator.trackTime();
       this.blobEnergyState = blobEnergyStates.INCREASING;
     } else if (this.blobEnergyState !== blobEnergyStates.DECREASING) {
-      this.trackEnergyTime();
+      energyInterpolator.trackTime();
       this.blobEnergyState = blobEnergyStates.DECREASING;
     }
   }
@@ -305,12 +269,14 @@ class Blob {
       return;
     }
 
-    if (this.thetaDelta === this.getBaseThetaDelta() || this.currentThetaFraction < 0) {
+    if (this.thetaDelta === this.getBaseThetaDelta() || energyInterpolator.currentTimeFraction < 0) {
       this.blobEnergyState = blobEnergyStates.REST;
     }
 
-    this.currentThetaFraction = this.clampTimeFraction(this.lastThetaFraction - this.getEnergyThetaFraction());
-    this.thetaDelta = this.getMultiplierToThetaDelta(this.getMultiplierFromInterpolator(this.currentThetaFraction));
+    energyInterpolator.syncSubtractFraction();
+    this.thetaDelta = this.getMultiplierToThetaDelta(
+      interpolatorValue(energyInterpolator.currentTimeFraction)
+    );
   }
 
   increaseEnergy() {
@@ -318,13 +284,15 @@ class Blob {
       return;
     }
 
-    if (this.currentThetaFraction === 1) {
+    if (energyInterpolator.currentTimeFraction === 1) {
       this.blobEnergyState = blobEnergyStates.MAXIMUM;
     }
 
 
-    this.currentThetaFraction = this.clampTimeFraction(this.lastThetaFraction + this.getEnergyThetaFraction());
-    this.thetaDelta = this.getMultiplierToThetaDelta(this.getMultiplierFromInterpolator(this.currentThetaFraction));
+    energyInterpolator.syncAddFraction();
+    this.thetaDelta = this.getMultiplierToThetaDelta(
+      interpolatorValue(energyInterpolator.currentTimeFraction)
+    );
   }
 }
 
@@ -395,7 +363,7 @@ export function getBlob() {
 /* ----------- Attach Listeners ----------- */
 
 window.addEventListener("resize", function (event) {
-  if (window.innerWidth < 768) {
+  if (window.innerWidth < widthBreakPoint) {
     return;
   }
 
@@ -408,7 +376,6 @@ window.addEventListener("resize", function (event) {
 
 /* ----------- Attach Mouse Reaction ----------- */
 var lastEvent, currentEvent;
-// var lastSpeed = 0;
 
 document.onmousemove = function (event) {
   currentEvent = event || window.event;
@@ -427,11 +394,9 @@ function motionReactiveHook() {
     var movement = Math.hypot(movementX, movementY);
 
     speed = movement / reactivePollInterval;
-    //var acceleration = (speed - lastSpeed) / reactivePollInterval;
 
     blob.reactivePx(speed);
   }
 
   lastEvent = currentEvent;
-  // lastSpeed = speed;
 }
