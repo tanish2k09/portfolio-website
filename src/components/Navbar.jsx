@@ -22,8 +22,8 @@ function Navbar() {
       <ResponsiveNavItem
         text="Résumé"
         smallText="Résumé"
-        link={"https://www.manku.dev/assets/tmanku_resume_23082020.pdf"}
-        download="tmanku_resume_23-Aug-2020.pdf"
+        link={"https://www.manku.dev/assets/tmanku_resume_17122020.pdf"}
+        download="tmanku_resume_17-Dec-2020.pdf"
       />
     </div>
   );
