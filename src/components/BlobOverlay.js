@@ -38,6 +38,10 @@ class Blob {
     this.screenEstateCoverageV = 0.6;
     this.screenEstateCoverageH = 0.6;
 
+    // April fool's edition
+    this.angleA = Math.random() * 360;
+    this.angleB = Math.random() * 360;
+
     if (minDeviation > Math.PI * 2) {
       minDeviation = Math.PI * 2;
     }
@@ -110,10 +114,22 @@ class Blob {
     bezierSkin(this.anchors, false);
 
     ctx.lineTo(canvas.width, 0);
-    ctx.fillStyle = fillColor;
+    ctx.fillStyle = this.getGradientFill();
     ctx.shadowBlur = 20;
     ctx.shadowColor = "black";
     ctx.fill();
+  }
+
+  // April fool's edition changes:
+  getGradientFill() {
+    var grd = ctx.createLinearGradient(canvas.width / 2, 0, canvas.width, canvas.height);
+    grd.addColorStop(0, "hsl(" + (this.angleA % 360) + ",100%, 50%)");
+    grd.addColorStop(1, "hsl(" + (this.angleB % 360) + ",100%, 50%)");
+
+    this.angleA += 0.66;
+    this.angleB += 0.5;
+
+    return grd;
   }
 
   updateValues() {
