@@ -23,7 +23,7 @@ const blobEnergyStates = {
 };
 
 const scaleDuration = 750; // milliseconds
-const fillColor = "#41ffc9"; // gotta have some teal, you know what I'm sayin
+// const fillColor = "#41ffc9"; // gotta have some teal, you know what I'm sayin
 const reactivePollInterval = 16.66;
 const widthBreakPoint = 768;
 
