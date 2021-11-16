@@ -75,7 +75,7 @@ class Blob {
     this.theta = 0;
     this.thetaRamp = 0;
     this.thetaRampDest = 12;
-    this.rampDamp = 25;
+    this.rampDamp = Math.pow(5, Math.max(10 - (window.devicePixelRatio / 0.25), 1));
     this.thetaDelta = this.getBaseThetaDelta();
 
     // Track state
@@ -120,14 +120,24 @@ class Blob {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     this.baseRadius = this.getDiagonal() * 0.4;
+
+    console.log('H: ' + window.innerHeight)
+    console.log('W: ' + window.innerWidth)
+    console.log('D: ' + this.getDiagonal())
+    console.log('B: ' + this.getBaseThetaDelta())
+    console.log('M: ' + this.getMaxThetaDelta())
   }
 
   getBaseThetaDelta() {
-    return (this.getDiagonal() / 2500) * 0.02;
+    // For 1080p -> 1627 should be good at 0.0027
+    // For macbooks -> 2059 should be good at 0.016, 0.06
+    let density = window.devicePixelRatio / 0.25;
+
+    return Math.min(Math.pow(10, density - 10) * 2, 0.03);
   }
 
   getMaxThetaDelta() {
-    return Math.min(this.getBaseThetaDelta() * 6, 0.10);
+    return Math.min(this.getBaseThetaDelta() * 8, 0.08);
   }
 
   updateAnchors() {
@@ -235,6 +245,7 @@ class Blob {
       return;
     }
 
+    // Here we calculate the threshold for minimum movement required for energy gain
     // Formula: (+ve Speed pixels / Diagonal pixels) * 100
     // This is at max 1 / reactivePollInterval (0.06 at 60fps) and 0 at min
     // We wanna normalize it to "0.1% screen in 1 interval" as threshold
@@ -393,6 +404,7 @@ function motionReactiveHook() {
     var movementY = Math.abs(currentEvent.screenY - lastEvent.screenY);
     var movement = Math.hypot(movementX, movementY);
 
+    // Speed = total distance moved / time since last record
     speed = movement / reactivePollInterval;
 
     blob.reactivePx(speed);
