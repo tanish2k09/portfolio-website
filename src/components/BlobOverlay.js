@@ -23,7 +23,8 @@ const blobEnergyStates = {
 };
 
 const scaleDuration = 750; // milliseconds
-const fillColor = "#41ffc9"; // gotta have some teal, you know what I'm sayin
+const fillColorDark = "#41ffc9"; // gotta have some teal, you know what I'm sayin
+const fillColor = "#30E3CA";
 const reactivePollInterval = 16.66;
 const widthBreakPoint = 768;
 
@@ -81,6 +82,7 @@ class Blob {
     // Track state
     this.state = blobStates.REGULAR;
     this.blobEnergyState = blobEnergyStates.REST;
+    this.setDarkMode((localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)));
   }
 
   shouldRefresh() {
@@ -89,6 +91,14 @@ class Blob {
 
   isAnimating() {
     return (this.state === blobStates.EXPANDING || this.state === blobStates.COLLAPSING);
+  }
+
+  setDarkMode(isDarkMode) {
+    if (isDarkMode) {
+      this.fillColor = fillColorDark;
+    } else {
+      this.fillColor = fillColor;
+    }
   }
 
   update() {
@@ -110,9 +120,9 @@ class Blob {
     bezierSkin(this.anchors, false);
 
     ctx.lineTo(canvas.width, 0);
-    ctx.fillStyle = fillColor;
-    ctx.shadowBlur = 20;
-    ctx.shadowColor = "black";
+    ctx.fillStyle = this.fillColor;
+    ctx.shadowBlur = 40;
+    ctx.shadowColor = 'rgba(53, 74, 84, .4)';
     ctx.fill();
   }
 
@@ -120,12 +130,6 @@ class Blob {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     this.baseRadius = this.getDiagonal() * 0.4;
-
-    console.log('H: ' + window.innerHeight)
-    console.log('W: ' + window.innerWidth)
-    console.log('D: ' + this.getDiagonal())
-    console.log('B: ' + this.getBaseThetaDelta())
-    console.log('M: ' + this.getMaxThetaDelta())
   }
 
   getBaseThetaDelta() {
