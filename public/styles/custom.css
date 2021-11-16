@@ -47,10 +47,6 @@ html {
   .work-grid {
     width: 100%;
   }
-
-  .nav-shadow {
-    box-shadow: 0px -4px 3px rgba(50, 50, 50, 0.25);
-  }
 }
 
 @media screen and (max-width: 1024px) and (min-width: 768px) {

@@ -38,8 +38,18 @@
 .work-card {
   @apply overflow-hidden;
   @apply rounded-lg;
-  @apply bg-cards;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0, 0.8);
+  @apply bg-transparent;
+  @apply shadow-work-card;
+  @apply inline-block;
+  @apply m-4;
+}
+
+.about-card {
+  @apply overflow-hidden;
+  @apply rounded-lg;
+  @apply dark:bg-dark;
+  @apply bg-primarylight;
+  @apply shadow-about-card;
   @apply inline-block;
   @apply m-4;
 }
@@ -75,7 +85,8 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-  @apply bg-accent;
+  @apply dark:bg-accent;
+  @apply bg-accentlight;
 }
 
 .no-scrollbar::-webkit-scrollbar {

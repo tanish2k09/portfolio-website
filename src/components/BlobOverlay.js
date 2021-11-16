@@ -23,7 +23,8 @@ const blobEnergyStates = {
 };
 
 const scaleDuration = 750; // milliseconds
-const fillColor = "#41ffc9"; // gotta have some teal, you know what I'm sayin
+const fillColorDark = "#41ffc9"; // gotta have some teal, you know what I'm sayin
+const fillColor = "#30E3CA";
 const reactivePollInterval = 16.66;
 const widthBreakPoint = 768;
 
@@ -111,8 +112,8 @@ class Blob {
 
     ctx.lineTo(canvas.width, 0);
     ctx.fillStyle = fillColor;
-    ctx.shadowBlur = 20;
-    ctx.shadowColor = "black";
+    ctx.shadowBlur = 40;
+    ctx.shadowColor = 'rgba(53, 74, 84, .4)';
     ctx.fill();
   }
 

@@ -19,7 +19,7 @@ import SourceButton from './SourceButton';
  */
 export default function ProjectCard(props) {
   return (
-    <div className={"work-card " + props.cardClasses}>
+    <div className={"work-card dark:shadow-work-card shadow-lg" + props.cardClasses}>
       <div className={props.bgColor + " w-full " + props.svgOptions}>
         <img src={props.asset} alt={props.assetAlt} className={props.imageClasses + " mx-auto"} />
       </div>
@@ -40,7 +40,7 @@ export default function ProjectCard(props) {
             {props.description}
           </div>
         </div>
-        <div className="flex mt-2 pb-4 px-2">
+        <div className="flex mt-2 pb-6 px-2">
           <SourceButton repo={props.repo} />
           <SourceButton isPlayStore={props.isPlayStore} url={props.url} />
         </div>

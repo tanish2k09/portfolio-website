@@ -2,6 +2,7 @@ module.exports = {
   future: {
     removeDeprecatedGapUtilities: true,
   },
+  darkMode: "class",
   corePlugins: {
     purge: false,
     variants: false,
@@ -33,11 +34,17 @@ module.exports = {
       primary: "#eceff1",
       secondary: "#859299",
       accent: "#41ffc9",
+      accentlight: "#30E3CA",
       accentDarker: "#1a665a",
       accentDark: "#2db28c",
       dark: "#000a12",
       scedark: "#0a6959",
-      hintyellow: "#ffe0b2"
+      hintyellow: "#ffe0b2",
+      hintdark: "#7986cb",
+      primarylight: "#eceff1",
+      textdarker: "#354A54",
+      textdark: "#9DB4C0",
+      textdarkest: "#2C414B"
     },
     extend: {
       colors: {
@@ -45,6 +52,7 @@ module.exports = {
         textdark: "#000a12",
         primary: "#cbd2d9",
         accent: "#41ffc9",
+        accentlight: "#30E3CA",
         cards: "#18212C",
         mbpink: "#f06694",
         mbpinklight: "#f27da4",
@@ -54,7 +62,8 @@ module.exports = {
         dt2wblue: "#64b5f6",
         dt2wbluedark: "#42a5f5",
         t2syellow: "#ffe0b2",
-        t2syellowdark: "#ffcc80"
+        t2syellowdark: "#ffcc80",
+        primarylight: "#eceff1",
       },
       fontSize: {
         "009": "0.9rem",
@@ -118,5 +127,10 @@ module.exports = {
         "01": "0.1rem"
       }
     },
+    boxShadow: {
+      'work-card': '0 4px 20px 0 rgba(0,0,0, 0.3)',
+      'about-card': '0 8px 36px 8px rgba(0,0,0, 0.25)',
+      xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
+    }
   },
 };
