@@ -129,7 +129,8 @@ module.exports = {
       boxShadow: {
         'work-card': '0 4px 20px 0 rgba(0,0,0, 0.3)',
         'about-card': '0 8px 36px 8px rgba(0,0,0, 0.25)',
-        xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
+        xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+        'nav-shadow': '0px -4px 3px rgba(50, 50, 50, 0.25)'
       }
     }
   },
