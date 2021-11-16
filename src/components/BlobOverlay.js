@@ -23,8 +23,10 @@ const blobEnergyStates = {
 };
 
 const scaleDuration = 750; // milliseconds
-const fillColorDark = "#41ffc9"; // gotta have some teal, you know what I'm sayin
-const fillColor = "#30E3CA";
+const fillColorDark = 'rgba(65, 255, 201, 255)';
+const fillColorDarkShadow = 'rgba(32, 128, 100, 25)';
+const fillColor = 'rgba(48, 227, 202, 255)';
+const fillColorShadow = 'rgba(48, 227, 202, 25)';
 const reactivePollInterval = 16.66;
 const widthBreakPoint = 768;
 
@@ -96,8 +98,10 @@ class Blob {
   setDarkMode(isDarkMode) {
     if (isDarkMode) {
       this.fillColor = fillColorDark;
+      this.fillShadow = fillColorDarkShadow;
     } else {
       this.fillColor = fillColor;
+      this.fillShadow = fillColorShadow;
     }
   }
 
@@ -122,7 +126,7 @@ class Blob {
     ctx.lineTo(canvas.width, 0);
     ctx.fillStyle = this.fillColor;
     ctx.shadowBlur = 40;
-    ctx.shadowColor = 'rgba(53, 74, 84, .4)';
+    ctx.shadowColor = this.fillShadow;
     ctx.fill();
   }
 
