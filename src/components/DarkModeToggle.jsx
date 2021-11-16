@@ -27,7 +27,7 @@ class DarkModeToggle extends React.Component {
       return;
     }
 
-    this.state.cooldown = true;
+    this.setState({cooldown: true});
     setTimeout(() =>
       {
         this.setState({cooldown: false});
