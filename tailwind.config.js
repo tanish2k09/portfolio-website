@@ -35,6 +35,7 @@ module.exports = {
       secondary: "#859299",
       accent: "#41ffc9",
       accentlight: "#30E3CA",
+      accentlighter: "#C4FCF0",
       accentDarker: "#1a665a",
       accentDark: "#2db28c",
       dark: "#000a12",
