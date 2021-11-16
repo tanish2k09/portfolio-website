@@ -39,17 +39,23 @@ class DarkModeToggle extends React.Component {
   }
 
   render() {
+    let commonClasses = "p-0 float-right"
+
     let image;
     if (this.state.isDark) {
-      image = <SunIcon />;
+      image = <SunIcon className={commonClasses}/>;
     } else {
-      image = <MoonIcon />;
+      image = <MoonIcon className={commonClasses}/>;
     }
 
     return (
-      <button id="dark_mode_toggle" className="w-8 h-8 block" onClick={this.toggleTheme}>
-        {image}
-      </button>
+      <div className="md:w-full md:h-12 md:flex md:float-right md:relative">
+        <button id="dark_mode_toggle" onClick={this.toggleTheme} title="Theme toggle">
+          <div className="md:right-5 md:absolute min:relative min:mt-6 md:mt-0 min:px-2 md:px-0">
+          {image}
+          </div>
+        </button>
+      </div>
     );
   }
 }

@@ -3,7 +3,7 @@ import RotatingSelfSegment from "./RotatingSelfSegment";
 
 function BigName() {
   return (
-    <div className="font-display my-8 min:mx-3 sm:mx-0 leading-none font-semibold dark:text-shadow">
+    <div className="font-display my-8 min:mx-3 sm:mx-0 leading-none font-semibold md:dark:text-shadow-md min:dark:text-shadow-min">
       <div>
         <div className="text-textdark dark:text-secondary big-text-sec">Hi! I'm</div>
         <div className="text-textdarker dark:text-primary big-text-main">

@@ -13,14 +13,14 @@ html {
 
 @media screen and (max-width: 640px) {
   .big-text-main {
-    font-size: 5rem;
+    font-size: 4.5rem;
   }
   .big-text-heading {
-    font-size: 2.25rem;
+    font-size: 2.1rem;
   }
 
   .big-text-sec {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
   }
 
   .work-grid {
@@ -97,18 +97,6 @@ html {
 
   .work-grid {
     width: 0.1%;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .text-shadow {
-    text-shadow: 2px 2px #101924;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .text-shadow {
-    text-shadow: 1px 1px #101924;
   }
 }
 
