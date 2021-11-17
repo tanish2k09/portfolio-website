@@ -8,6 +8,12 @@ import { BlobInterpolator, interpolatorValue } from "./BlobInterpolator.js";
 const canvas = document.getElementById("vector_canvas");
 const ctx = canvas.getContext("2d");
 
+var gScale = 1;
+
+if (window.devicePixelRatio < 2) {
+  gScale = 2;
+}
+
 const blobStates = {
   EXPANDED: 0,
   EXPANDING: 1,
@@ -22,7 +28,7 @@ const blobEnergyStates = {
   MAXIMUM: 3
 };
 
-const scaleDuration = 750; // milliseconds
+const scaleDuration = 1000; // milliseconds
 const fillColorDark = 'rgba(65, 255, 201, 255)';
 const fillColorDarkShadow = 'rgba(32, 128, 100, 25)';
 const fillColor = 'rgba(48, 227, 202, 255)';
@@ -125,14 +131,14 @@ class Blob {
 
     ctx.lineTo(canvas.width, 0);
     ctx.fillStyle = this.fillColor;
-    ctx.shadowBlur = 40;
+    ctx.shadowBlur = 40 * gScale;
     ctx.shadowColor = this.fillShadow;
     ctx.fill();
   }
 
   updateValues() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth * gScale;
+    canvas.height = window.innerHeight * gScale;
     this.baseRadius = this.getDiagonal() * 0.4;
   }
 
