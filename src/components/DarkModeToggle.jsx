@@ -34,6 +34,7 @@ class DarkModeToggle extends React.Component {
     1000);
 
     toggleAppTheme(!this.state.isDark);
+    localStorage.setItem('theme', this.state.isDark ? 'light' : 'dark');
     this.setState({isDark: !this.state.isDark});
   }
 
