@@ -64,6 +64,8 @@ module.exports = {
         dt2wbluedark: "#42a5f5",
         t2syellow: "#ffe0b2",
         t2syellowdark: "#ffcc80",
+        spotify: "#00D280",
+        spotifydark: "#00bd73",
         primarylight: "#eceff1",
       },
       fontSize: {
