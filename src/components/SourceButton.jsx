@@ -22,7 +22,7 @@ export default function SourceButton(props) {
     return (
 
         <a href={link}>
-            <button className="repo-button ml-2 mr-2 font-mono font-semibold border-black border-2 px-4 py-2 text-xs">
+            <button className="repo-button ml-2 mr-2 font-mono border-black border-2 px-4 py-2 text-sm rounded-sm tracking-wide">
                 {text}
             </button>
         </a>
