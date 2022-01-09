@@ -94,7 +94,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 @layer utilities {
-  @variants dark, responsive {
+  @layer utilities {
     .text-shadow-md {
       text-shadow: 2px 2px #101924;
     }

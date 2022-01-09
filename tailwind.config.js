@@ -2,12 +2,12 @@ module.exports = {
   future: {
     removeDeprecatedGapUtilities: true,
   },
+  content: [
+    // Example content paths...
+    './public/**/*.html',
+    './src/**/*.{js,jsx,ts,tsx}',
+  ],
   darkMode: "class",
-  corePlugins: {
-    purge: false,
-    variants: false,
-    plugins: false,
-  },
   theme: {
     fontFamily: {
       display: ["Work Sans", "sans-serif"],
