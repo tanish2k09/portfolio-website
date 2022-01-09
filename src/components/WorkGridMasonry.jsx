@@ -101,25 +101,6 @@ export default function WorkGridMasonry() {
                 repo={"doubletap2wake-2.0"}
             />
 
-            {/* Spotify Release Reader */}
-            <ProjectCard
-                cardClasses={"lg:max-w-45p xl:max-w-25p"}
-                bgColor={"bg-spotify"}
-                svgOptions={"align-center justify-center flex min-h-64"}
-                asset={SPOTIFY}
-                assetAlt={"Spotify vector logo"}
-                imageClasses={"object-contain w-64 h-64 transform scale-50"}
-                cardColor={"bg-spotifydark"}
-                tags={[
-                    { id: 1, text: "Spotify" },
-                    { id: 2, text: "JS" },
-                    { id: 3, text: "Node" }
-                ]}
-                name={"Spotify Release Reader"}
-                description={"A simple Spotify app to save your weekly Release Radar to your playlists. Capable of doing much more thanks to a modular architecture, like scheduling other playlists at other times."}
-                repo={"Spotify-Release-Reader"}
-            />
-
             {/* T2S */}
             <ProjectCard
                 cardClasses={"lg:max-w-45p xl:max-w-25p"}
@@ -138,6 +119,25 @@ export default function WorkGridMasonry() {
                 name={"Trace 2 Sleep"}
                 description={"An Android Linux kernel display parabolic corner-to-corner customizable gesture driver for waking up the device display or sleeping."}
                 repo={"trace2sleep"}
+            />
+
+            {/* Spotify Release Reader */}
+            <ProjectCard
+                cardClasses={"lg:max-w-45p xl:max-w-25p"}
+                bgColor={"bg-spotify"}
+                svgOptions={"align-center justify-center flex min-h-64"}
+                asset={SPOTIFY}
+                assetAlt={"Spotify vector logo"}
+                imageClasses={"object-contain w-64 h-64 transform scale-50"}
+                cardColor={"bg-spotifydark"}
+                tags={[
+                    { id: 1, text: "Spotify" },
+                    { id: 2, text: "JS" },
+                    { id: 3, text: "Node" }
+                ]}
+                name={"Spotify Release Reader"}
+                description={"A simple Spotify app to save your weekly Release Radar to your playlists. Capable of doing much more thanks to a modular architecture, like scheduling other playlists at other times."}
+                repo={"Spotify-Release-Reader"}
             />
 
         </Masonry>
