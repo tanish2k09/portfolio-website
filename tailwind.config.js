@@ -46,8 +46,8 @@ module.exports = {
       textdarker: "#354A54",
       textdark: "#9DB4C0",
       textdarkest: "#2C414B",
-      contactlight: "#00AB94",
-      contactdark: "#00BF8E"
+      contactlight: "#007868",
+      contactdark: "#008f6a"
     },
     extend: {
       colors: {
@@ -69,8 +69,8 @@ module.exports = {
         spotify: "#00D280",
         spotifydark: "#00bd73",
         primarylight: "#eceff1",
-        contactlight: "#00AB94",
-        contactdark: "#00BF8E"
+        contactlight: "#007868",
+        contactdark: "#008f6a"
       },
       fontSize: {
         "009": "0.9rem",
