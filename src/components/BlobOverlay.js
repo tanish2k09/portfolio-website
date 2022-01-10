@@ -28,7 +28,7 @@ const blobEnergyStates = {
   MAXIMUM: 3
 };
 
-const scaleDuration = 1000; // milliseconds
+const scaleDuration = 750; // milliseconds
 const fillColorDark = 'rgba(65, 255, 201, 255)';
 const fillColorDarkShadow = 'rgba(32, 128, 100, 25)';
 const fillColor = 'rgba(48, 227, 202, 255)';
