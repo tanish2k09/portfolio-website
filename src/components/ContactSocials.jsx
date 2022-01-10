@@ -8,24 +8,24 @@ import {ReactComponent as TwitterIcon} from '../assets/twitter.svg';
 
 export default function ContactSocials() {
     return (
-        <div className="mt-16 font-display text-xl flex">
+        <div className="md:mb-4 md:flex">
             <SocialButton
-                title="Email"
+                title="Email - tmanku.dev@gmail.com"
                 link="mailto:tmanku.dev@gmail.com"
                 asset={EmailIcon}
             />
             <SocialButton
-                title="LinkedIn"
-                link="https://www.linkedin.com/in/tanish-manku-119aa216b/"
+                title="LinkedIn - Tanish Manku"
+                link="https://www.linkedin.com/in/tmanku/"
                 asset={LinkedInIcon}
             />
             <SocialButton
-                title="GitHub"
+                title="GitHub - tanish2k09"
                 link="https://www.github.com/tanish2k09/"
                 asset={GithubIcon}
             />
             <SocialButton
-                title="Twitter"
+                title="Twitter - @tanish2k09"
                 link="https://www.twitter.com/tanish2k09"
                 asset={TwitterIcon}
             />

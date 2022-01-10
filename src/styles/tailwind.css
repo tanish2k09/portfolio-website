@@ -72,6 +72,41 @@
   @apply bg-black;
 }
 
+.social-button {
+  @apply relative;
+  @apply mt-3;
+}
+
+@media (min-width: 768px) {
+  .social-button {
+    @apply relative;
+  }
+
+  .social-button span {
+    @apply max-w-0;
+    @apply transition-all;
+    @apply duration-500;
+    @apply inline-block;
+    @apply align-top;
+    @apply whitespace-nowrap;
+    @apply overflow-hidden;
+  }
+
+  .social-button:hover svg path {
+    @apply fill-black;
+  }
+
+  .social-button:hover span {
+    @apply max-w-social;
+    @apply text-dark;
+  }
+}
+
+.social-button svg path {
+  @apply transition-all;
+  @apply duration-500;
+}
+
 @tailwind components;
 
 @tailwind utilities;
@@ -94,7 +129,6 @@ body::-webkit-scrollbar-thumb {
 }
 
 @layer utilities {
-  @layer utilities {
     .text-shadow-md {
       text-shadow: 2px 2px #101924;
     }
@@ -106,5 +140,4 @@ body::-webkit-scrollbar-thumb {
     .text-shadow-none {
       text-shadow: none;
     }
-  }
 }

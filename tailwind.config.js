@@ -119,7 +119,8 @@ module.exports = {
         "45p": "45%",
         "75p": "70vw",
         "80p": "80vw",
-        "100v": "100vw"
+        "100v": "100vw",
+        "social": "30ch"
       },
       borderRadius: {
         bigg: "16px",
