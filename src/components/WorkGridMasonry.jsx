@@ -77,7 +77,7 @@ export default function WorkGridMasonry() {
                     { id: 5, text: ".NET Core" }
                 ]}
                 name={"Musicbender"}
-                description={"A Discord bot focused on sound effects and media playback, with a basic CRUD interface."}
+                description={"A Discord bot focused on sound effects and media playback, with a basic CRUD interface. A great project to learn workload clustering and asynchronous request handling."}
                 repo={"musicbender-discord"}
             />
 
@@ -97,7 +97,7 @@ export default function WorkGridMasonry() {
                     { id: 4, text: "Makefile" }
                 ]}
                 name={"Double Tap 2 Wake"}
-                description={"An Android Linux kernel display tap-detection driver for waking up the device display or sleeping."}
+                description={"An Android Linux kernel display tap-detection driver for waking up the device display or sleeping. Built for Linux kernel v3.10 but can be easily ported to newer versions."}
                 repo={"doubletap2wake-2.0"}
             />
 
@@ -117,7 +117,7 @@ export default function WorkGridMasonry() {
                     { id: 4, text: "Makefile" }
                 ]}
                 name={"Trace 2 Sleep"}
-                description={"An Android Linux kernel display parabolic corner-to-corner customizable gesture driver for waking up the device display or sleeping."}
+                description={"An Android Linux kernel display parabolic corner-to-corner customizable gesture driver for waking up the device display or sleeping. Built for Linux kernel v3.10 but can be easily ported to newer versions."}
                 repo={"trace2sleep"}
             />
 
