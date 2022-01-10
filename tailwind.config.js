@@ -2,12 +2,12 @@ module.exports = {
   future: {
     removeDeprecatedGapUtilities: true,
   },
+  content: [
+    // Example content paths...
+    './public/**/*.html',
+    './src/**/*.{js,jsx,ts,tsx}',
+  ],
   darkMode: "class",
-  corePlugins: {
-    purge: false,
-    variants: false,
-    plugins: false,
-  },
   theme: {
     fontFamily: {
       display: ["Work Sans", "sans-serif"],
@@ -45,7 +45,9 @@ module.exports = {
       primarylight: "#eceff1",
       textdarker: "#354A54",
       textdark: "#9DB4C0",
-      textdarkest: "#2C414B"
+      textdarkest: "#2C414B",
+      contactlight: "#00AB94",
+      contactdark: "#00BF8E"
     },
     extend: {
       colors: {
@@ -64,7 +66,11 @@ module.exports = {
         dt2wbluedark: "#42a5f5",
         t2syellow: "#ffe0b2",
         t2syellowdark: "#ffcc80",
+        spotify: "#00D280",
+        spotifydark: "#00bd73",
         primarylight: "#eceff1",
+        contactlight: "#00AB94",
+        contactdark: "#00BF8E"
       },
       fontSize: {
         "009": "0.9rem",
@@ -113,7 +119,8 @@ module.exports = {
         "45p": "45%",
         "75p": "70vw",
         "80p": "80vw",
-        "100v": "100vw"
+        "100v": "100vw",
+        "social": "30ch"
       },
       borderRadius: {
         bigg: "16px",

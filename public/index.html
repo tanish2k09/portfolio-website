@@ -54,7 +54,7 @@
   <section id="first_screen_block" class="h-screen relative block">
     <div id="corner_block" class="absolute bottom-0 sm:ml-8 min:pb-16 md:pb-0 min:mb-16 md:mb-4">
       <div id="big_name_container"></div>
-      <div id="click_button_container" class="min:mt-2 md:mt-16 min:pb-24 lg:pb-0 lg:mb-16 min:px-4 sm:px-0 xl:px-4">
+      <div id="click_button_container" class="min:mt-2 md:mt-16 min:pb-24 min:px-4 sm:px-0 xl:px-4">
       </div>
     </div>
   </section>
@@ -73,7 +73,7 @@
 
 
 
-  <section id="third_block" class="mt-32 relative block">
+  <section id="third_block" class="min:mt-16 md:mt-32 relative block">
     <div id="about_me_text"
       class="font-semibold font-display big-text-heading text-textdarker dark:text-secondary dark:text-shadow-md min:pl-4 md:pl-6 lg:pl-8 xl:pl-12">
       <span class="text-textdarker dark:text-primary">About</span> me:
@@ -85,7 +85,7 @@
       </p>
       <br>
       <p>
-        <span class="text-accentlight dark:text-accent">Let me introduce myself:</span> I'm Tanish Manku, an originally self-taught and later
+        <span class="text-contactlight dark:text-accent">Let me introduce myself:</span> I'm Tanish Manku, an originally self-taught and later
         professionally-trained Software
         Developer based in Vancouver, Canada.
       </p>
@@ -105,7 +105,7 @@
       </p>
       <br>
       <p>
-        Besides being a Software Developer, <span class="text-accentlight dark:text-accent">I'm also pretty good at 2D cartesian
+        Besides being a Software Developer, <span class="text-contactlight dark:text-accent">I'm also pretty good at 2D cartesian
           mathematics.</span>
         This allows me to build some nice fluid user-interfaces, and Bézier curves seem to be all the rage in animations
         these days.
@@ -130,12 +130,21 @@
 
 
   <section id="contact_section"
-    class="mt-32 pt-16 h-screen w-full relative block fade-section min:bg-accentlight min:dark:bg-accent md:bg-transparent md:dark:bg-transparent">
+    class="min:mt-16 md:mt-32 min:pt-4 md:pt-16 min:pb-32 md:pb-8 md:min-h-screen w-full relative block fade-section min:bg-accentlight min:dark:bg-accent md:bg-transparent md:dark:bg-transparent">
+    
+    <!-- A little help for the Netlify bots if you're not using a SSG -->
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+      <input required type="text" name="name" />
+      <input required type="email" name="email" />
+      <textarea required name="message"></textarea>
+    </form>
+
     <div id="contact_me_text"
-      class="font-semibold font-display big-text-heading text-accentlighter dark:text-accentDarker min:pl-4 md:pl-6 lg:pl-8 xl:pl-12">
-      Contact me:
+      class="font-semibold font-display big-text-heading text-contactlight dark:text-contactdark min:pl-4 md:pl-6 lg:pl-8 xl:pl-12">
+      <span>Contact me:</span>
     </div>
-    <div id="contacts_container" class="xl:pl-4 md:max-w-75p lg:max-w-80p"></div>
+    <div id="contact_form_container" class="min:px-4 md:pl-6 lg:pl-8 xl:pl-12 md:pr-0 md:max-w-75p"></div>
+    <div id="contact_socials_container" class="min:pl-4 md:pl-6 lg:pl-8 xl:pl-12 md:max-w-75p"></div>
   </section>
 </body>
 

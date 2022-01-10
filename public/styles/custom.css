@@ -99,13 +99,3 @@ html {
 .fade-section {
   transition: opacity 750ms ease;
 }
-
-.light-button-bg {
-  transition: all 1s ease;
-  background-color: rgba(255, 255, 255, 0.50);
-}
-
-.light-button-bg:hover {
-  background-color: rgba(255, 255, 255, 1);
-  scale: 1.1;
-}

@@ -7,6 +7,7 @@ import KLAPSE from "../assets/klapse.png";
 import MUSICBENDER from "../assets/musicbender.svg";
 import DT2W from "../assets/dt2w.svg";
 import T2S from "../assets/t2s.svg";
+import SPOTIFY from "../assets/spotify.svg";
 
 const masonryOptions = {
     transitionDuration: 200,
@@ -16,9 +17,9 @@ const masonryOptions = {
 
 export default function WorkGridMasonry() {
     return (
-        <Masonry options={masonryOptions}
-        >
+        <Masonry options={masonryOptions}>
             <div className="work-grid md:m-0"></div>
+            
             {/* SCE */}
             <ProjectCard
                 cardClasses={"lg:max-w-45p xl:max-w-25p"}
@@ -38,11 +39,11 @@ export default function WorkGridMasonry() {
                 repo={"SmurfConfigEditor"}
                 isPlayStore={true}
                 url={"https://play.google.com/store/apps/details?id=com.tanish2k09.sce"}
-
             />
+
             {/* K-LAPSE */}
             <ProjectCard
-                cardClasses={"lg:max-w-45p xl:max-w-30p"}
+                cardClasses={"lg:max-w-45p xl:max-w-25p"}
                 bgColor={"bg-white"}
                 asset={KLAPSE}
                 assetAlt={"K-LAPSE banner image"}
@@ -57,8 +58,8 @@ export default function WorkGridMasonry() {
                 name={"K-LAPSE"}
                 description={"A Linux kernel time-based and hook-based linear RGB interpolation module, used in hundreds of custom Android kernels for thousands of devices."}
                 repo={"klapse-livedisplay"}
-
             />
+
             {/* Musicbender */}
             <ProjectCard
                 cardClasses={"lg:max-w-45p xl:max-w-25p"}
@@ -78,8 +79,8 @@ export default function WorkGridMasonry() {
                 name={"Musicbender"}
                 description={"A Discord bot focused on sound effects and media playback, with a basic CRUD interface."}
                 repo={"musicbender-discord"}
-
             />
+
             {/* DT2W */}
             <ProjectCard
                 cardClasses={"lg:max-w-45p xl:max-w-25p"}
@@ -98,8 +99,8 @@ export default function WorkGridMasonry() {
                 name={"Double Tap 2 Wake"}
                 description={"An Android Linux kernel display tap-detection driver for waking up the device display or sleeping."}
                 repo={"doubletap2wake-2.0"}
-
             />
+
             {/* T2S */}
             <ProjectCard
                 cardClasses={"lg:max-w-45p xl:max-w-25p"}
@@ -118,9 +119,26 @@ export default function WorkGridMasonry() {
                 name={"Trace 2 Sleep"}
                 description={"An Android Linux kernel display parabolic corner-to-corner customizable gesture driver for waking up the device display or sleeping."}
                 repo={"trace2sleep"}
-
             />
-            {/* Personal website */}
+
+            {/* Spotify Release Reader */}
+            <ProjectCard
+                cardClasses={"lg:max-w-45p xl:max-w-25p"}
+                bgColor={"bg-spotify"}
+                svgOptions={"align-center justify-center flex min-h-64"}
+                asset={SPOTIFY}
+                assetAlt={"Spotify vector logo"}
+                imageClasses={"object-contain w-64 h-64 transform scale-50"}
+                cardColor={"bg-spotifydark"}
+                tags={[
+                    { id: 1, text: "Spotify" },
+                    { id: 2, text: "JS" },
+                    { id: 3, text: "Node" }
+                ]}
+                name={"Spotify Release Reader"}
+                description={"A simple Spotify app to save your weekly Release Radar to your playlists. Capable of doing much more thanks to a modular architecture, like scheduling other playlists at other times."}
+                repo={"Spotify-Release-Reader"}
+            />
 
         </Masonry>
     );

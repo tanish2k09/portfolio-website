@@ -22,8 +22,8 @@ function Navbar() {
         link="#contact_section"
       />
       <ResponsiveNavItem
-        text="Résumé"
-        smallText="Résumé"
+        text="Resume"
+        smallText="Resume"
         link={"https://www.manku.dev/assets/tmanku_resume_15112021.pdf"}
         download="tmanku_resume_15-Nov-2021.pdf"
       />
