@@ -9,7 +9,7 @@ export default function ContactForm(props) {
       <div className="
           border-2 border-contactlight dark:border-contactdark 
           inline-block 
-          min:py-12 min:px-16 md:py-24 md:px-48 xl:py-32 xl:px-64 
+          min:py-12 min:px-16 md:py-24 md:px-48 xl:px-64 
           w-full rounded-lg">
         <div className="">
           <label id="user-name-hint" className="text-contactlight dark:text-contactdark min:text-sm md:text-md">Your Name:</label>

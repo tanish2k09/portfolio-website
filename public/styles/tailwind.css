@@ -613,7 +613,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   }
 
   .social-button span {
-    transition-duration: 500ms;
+    transition-duration: 1000ms;
   }
 
   .social-button:hover svg path {
@@ -764,6 +764,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .h-64 {
   height: 16rem;
+}
+
+.h-auto {
+  height: auto;
 }
 
 .max-h-64 {
@@ -1070,6 +1074,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .tracking-wide {
   letter-spacing: 0.025em;
+}
+
+.tracking-widest {
+  letter-spacing: 0.1em;
 }
 
 .text-textdarker {
@@ -1533,10 +1541,6 @@ body::-webkit-scrollbar-thumb {
     margin-top: auto;
   }
 
-  .md\:mb-16 {
-    margin-bottom: 4rem;
-  }
-
   .md\:inline-block {
     display: inline-block;
   }
@@ -1632,14 +1636,6 @@ body::-webkit-scrollbar-thumb {
     padding-right: 0px;
   }
 
-  .md\:pb-24 {
-    padding-bottom: 6rem;
-  }
-
-  .md\:pb-16 {
-    padding-bottom: 4rem;
-  }
-
   .md\:text-base {
     font-size: 1rem;
     line-height: 1.5rem;
@@ -1675,10 +1671,6 @@ body::-webkit-scrollbar-thumb {
 }
 
 @media (min-width: 1024px) {
-  .lg\:mb-16 {
-    margin-bottom: 4rem;
-  }
-
   .lg\:ml-8 {
     margin-left: 2rem;
   }
@@ -1689,10 +1681,6 @@ body::-webkit-scrollbar-thumb {
 
   .lg\:max-w-45p {
     max-width: 45%;
-  }
-
-  .lg\:pb-0 {
-    padding-bottom: 0px;
   }
 
   .lg\:pl-8 {
