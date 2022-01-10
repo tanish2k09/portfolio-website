@@ -134,9 +134,9 @@
     
     <!-- A little help for the Netlify bots if you're not using a SSG -->
     <form name="contact" netlify netlify-honeypot="bot-field" hidden>
-      <input type="text" name="name" />
-      <input type="email" name="email" />
-      <textarea name="message"></textarea>
+      <input required type="text" name="name" />
+      <input required type="email" name="email" />
+      <textarea required name="message"></textarea>
     </form>
 
     <div id="contact_me_text"

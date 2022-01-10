@@ -18,11 +18,11 @@ export default function ContactForm(props) {
               bg-transparent 
               text-black min:text-md md:text-lg
               border-b-2 border-contactlight dark:border-contactdark
-            focus:border-black dark:focus:border-black focus:outline-none
-              required"
+            focus:border-black dark:focus:border-black focus:outline-none"
             type="text"
             name="name"
             aria-describedby="user-name-hint"
+            required
           />
         </div>
 
@@ -38,6 +38,7 @@ export default function ContactForm(props) {
             type="email"
             name="email"
             aria-describedby="user-email-hint"
+            required
           />
         </div>
 
@@ -53,6 +54,7 @@ export default function ContactForm(props) {
             name="message"
             aria-describedby="message-hint"
             rows={5}
+            required
           />
         </div>
 
