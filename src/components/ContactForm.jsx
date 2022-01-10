@@ -12,7 +12,7 @@ export default function ContactForm(props) {
           min:py-12 min:px-16 md:py-24 md:px-48 xl:px-64 
           w-full rounded-lg">
         <div className="">
-          <label id="user-name-hint" className="text-contactlight dark:text-contactdark min:text-sm md:text-md">Your Name:</label>
+          <label id="user-name-hint" className="text-contactlight dark:text-contactdark min:text-sm md:text-md font-medium">Your Name:</label>
           <input className="
               block w-full
               bg-transparent 
@@ -27,7 +27,7 @@ export default function ContactForm(props) {
         </div>
 
         <div className="mt-8">
-          <label id="user-email-hint" className="text-contactlight dark:text-contactdark min:text-sm md:text-md">Your Email:</label>
+          <label id="user-email-hint" className="text-contactlight dark:text-contactdark min:text-sm md:text-md font-medium">Your Email:</label>
           <input className="
               block w-full
               bg-transparent 
@@ -43,7 +43,7 @@ export default function ContactForm(props) {
         </div>
 
         <div className="mt-8">
-          <label id="message-hint" className="text-contactlight dark:text-contactdark min:text-sm md:text-md">Message:</label>
+          <label id="message-hint" className="text-contactlight dark:text-contactdark min:text-sm md:text-md font-medium">Message:</label>
           <textarea className="
               block w-full min-h-32 max-h-64
               bg-transparent 
@@ -67,7 +67,7 @@ export default function ContactForm(props) {
             text-contactlight dark:text-contactdark
             hover:text-primary dark:hover:text-primary
             transition-all duration-500
-            font-body min:font-medium md:font-normal min:text-sm md:text-md" 
+            font-body font-medium min:text-sm md:text-md" 
             type="submit">Send</button>
         </div>
       </div>

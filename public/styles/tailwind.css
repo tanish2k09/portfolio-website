@@ -864,7 +864,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .border-contactlight {
   --tw-border-opacity: 1;
-  border-color: rgb(0 120 104 / var(--tw-border-opacity));
+  border-color: rgb(2 98 85 / var(--tw-border-opacity));
 }
 
 .border-black {
@@ -952,7 +952,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 .fill-contactlight {
-  fill: #007868;
+  fill: #026255;
 }
 
 .stroke-current {
@@ -1079,7 +1079,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .text-contactlight {
   --tw-text-opacity: 1;
-  color: rgb(0 120 104 / var(--tw-text-opacity));
+  color: rgb(2 98 85 / var(--tw-text-opacity));
 }
 
 .text-dark {
@@ -1185,7 +1185,7 @@ body::-webkit-scrollbar-thumb {
 
 .dark .dark\:border-contactdark {
   --tw-border-opacity: 1;
-  border-color: rgb(0 143 106 / var(--tw-border-opacity));
+  border-color: rgb(4 116 86 / var(--tw-border-opacity));
 }
 
 .dark .dark\:bg-dark {
@@ -1199,7 +1199,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .dark .dark\:fill-contactdark {
-  fill: #008f6a;
+  fill: #047456;
 }
 
 .dark .dark\:text-secondary {
@@ -1224,7 +1224,7 @@ body::-webkit-scrollbar-thumb {
 
 .dark .dark\:text-contactdark {
   --tw-text-opacity: 1;
-  color: rgb(0 143 106 / var(--tw-text-opacity));
+  color: rgb(4 116 86 / var(--tw-text-opacity));
 }
 
 .dark .dark\:shadow-work-card {
