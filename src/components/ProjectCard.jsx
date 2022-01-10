@@ -19,7 +19,7 @@ import SourceButton from './SourceButton';
  */
 export default function ProjectCard(props) {
   return (
-    <div className={"work-card dark:shadow-work-card shadow-lg" + props.cardClasses}>
+    <div className={"work-card dark:shadow-work-card shadow-lg " + props.cardClasses}>
       <div className={props.bgColor + " w-full " + props.svgOptions}>
         <img src={props.asset} alt={props.assetAlt} className={props.imageClasses + " mx-auto"} />
       </div>
