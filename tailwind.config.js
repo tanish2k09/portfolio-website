@@ -31,6 +31,7 @@ module.exports = {
       // => @media (min-width: 1280px) { ... }
     },
     textColor: {
+      black: "#000000",
       primary: "#eceff1",
       secondary: "#859299",
       accent: "#41ffc9",
@@ -45,7 +46,8 @@ module.exports = {
       primarylight: "#eceff1",
       textdarker: "#354A54",
       textdark: "#9DB4C0",
-      textdarkest: "#2C414B",
+      textsemidark: "#7d9cab",
+      textaccentdark: "#1cceb5",
       contactlight: "#026255",
       contactdark: "#047456"
     },

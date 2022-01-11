@@ -1077,24 +1077,34 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(53 74 84 / var(--tw-text-opacity));
 }
 
-.text-contactlight {
-  --tw-text-opacity: 1;
-  color: rgb(2 98 85 / var(--tw-text-opacity));
-}
-
 .text-dark {
   --tw-text-opacity: 1;
   color: rgb(0 10 18 / var(--tw-text-opacity));
 }
 
-.text-textdark {
+.text-textsemidark {
   --tw-text-opacity: 1;
-  color: rgb(157 180 192 / var(--tw-text-opacity));
+  color: rgb(125 156 171 / var(--tw-text-opacity));
 }
 
 .text-hintdark {
   --tw-text-opacity: 1;
   color: rgb(121 134 203 / var(--tw-text-opacity));
+}
+
+.text-contactlight {
+  --tw-text-opacity: 1;
+  color: rgb(2 98 85 / var(--tw-text-opacity));
+}
+
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
+.text-textdark {
+  --tw-text-opacity: 1;
+  color: rgb(157 180 192 / var(--tw-text-opacity));
 }
 
 .text-accentlight {
@@ -1200,6 +1210,10 @@ body::-webkit-scrollbar-thumb {
 
 .dark .dark\:fill-contactdark {
   fill: #047456;
+}
+
+.dark .dark\:font-normal {
+  font-weight: 400;
 }
 
 .dark .dark\:text-secondary {
@@ -1402,8 +1416,24 @@ body::-webkit-scrollbar-thumb {
     line-height: 1rem;
   }
 
+  .min\:font-bold {
+    font-weight: 700;
+  }
+
+  .min\:font-black {
+    font-weight: 900;
+  }
+
+  .min\:font-light {
+    font-weight: 300;
+  }
+
   .min\:font-medium {
     font-weight: 500;
+  }
+
+  .min\:font-semibold {
+    font-weight: 600;
   }
 
   .min\:shadow-nav-shadow {
@@ -1643,8 +1673,8 @@ body::-webkit-scrollbar-thumb {
     line-height: 1.75rem;
   }
 
-  .md\:font-normal {
-    font-weight: 400;
+  .md\:font-medium {
+    font-weight: 500;
   }
 
   .md\:shadow-none {
