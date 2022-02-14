@@ -467,14 +467,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 .nav-blob-wrapper {
-  height: 1.5rem;
   width: 0.75rem;
   min-width: 0.25rem;
+  height: 1.5rem;
 }
 
 .nav-blob {
-  height: 0.25rem;
   width: 0.25rem;
+  height: 0.25rem;
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 500ms;
@@ -486,16 +486,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 @media screen and (min-width: 768px) {
   .nav-hover:hover .nav-blob {
-    height: 100%;
-  }
-
-  .nav-hover:hover .nav-blob {
     width: 0.1rem;
   }
 
-  .accented-button {
-    -webkit-transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-            transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  .nav-hover:hover .nav-blob {
+    height: 100%;
   }
 
   .accented-button {
@@ -514,6 +509,11 @@ Ensure the default browser behavior of the `hidden` attribute.
     transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
   }
 
+  .accented-button {
+    -webkit-transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+            transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  }
+
   .accented-button:hover {
     --tw-scale-x: 1.1;
     --tw-scale-y: 1.1;
@@ -523,26 +523,19 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 .work-card {
-  margin: 1rem;
-  display: inline-block;
   overflow: hidden;
   border-radius: 0.5rem;
   background-color: transparent;
   --tw-shadow: 0 4px 20px 0 rgba(0,0,0, 0.3);
   --tw-shadow-colored: 0 4px 20px 0 var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  display: inline-block;
+  margin: 1rem;
 }
 
 .about-card {
-  margin: 1rem;
-  display: inline-block;
   overflow: hidden;
   border-radius: 0.5rem;
-  --tw-bg-opacity: 1;
-  background-color: rgb(236 239 241 / var(--tw-bg-opacity));
-  --tw-shadow: 0 8px 36px 8px rgba(0,0,0, 0.25);
-  --tw-shadow-colored: 0 8px 36px 8px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 .dark .about-card {
@@ -550,15 +543,25 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(16 25 36 / var(--tw-bg-opacity));
 }
 
+.about-card {
+  --tw-bg-opacity: 1;
+  background-color: rgb(236 239 241 / var(--tw-bg-opacity));
+  --tw-shadow: 0 8px 36px 8px rgba(0,0,0, 0.25);
+  --tw-shadow-colored: 0 8px 36px 8px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  display: inline-block;
+  margin: 1rem;
+}
+
 .tag {
+  border-radius: 0.375rem;
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
-  margin-left: 0.5rem;
-  border-radius: 0.375rem;
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+  margin-left: 0.5rem;
 }
 
 .repo-button {
@@ -570,10 +573,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 .repo-button:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
   --tw-text-opacity: 1;
   color: rgb(236 239 241 / var(--tw-text-opacity));
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
 
 .social-button {
@@ -587,23 +590,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   }
 
   .social-button span {
-    display: inline-block;
-  }
-
-  .social-button span {
     max-width: 0;
-  }
-
-  .social-button span {
-    overflow: hidden;
-  }
-
-  .social-button span {
-    white-space: nowrap;
-  }
-
-  .social-button span {
-    vertical-align: top;
   }
 
   .social-button span {
@@ -614,6 +601,22 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .social-button span {
     transition-duration: 1000ms;
+  }
+
+  .social-button span {
+    display: inline-block;
+  }
+
+  .social-button span {
+    vertical-align: top;
+  }
+
+  .social-button span {
+    white-space: nowrap;
+  }
+
+  .social-button span {
+    overflow: hidden;
   }
 
   .social-button:hover svg path {
@@ -864,7 +867,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .border-contactlight {
   --tw-border-opacity: 1;
-  border-color: rgb(2 98 85 / var(--tw-border-opacity));
+  border-color: rgb(173 20 87 / var(--tw-border-opacity));
 }
 
 .border-black {
@@ -879,7 +882,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .bg-accentlight {
   --tw-bg-opacity: 1;
-  background-color: rgb(48 227 202 / var(--tw-bg-opacity));
+  background-color: rgb(240 98 146 / var(--tw-bg-opacity));
 }
 
 .bg-transparent {
@@ -952,7 +955,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 .fill-contactlight {
-  fill: #026255;
+  fill: #ad1457;
 }
 
 .stroke-current {
@@ -961,10 +964,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .stroke-2 {
   stroke-width: 2;
-}
-
-.stroke-0 {
-  stroke-width: 0;
 }
 
 .object-contain {
@@ -1094,7 +1093,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .text-contactlight {
   --tw-text-opacity: 1;
-  color: rgb(2 98 85 / var(--tw-text-opacity));
+  color: rgb(173 20 87 / var(--tw-text-opacity));
 }
 
 .text-black {
@@ -1109,7 +1108,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .text-accentlight {
   --tw-text-opacity: 1;
-  color: rgb(48 227 202 / var(--tw-text-opacity));
+  color: rgb(240 98 146 / var(--tw-text-opacity));
 }
 
 .opacity-0 {
@@ -1154,14 +1153,14 @@ body::-webkit-scrollbar-track {
   background-color: #102027;
 }
 
-body::-webkit-scrollbar-thumb {
-  --tw-bg-opacity: 1;
-  background-color: rgb(48 227 202 / var(--tw-bg-opacity));
-}
-
 .dark body::-webkit-scrollbar-thumb {
   --tw-bg-opacity: 1;
-  background-color: rgb(65 255 201 / var(--tw-bg-opacity));
+  background-color: rgb(240 98 146 / var(--tw-bg-opacity));
+}
+
+body::-webkit-scrollbar-thumb {
+  --tw-bg-opacity: 1;
+  background-color: rgb(240 98 146 / var(--tw-bg-opacity));
 }
 
 .no-scrollbar::-webkit-scrollbar {
@@ -1195,7 +1194,7 @@ body::-webkit-scrollbar-thumb {
 
 .dark .dark\:border-contactdark {
   --tw-border-opacity: 1;
-  border-color: rgb(4 116 86 / var(--tw-border-opacity));
+  border-color: rgb(173 20 87 / var(--tw-border-opacity));
 }
 
 .dark .dark\:bg-dark {
@@ -1205,11 +1204,11 @@ body::-webkit-scrollbar-thumb {
 
 .dark .dark\:bg-accent {
   --tw-bg-opacity: 1;
-  background-color: rgb(65 255 201 / var(--tw-bg-opacity));
+  background-color: rgb(240 98 146 / var(--tw-bg-opacity));
 }
 
 .dark .dark\:fill-contactdark {
-  fill: #047456;
+  fill: #ad1457;
 }
 
 .dark .dark\:font-normal {
@@ -1228,7 +1227,7 @@ body::-webkit-scrollbar-thumb {
 
 .dark .dark\:text-accent {
   --tw-text-opacity: 1;
-  color: rgb(65 255 201 / var(--tw-text-opacity));
+  color: rgb(240 98 146 / var(--tw-text-opacity));
 }
 
 .dark .dark\:text-hintyellow {
@@ -1238,7 +1237,7 @@ body::-webkit-scrollbar-thumb {
 
 .dark .dark\:text-contactdark {
   --tw-text-opacity: 1;
-  color: rgb(4 116 86 / var(--tw-text-opacity));
+  color: rgb(173 20 87 / var(--tw-text-opacity));
 }
 
 .dark .dark\:shadow-work-card {
@@ -1355,7 +1354,7 @@ body::-webkit-scrollbar-thumb {
 
   .min\:bg-accentlight {
     --tw-bg-opacity: 1;
-    background-color: rgb(48 227 202 / var(--tw-bg-opacity));
+    background-color: rgb(240 98 146 / var(--tw-bg-opacity));
   }
 
   .min\:p-4 {
@@ -1416,22 +1415,6 @@ body::-webkit-scrollbar-thumb {
     line-height: 1rem;
   }
 
-  .min\:font-bold {
-    font-weight: 700;
-  }
-
-  .min\:font-black {
-    font-weight: 900;
-  }
-
-  .min\:font-light {
-    font-weight: 300;
-  }
-
-  .min\:font-medium {
-    font-weight: 500;
-  }
-
   .min\:font-semibold {
     font-weight: 600;
   }
@@ -1444,7 +1427,7 @@ body::-webkit-scrollbar-thumb {
 
   .dark .min\:dark\:bg-accent {
     --tw-bg-opacity: 1;
-    background-color: rgb(65 255 201 / var(--tw-bg-opacity));
+    background-color: rgb(240 98 146 / var(--tw-bg-opacity));
   }
 
   .dark .min\:dark\:text-shadow-min {
