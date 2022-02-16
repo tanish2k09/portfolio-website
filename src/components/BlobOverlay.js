@@ -29,10 +29,10 @@ const blobEnergyStates = {
 };
 
 const scaleDuration = 750; // milliseconds
-const fillColorDark = '#f06292';
-const fillColorDarkShadow = '#ba2d65';
-const fillColor = '#f06292';
-const fillColorShadow = '#f06292';
+const fillColorDark = 'rgba(65, 255, 201, 255)';
+const fillColorDarkShadow = 'rgba(32, 128, 100, 25)';
+const fillColor = 'rgba(48, 227, 202, 255)';
+const fillColorShadow = 'rgba(48, 227, 202, 25)';
 const reactivePollInterval = 16.66;
 const widthBreakPoint = 768;
 

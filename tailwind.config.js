@@ -34,8 +34,8 @@ module.exports = {
       black: "#000000",
       primary: "#eceff1",
       secondary: "#859299",
-      accent: "#f06292",
-      accentlight: "#f06292",
+      accent: "#41ffc9",
+      accentlight: "#30E3CA",
       accentlighter: "#C4FCF0",
       accentDarker: "#1a665a",
       accentDark: "#2db28c",
@@ -48,16 +48,16 @@ module.exports = {
       textdark: "#9DB4C0",
       textsemidark: "#7d9cab",
       textaccentdark: "#1cceb5",
-      contactlight: "#ad1457",
-      contactdark: "#ad1457"
+      contactlight: "#026255",
+      contactdark: "#047456"
     },
     extend: {
       colors: {
         dark: "#101924",
         textdark: "#000a12",
         primary: "#cbd2d9",
-        accent: "#f06292",
-        accentlight: "#f06292",
+        accent: "#41ffc9",
+        accentlight: "#30E3CA",
         cards: "#18212C",
         mbpink: "#f06694",
         mbpinklight: "#f27da4",
@@ -71,8 +71,8 @@ module.exports = {
         spotify: "#00D280",
         spotifydark: "#00bd73",
         primarylight: "#eceff1",
-        contactlight: "#ad1457",
-        contactdark: "#ad1457"
+        contactlight: "#026255",
+        contactdark: "#047456"
       },
       fontSize: {
         "009": "0.9rem",
