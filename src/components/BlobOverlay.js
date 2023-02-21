@@ -309,7 +309,6 @@ loop();
 
 // I hate to move this outside the blob but phase should be FPS-locked:
 const PHASE_UPDATE_INTERVAL = 16; // Milliseconds
-var phaseStartTime = performance.now();
 function updateBlobPhase() {
     blob.updatePhase();
     setTimeout(updateBlobPhase, PHASE_UPDATE_INTERVAL);
