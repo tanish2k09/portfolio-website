@@ -12,7 +12,8 @@ module.exports = {
     fontFamily: {
       display: ["Work Sans", "sans-serif"],
       mono: ["DM Mono"],
-      body: ["Work Sans"]
+      body: ["Work Sans"],
+      nav: ["Poppins"]
     },
     screens: {
       min: "300px",
@@ -70,6 +71,8 @@ module.exports = {
         t2syellowdark: "#ffcc80",
         spotify: "#00D280",
         spotifydark: "#00bd73",
+        rescuedialer: "#ffca28",
+        rescuedialerdark: "#ffb300",
         primarylight: "#eceff1",
         contactlight: "#026255",
         contactdark: "#047456"

@@ -5,7 +5,7 @@ export default function AccentedButton(props) {
 
   const common =
     "accented-button " +
-    "font-mono min:font-semibold md:font-medium tracking-wide " +
+    "font-nav min:font-semibold md:font-medium tracking-wide " +
     "bg-accentlight dark:bg-accent text-black " +
     "flex rounded shadow-xl " +
     "px-2 py-4 sm:p-4 m-0 ml-0 text-sm md:text-base";

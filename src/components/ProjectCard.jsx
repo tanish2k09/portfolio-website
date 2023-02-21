@@ -18,10 +18,21 @@ import SourceButton from './SourceButton';
  * 12) OPTIONAL (use for play store links): isPlayStore + url
  */
 export default function ProjectCard(props) {
+  var buttonProps = "";
+  if (props.url || props.repo) {
+    buttonProps = "flex mt-2 pb-6 px-2";
+  }
+
+  var imageClassesDark = props.imageClassesDark;
+  if (!imageClassesDark) {
+    imageClassesDark = "hidden";
+  }
+
   return (
     <div className={"work-card dark:shadow-work-card shadow-lg " + props.cardClasses}>
       <div className={props.bgColor + " w-full " + props.svgOptions}>
         <img src={props.asset} alt={props.assetAlt} className={props.imageClasses + " mx-auto"} />
+        <img src={props.assetDark} alt={props.assetAlt} className={imageClassesDark + " mx-auto"} />
       </div>
       <div className={props.cardColor + " font-body relative inline-block w-full"}>
         <div className="mt-2 ml-2 mr-4 inline-block font-mono">
@@ -31,16 +42,16 @@ export default function ProjectCard(props) {
         </div>
         <br />
         <div className="inline-block">
-          <div className="mt-8 mx-4 text-lg w-full">
-            <span className="border-b-2 border-black pb-1 font-medium">
+          <div className={"mt-8 mx-4 text-lg w-full " + props.textColor}>
+            <span className={"border-b-2 pb-1 font-medium " + (props.borderColor ? props.borderColor : "border-black")}>
               {props.name}
             </span>
           </div>
-          <div className="my-4 mx-4 inline-block text-sm font-normal">
+          <div className={"my-4 mx-4 inline-block text-sm font-normal " + props.textColor}>
             {props.description}
           </div>
         </div>
-        <div className="flex mt-2 pb-6 px-2">
+        <div className={buttonProps}>
           <SourceButton repo={props.repo} />
           <SourceButton isPlayStore={props.isPlayStore} url={props.url} />
         </div>

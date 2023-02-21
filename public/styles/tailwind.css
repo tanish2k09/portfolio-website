@@ -742,6 +742,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: inline-block;
 }
 
+.inline {
+  display: inline;
+}
+
 .flex {
   display: flex;
 }
@@ -770,12 +774,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   max-height: 16rem;
 }
 
-.min-h-56 {
-  min-height: 14rem;
-}
-
 .min-h-64 {
   min-height: 16rem;
+}
+
+.min-h-56 {
+  min-height: 14rem;
 }
 
 .w-full {
@@ -786,16 +790,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 1.25rem;
 }
 
+.w-64 {
+  width: 16rem;
+}
+
 .w-16 {
   width: 4rem;
 }
 
 .w-24 {
   width: 6rem;
-}
-
-.w-64 {
-  width: 16rem;
 }
 
 .scale-50 {
@@ -872,6 +876,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: rgb(0 0 0 / var(--tw-border-opacity));
 }
 
+.border-primary {
+  --tw-border-opacity: 1;
+  border-color: rgb(203 210 217 / var(--tw-border-opacity));
+}
+
 .bg-primarylight {
   --tw-bg-opacity: 1;
   background-color: rgb(236 239 241 / var(--tw-bg-opacity));
@@ -911,6 +920,36 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(238 238 238 / var(--tw-bg-opacity));
 }
 
+.bg-rescuedialer {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 202 40 / var(--tw-bg-opacity));
+}
+
+.bg-rescuedialerdark {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 179 0 / var(--tw-bg-opacity));
+}
+
+.bg-spotify {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 210 128 / var(--tw-bg-opacity));
+}
+
+.bg-spotifydark {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 189 115 / var(--tw-bg-opacity));
+}
+
+.bg-accent {
+  --tw-bg-opacity: 1;
+  background-color: rgb(65 255 201 / var(--tw-bg-opacity));
+}
+
+.bg-dark {
+  --tw-bg-opacity: 1;
+  background-color: rgb(16 25 36 / var(--tw-bg-opacity));
+}
+
 .bg-mbpinklight {
   --tw-bg-opacity: 1;
   background-color: rgb(242 125 164 / var(--tw-bg-opacity));
@@ -941,16 +980,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(255 204 128 / var(--tw-bg-opacity));
 }
 
-.bg-spotify {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 210 128 / var(--tw-bg-opacity));
-}
-
-.bg-spotifydark {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 189 115 / var(--tw-bg-opacity));
-}
-
 .fill-contactlight {
   fill: #026255;
 }
@@ -961,10 +990,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .stroke-2 {
   stroke-width: 2;
-}
-
-.stroke-0 {
-  stroke-width: 0;
 }
 
 .object-contain {
@@ -1013,16 +1038,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-bottom: 0.5rem;
 }
 
-.pb-1 {
-  padding-bottom: 0.25rem;
-}
-
 .pb-6 {
   padding-bottom: 1.5rem;
 }
 
-.font-mono {
-  font-family: DM Mono;
+.pb-1 {
+  padding-bottom: 0.25rem;
 }
 
 .font-display {
@@ -1031,6 +1052,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .font-body {
   font-family: Work Sans;
+}
+
+.font-mono {
+  font-family: DM Mono;
+}
+
+.font-nav {
+  font-family: Poppins;
 }
 
 .text-sm {
@@ -1110,6 +1139,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-accentlight {
   --tw-text-opacity: 1;
   color: rgb(48 227 202 / var(--tw-text-opacity));
+}
+
+.text-primary {
+  --tw-text-opacity: 1;
+  color: rgb(236 239 241 / var(--tw-text-opacity));
 }
 
 .opacity-0 {
@@ -1193,9 +1227,22 @@ body::-webkit-scrollbar-thumb {
   outline-offset: 2px;
 }
 
+.dark .dark\:inline {
+  display: inline;
+}
+
+.dark .dark\:hidden {
+  display: none;
+}
+
 .dark .dark\:border-contactdark {
   --tw-border-opacity: 1;
   border-color: rgb(4 116 86 / var(--tw-border-opacity));
+}
+
+.dark .dark\:border-black {
+  --tw-border-opacity: 1;
+  border-color: rgb(0 0 0 / var(--tw-border-opacity));
 }
 
 .dark .dark\:bg-dark {
@@ -1206,6 +1253,16 @@ body::-webkit-scrollbar-thumb {
 .dark .dark\:bg-accent {
   --tw-bg-opacity: 1;
   background-color: rgb(65 255 201 / var(--tw-bg-opacity));
+}
+
+.dark .dark\:bg-accentlight {
+  --tw-bg-opacity: 1;
+  background-color: rgb(48 227 202 / var(--tw-bg-opacity));
+}
+
+.dark .dark\:bg-primarylight {
+  --tw-bg-opacity: 1;
+  background-color: rgb(236 239 241 / var(--tw-bg-opacity));
 }
 
 .dark .dark\:fill-contactdark {
@@ -1239,6 +1296,11 @@ body::-webkit-scrollbar-thumb {
 .dark .dark\:text-contactdark {
   --tw-text-opacity: 1;
   color: rgb(4 116 86 / var(--tw-text-opacity));
+}
+
+.dark .dark\:text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
 .dark .dark\:shadow-work-card {
@@ -1414,22 +1476,6 @@ body::-webkit-scrollbar-thumb {
   .min\:text-xs {
     font-size: 0.75rem;
     line-height: 1rem;
-  }
-
-  .min\:font-bold {
-    font-weight: 700;
-  }
-
-  .min\:font-black {
-    font-weight: 900;
-  }
-
-  .min\:font-light {
-    font-weight: 300;
-  }
-
-  .min\:font-medium {
-    font-weight: 500;
   }
 
   .min\:font-semibold {
