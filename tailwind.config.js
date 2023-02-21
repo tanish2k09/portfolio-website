@@ -12,7 +12,8 @@ module.exports = {
     fontFamily: {
       display: ["Work Sans", "sans-serif"],
       mono: ["DM Mono"],
-      body: ["Work Sans"]
+      body: ["Work Sans"],
+      nav: ["Poppins"]
     },
     screens: {
       min: "300px",
