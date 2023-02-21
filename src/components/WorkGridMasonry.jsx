@@ -8,6 +8,9 @@ import MUSICBENDER from "../assets/musicbender.svg";
 import DT2W from "../assets/dt2w.svg";
 import T2S from "../assets/t2s.svg";
 import SPOTIFY from "../assets/spotify.svg";
+import RESCUEDIALER from "../assets/rescuedialer.svg";
+import BLOBBYDARK from "../assets/blobbydark.png";
+import BLOBBYLIGHT from "../assets/blobbylight.png";
 
 const masonryOptions = {
     transitionDuration: 200,
@@ -30,8 +33,8 @@ export default function WorkGridMasonry() {
                 cardColor={"bg-scedark"}
                 tags={[
                     { id: 1, text: "Android" },
-                    { id: 2, text: "Java" },
-                    { id: 3, text: "Kotlin" },
+                    { id: 2, text: "Kotlin" },
+                    { id: 3, text: "Java" },
                     { id: 4, text: "XML" }
                 ]}
                 name={"Smurf Config Editor"}
@@ -58,6 +61,69 @@ export default function WorkGridMasonry() {
                 name={"K-LAPSE"}
                 description={"A Linux kernel time-based and hook-based linear RGB interpolation module, used in hundreds of custom Android kernels for thousands of devices."}
                 repo={"klapse-livedisplay"}
+            />
+
+            {/* Rescue Dialer */}
+            <ProjectCard
+                cardClasses={"lg:max-w-45p xl:max-w-25p"}
+                bgColor={"bg-rescuedialer"}
+                svgOptions={"align-center justify-center flex min-h-64"}
+                asset={RESCUEDIALER}
+                assetAlt={"Rescue Dialer vector logo"}
+                imageClasses={"object-contain w-64 h-64 transform scale-50"}
+                cardColor={"bg-rescuedialerdark"}
+                tags={[
+                    { id: 1, text: "Android" },
+                    { id: 2, text: "Kotlin" },
+                    { id: 3, text: "XML" }
+                ]}
+                name={"Rescue Dialer"}
+                description={"An Android app for simulating a real call, customizable with a set of triggers, timers, ringtones, pre-set audio messages and even fake contact info! This app was commissioned by OTIKA."}
+                isPlayStore={true}
+                url={"https://play.google.com/store/apps/details?id=com.otika.rescuedialer"}
+            />
+
+            {/* Spotify Release Reader */}
+            <ProjectCard
+                cardClasses={"lg:max-w-45p xl:max-w-25p"}
+                bgColor={"bg-spotify"}
+                svgOptions={"align-center justify-center flex min-h-64"}
+                asset={SPOTIFY}
+                assetAlt={"Spotify vector logo"}
+                imageClasses={"object-contain w-64 h-64 transform scale-50"}
+                cardColor={"bg-spotifydark"}
+                tags={[
+                    { id: 1, text: "Spotify" },
+                    { id: 2, text: "JS" },
+                    { id: 3, text: "Node" }
+                ]}
+                name={"Spotify Release Reader"}
+                description={"A simple Spotify app to save your weekly Release Radar to your playlists. Capable of doing much more thanks to a modular architecture."}
+                repo={"Spotify-Release-Reader"}
+            />
+
+            {/* Portfolio Website */}
+            <ProjectCard
+                cardClasses={"lg:max-w-45p xl:max-w-25p"}
+                bgColor={"dark:bg-accentlight bg-accent"}
+                svgOptions={"align-center justify-center flex min-h-64"}
+                asset={BLOBBYLIGHT}
+                assetDark={BLOBBYDARK}
+                assetAlt={"Portfolio icon"}
+                imageClasses={"object-cover dark:inline hidden"}
+                imageClassesDark={"object-cover inline dark:hidden"}
+                cardColor={"dark:bg-primarylight bg-dark"}
+                textColor={"text-primary dark:text-black"}
+                borderColor={"border-primary dark:border-black"}
+                tags={[
+                    { id: 1, text: "React" },
+                    { id: 2, text: "JS" },
+                    { id: 3, text: "Tailwind" },
+                    { id: 4, text: "CSS" },
+                    { id: 5, text: "Node" }
+                ]}
+                name={"🎉 Portfolio Website 💻"}
+                description={"This portfolio website is also a personal project which I built to learn React and Tailwind. You're interacting with it 😄 "}
             />
 
             {/* Musicbender */}
@@ -119,25 +185,6 @@ export default function WorkGridMasonry() {
                 name={"Trace 2 Sleep"}
                 description={"An Android Linux kernel display parabolic corner-to-corner customizable gesture driver for waking up the device display or sleeping. Built for Linux kernel v3.10 but can be easily ported to newer versions."}
                 repo={"trace2sleep"}
-            />
-
-            {/* Spotify Release Reader */}
-            <ProjectCard
-                cardClasses={"lg:max-w-45p xl:max-w-25p"}
-                bgColor={"bg-spotify"}
-                svgOptions={"align-center justify-center flex min-h-64"}
-                asset={SPOTIFY}
-                assetAlt={"Spotify vector logo"}
-                imageClasses={"object-contain w-64 h-64 transform scale-50"}
-                cardColor={"bg-spotifydark"}
-                tags={[
-                    { id: 1, text: "Spotify" },
-                    { id: 2, text: "JS" },
-                    { id: 3, text: "Node" }
-                ]}
-                name={"Spotify Release Reader"}
-                description={"A simple Spotify app to save your weekly Release Radar to your playlists. Capable of doing much more thanks to a modular architecture, like scheduling other playlists at other times."}
-                repo={"Spotify-Release-Reader"}
             />
 
         </Masonry>
