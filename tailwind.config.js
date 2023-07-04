@@ -57,6 +57,7 @@ module.exports = {
         dark: "#101924",
         textdark: "#000a12",
         primary: "#cbd2d9",
+        secondary: "#859299",
         accent: "#00d8b6",
         accentlight: "#00d8b6",
         cards: "#18212C",

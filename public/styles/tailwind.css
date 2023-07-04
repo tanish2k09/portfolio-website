@@ -1233,28 +1233,18 @@ video {
     max-width: 0;
     transition-property: all;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 1000ms;
+    transition-duration: 700ms;
     display: inline-block;
     vertical-align: top;
     white-space: nowrap;
     overflow: hidden;
-  }
-
-  .social-button:hover svg path {
-    fill: #000;
-  }
-
-  .social-button:hover span {
-    max-width: 30ch;
-    --tw-text-opacity: 1;
-    color: rgb(0 10 18 / var(--tw-text-opacity));
   }
 }
 
 .social-button svg path {
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 500ms;
+  transition-duration: 700ms;
 }
 
 body::-webkit-scrollbar {
@@ -1304,6 +1294,20 @@ body::-webkit-scrollbar-thumb {
   outline-offset: 2px;
 }
 
+.group:hover .group-hover\:fill-dark {
+  fill: #101924;
+}
+
+.group:hover .group-hover\:text-dark {
+  --tw-text-opacity: 1;
+  color: rgb(0 10 18 / var(--tw-text-opacity));
+}
+
+.group:hover .group-hover\:text-textdark {
+  --tw-text-opacity: 1;
+  color: rgb(157 180 192 / var(--tw-text-opacity));
+}
+
 :is(.dark .dark\:inline) {
   display: inline;
 }
@@ -1344,6 +1348,10 @@ body::-webkit-scrollbar-thumb {
 
 :is(.dark .dark\:fill-contactdark) {
   fill: #026255;
+}
+
+:is(.dark .dark\:fill-secondary) {
+  fill: #859299;
 }
 
 :is(.dark .dark\:font-normal) {
@@ -1408,6 +1416,15 @@ body::-webkit-scrollbar-thumb {
 :is(.dark .dark\:focus\:border-black:focus) {
   --tw-border-opacity: 1;
   border-color: rgb(0 0 0 / var(--tw-border-opacity));
+}
+
+:is(.dark .group:hover .dark\:group-hover\:fill-accent) {
+  fill: #00d8b6;
+}
+
+:is(.dark .group:hover .dark\:group-hover\:text-accent) {
+  --tw-text-opacity: 1;
+  color: rgb(0 216 182 / var(--tw-text-opacity));
 }
 
 @media (min-width: 300px) {

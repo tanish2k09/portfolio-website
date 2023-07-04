@@ -52,6 +52,7 @@
 
 
   <section id="first_screen_block" class="h-screen relative block">
+    <div id="top_socials_container" class="xs:pl-4 md:pl-6 lg:pl-8 xl:pl-12 md:max-w-75p"></div>
     <div id="corner_block" class="absolute bottom-0 sm:ml-8 xs:pb-16 md:pb-0 xs:mb-16 md:mb-4">
       <div id="big_name_container"></div>
       <div id="click_button_container" class="xs:mt-2 md:mt-16 xs:pb-24 xs:px-4 sm:px-0 xl:px-4">
@@ -134,8 +135,13 @@
     
     <!-- A little help for the Netlify bots if you're not using a SSG -->
     <form name="contact" netlify netlify-honeypot="bot-field" hidden>
-      <input required type="text" name="name" />
-      <input required type="email" name="email" />
+      <p class="hidden">
+        <label>
+          Don’t fill this out if you’re human: <input name="bot-field" />
+        </label>
+      </p>
+      <input required type="text" name="name" autocomplete="name" />
+      <input required type="email" name="email" autocomplete="email" />
       <textarea required name="message"></textarea>
     </form>
 
