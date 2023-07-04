@@ -2,13 +2,15 @@ import React from 'react';
 
 export default function SourceButton(props) {
 
-    if (!props.text && !props.url) {
-        return (null);
+    var ctaClasses = "border-black hover:text-primary hover:bg-black";
+
+    if (props.ctaClasses) {
+        ctaClasses = props.ctaClasses;
     }
 
     return (
         <a href={props.url}>
-            <button className="repo-button ml-2 mr-2 font-mono border-black border-2 px-4 py-2 text-sm rounded-sm tracking-wide h-full">
+            <button className={`transition-colors duration-500 ml-2 mr-2 font-mono border-2 px-4 py-2 text-sm rounded-sm tracking-wide h-full ${ctaClasses}`}>
                 {props.text}
             </button>
         </a>

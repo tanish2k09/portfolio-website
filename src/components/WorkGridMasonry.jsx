@@ -11,6 +11,7 @@ import SPOTIFY from "../assets/spotify.svg";
 import RESCUEDIALER from "../assets/rescuedialer.svg";
 import BLOBBYDARK from "../assets/blobbydark.png";
 import BLOBBYLIGHT from "../assets/blobbylight.png";
+import HUBSFU from "../assets/hubSFU.png";
 
 const masonryOptions = {
     transitionDuration: 200,
@@ -88,6 +89,26 @@ export default function WorkGridMasonry() {
                 ]}
             />
 
+            {/* hubSFU */}
+            <ProjectCard
+                cardClasses={"lg:max-w-45p xl:max-w-25p"}
+                bgColor={"bg-hubSFU"}
+                asset={HUBSFU}
+                assetAlt={"hubSFU image"}
+                imageClasses={"object-contain"}
+                cardColor={"bg-hubSFUdark"}
+                tags={[
+                    { text: "Android" },
+                    { text: "Kotlin" },
+                    { text: "XML" }
+                ]}
+                name={"Rescue Dialer"}
+                description={"A community-focused Android app, built around the needs and feedback of local university students. This project was developed in 1 effective day - from concept to design to app - during a hackathon."}
+                ctas={[
+                    { url: github('stormhack2023'), title: CTA_TEXT.GITHUB}
+                ]}
+            />
+
             {/* Spotify Release Reader */}
             <ProjectCard
                 cardClasses={"lg:max-w-45p xl:max-w-25p"}
@@ -134,6 +155,7 @@ export default function WorkGridMasonry() {
                 ctas={[
                     { url: "#first_screen_block", title: "Awesome!"}
                 ]}
+                ctaClasses={"border-white dark:border-black text-primary dark:text-dark hover:bg-white hover:text-dark dark:hover:bg-black dark:hover:text-primary"}
             />
 
             {/* K-LAPSE */}
