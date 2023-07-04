@@ -10,10 +10,10 @@ export const styles = {
     defaultTextColors: "text-contactlight dark:text-contactdark",
     defaultActiveLogoColors: 'group-hover:fill-dark',
     defaultActiveTextColors: 'group-hover:text-dark',
-    topColors: "fill-textdark dark:fill-secondary",
+    topColors: "fill-semidark dark:fill-secondary",
     topTextColors: "text-textdark dark:text-secondary",
     topActiveLogoColors: `group-hover:fill-dark dark:group-hover:fill-accent`,
-    topActiveTextColors: `group-hover:text-textdark dark:group-hover:text-accent`,
+    topActiveTextColors: `group-hover:text-dark dark:group-hover:text-accent`,
 };
 
 export default function ContactSocials(props) {
