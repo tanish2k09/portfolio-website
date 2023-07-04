@@ -51,7 +51,7 @@ class DarkModeToggle extends React.Component {
     return (
       <div className="md:w-full md:h-12 md:flex md:float-right md:relative">
         <button id="dark_mode_toggle" onClick={this.toggleTheme} title="Theme toggle">
-          <div className="md:right-5 md:absolute min:relative min:mt-6 md:mt-0 min:px-2 md:px-0">
+          <div className="md:right-5 md:absolute xs:relative xs:mt-6 md:mt-0 xs:px-2 md:px-0">
           {image}
           </div>
         </button>
