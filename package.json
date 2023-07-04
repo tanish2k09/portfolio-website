@@ -23,8 +23,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "npm run twbuild && react-scripts build",
-    "tw": "npx tailwindcss -i ./src/styles/tailwind.css -o ./public/styles/tailwind.css --watch",
-    "twbuild": "npx tailwindcss -i ./src/styles/tailwind.css -o ./public/styles/tailwind.css --minify"
+    "tw": "npx tailwindcss -i src/styles/tailwind.css -o public/styles/tailwind.css --watch",
+    "twbuild": "npx tailwindcss -i src/styles/tailwind.css -o public/styles/tailwind.css --minify"
   },
   "eslintConfig": {
     "extends": "react-app"
