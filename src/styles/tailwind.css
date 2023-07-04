@@ -43,7 +43,8 @@
   @apply bg-transparent;
   @apply shadow-work-card;
   @apply inline-block;
-  @apply m-4;
+  @apply md:m-6;
+  @apply xl:m-4;
   @apply scale-100;
   @apply transition;
   @apply duration-500;
@@ -69,16 +70,6 @@
   @apply py-1;
   @apply px-2;
   @apply ml-2;
-}
-
-.repo-button {
-  @apply transition-colors;
-  @apply duration-500;
-}
-
-.repo-button:hover {
-  @apply text-primary;
-  @apply bg-black;
 }
 
 .social-button {
