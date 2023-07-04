@@ -34,10 +34,10 @@ const blobEnergyStates = {
 
 const scaleDuration = 750; // milliseconds
 const energizeDuration = 1000; // milliseconds
-const fillColorDark = 'rgba(65, 255, 201, 255)';
-const fillColorDarkShadow = 'rgba(32, 128, 100, 25)';
-const fillColor = 'rgba(48, 227, 202, 255)';
-const fillColorShadow = 'rgba(48, 227, 202, 25)';
+const fillColorDark = '#00d8b6';
+const fillColorDarkShadow = '#00d8b6';
+const fillColor = '#00d8b6';
+const fillColorShadow = '#d3d3d3';
 export const POLL_INTERVAL = 200;
 
 let scaleInterpolator = new BlobInterpolator(scaleDuration);
@@ -309,11 +309,9 @@ loop();
 
 // I hate to move this outside the blob but phase should be FPS-locked:
 const PHASE_UPDATE_INTERVAL = 8.33; // Milliseconds
-function updateBlobPhase() {
-    blob.updatePhase();
-    setTimeout(updateBlobPhase, PHASE_UPDATE_INTERVAL);
-}
-updateBlobPhase();
+setInterval(() => {
+  blob.updatePhase()
+}, PHASE_UPDATE_INTERVAL);
 
 export function getBlob() {
   return blob;

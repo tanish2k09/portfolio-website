@@ -9,34 +9,34 @@ module.exports = {
   ],
   darkMode: "class",
   theme: {
+    screens: {
+      'min': '300px',
+      // => @media (min-width: 300px) { ... }
+
+      'sm': '640px',
+      // => @media (min-width: 640px) { ... }
+
+      'md': '768px',
+      // => @media (min-width: 768px) { ... }
+
+      'lg': '1024px',
+      // => @media (min-width: 1024px) { ... }
+
+      'xl': '1280px',
+      // => @media (min-width: 1280px) { ... }
+    },
     fontFamily: {
       display: ["Work Sans", "sans-serif"],
       mono: ["DM Mono"],
       body: ["Work Sans"],
       nav: ["Poppins"]
     },
-    screens: {
-      min: "300px",
-      // => @media (min-width: 360px) { ... }
-
-      sm: "640px",
-      // => @media (min-width: 640px) { ... }
-
-      md: "768px",
-      // => @media (min-width: 768px) { ... }
-
-      lg: "1024px",
-      // => @media (min-width: 1024px) { ... }
-
-      xl: "1280px",
-      // => @media (min-width: 1280px) { ... }
-    },
     textColor: {
       black: "#000000",
       primary: "#eceff1",
       secondary: "#859299",
-      accent: "#41ffc9",
-      accentlight: "#30E3CA",
+      accent: "#00d8b6",
+      accentlight: "#00d8b6",
       accentlighter: "#C4FCF0",
       accentDarker: "#1a665a",
       accentDark: "#2db28c",
@@ -50,21 +50,21 @@ module.exports = {
       textsemidark: "#7d9cab",
       textaccentdark: "#1cceb5",
       contactlight: "#026255",
-      contactdark: "#047456"
+      contactdark: "#026255"
     },
     extend: {
       colors: {
         dark: "#101924",
         textdark: "#000a12",
         primary: "#cbd2d9",
-        accent: "#41ffc9",
-        accentlight: "#30E3CA",
+        accent: "#00d8b6",
+        accentlight: "#00d8b6",
         cards: "#18212C",
         mbpink: "#f06694",
         mbpinklight: "#f27da4",
         scedark: "#12bda1",
         sceteal: "#14D2B3",
-        klapsewhite: "#eeeeee",
+        klapsewhite: "#f8f8f8",
         dt2wblue: "#64b5f6",
         dt2wbluedark: "#42a5f5",
         t2syellow: "#ffe0b2",
@@ -75,7 +75,7 @@ module.exports = {
         rescuedialerdark: "#ffb300",
         primarylight: "#eceff1",
         contactlight: "#026255",
-        contactdark: "#047456"
+        contactdark: "#026255"
       },
       fontSize: {
         "009": "0.9rem",
