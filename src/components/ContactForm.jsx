@@ -9,14 +9,14 @@ export default function ContactForm(props) {
       <div className="
           border-2 border-contactlight dark:border-contactdark 
           inline-block 
-          xs:py-12 xs:px-16 md:py-24 md:px-48 xl:px-64 
+          py-12 px-16 md:py-24 md:px-48 xl:px-64 
           w-full rounded-lg">
         <div className="">
-          <label id="user-name-hint" className="text-contactlight dark:text-contactdark xs:text-sm md:text-md font-medium">Your Name:
+          <label id="user-name-hint" className="text-contactlight dark:text-contactdark text-sm md:text-md font-medium">Your Name:
             <input className="
                 block w-full
                 bg-transparent 
-                text-black xs:text-md md:text-lg
+                text-black text-md md:text-lg
                 border-b-2 border-contactlight dark:border-contactdark
               focus:border-black dark:focus:border-black focus:outline-none"
               type="text"
@@ -29,11 +29,11 @@ export default function ContactForm(props) {
         </div>
 
         <div className="mt-8">
-          <label id="user-email-hint" className="text-contactlight dark:text-contactdark xs:text-sm md:text-md font-medium">Your Email:
+          <label id="user-email-hint" className="text-contactlight dark:text-contactdark text-sm md:text-md font-medium">Your Email:
             <input className="
                 block w-full
                 bg-transparent 
-                text-black xs:text-md md:text-lg
+                text-black text-md md:text-lg
                 border-b-2 border-contactlight dark:border-contactdark
               focus:border-black focus:outline-none
                 required"
@@ -47,11 +47,11 @@ export default function ContactForm(props) {
         </div>
 
         <div className="mt-8">
-          <label id="message-hint" className="text-contactlight dark:text-contactdark xs:text-sm md:text-md font-medium">Message:
+          <label id="message-hint" className="text-contactlight dark:text-contactdark text-sm md:text-md font-medium">Message:
             <textarea className="
                 block w-full min-h-32 max-h-64
                 bg-transparent 
-                text-black xs:text-md md:text-lg
+                text-black text-md md:text-lg
                 border-b-2 border-contactlight dark:border-contactdark
               focus:border-black focus:outline-none
                 required"
@@ -72,7 +72,7 @@ export default function ContactForm(props) {
             text-contactlight dark:text-contactdark
             hover:text-primary dark:hover:text-primary
             transition-all duration-500
-            font-body font-medium xs:text-sm md:text-md" 
+            font-body font-medium text-sm md:text-md" 
             type="submit">Send</button>
         </div>
       </div>
