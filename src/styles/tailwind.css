@@ -1,4 +1,6 @@
 @tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 .nav-blob-wrapper {
   @apply w-3;
@@ -42,6 +44,13 @@
   @apply shadow-work-card;
   @apply inline-block;
   @apply m-4;
+  @apply scale-100;
+  @apply transition;
+  @apply duration-500;
+}
+
+.work-card:hover {
+  @apply scale-105;
 }
 
 .about-card {
@@ -106,10 +115,6 @@
   @apply transition-all;
   @apply duration-500;
 }
-
-@tailwind components;
-
-@tailwind utilities;
 
 body::-webkit-scrollbar {
   @apply w-4;
