@@ -10,9 +10,6 @@ module.exports = {
   darkMode: "class",
   theme: {
     screens: {
-      'xs': '300px',
-      // => @media (min-width: 300px) { ... }
-
       'sm': '640px',
       // => @media (min-width: 640px) { ... }
 
@@ -56,6 +53,7 @@ module.exports = {
       colors: {
         dark: "#101924",
         textdark: "#000a12",
+        semidark: "#7d9cab",
         primary: "#cbd2d9",
         secondary: "#859299",
         accent: "#00d8b6",
@@ -74,6 +72,8 @@ module.exports = {
         spotifydark: "#00bd73",
         rescuedialer: "#ffca28",
         rescuedialerdark: "#ffb300",
+        hubSFUdark: "#ff6d75",
+        hubSFU: "#fe9096",
         primarylight: "#eceff1",
         contactlight: "#026255",
         contactdark: "#026255"

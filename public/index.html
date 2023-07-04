@@ -35,10 +35,10 @@
   <meta name="twitter:site" content="@tanish2k09" />
 </head>
 
-<body class="dark:bg-dark bg-primarylight m-0 overscroll-x-none">
+<body class="dark:bg-dark bg-primarylight m-0 overscroll-x-none transition-colors duration-500">
   <nav id="nav_section" class="fixed font-nav z-20
       md:right-0 md:inline-block md:bottom-auto md:w-40 xl:w-48 md:h-full
-      xs:bottom-0 xs:min-w-full md:min-w-0">
+      bottom-0 min-w-full md:min-w-0">
   </nav>
 
 
@@ -52,10 +52,10 @@
 
 
   <section id="first_screen_block" class="h-screen relative block">
-    <div id="top_socials_container" class="xs:pl-4 md:pl-6 lg:pl-8 xl:pl-12 md:max-w-75p"></div>
-    <div id="corner_block" class="absolute bottom-0 sm:ml-8 xs:pb-16 md:pb-0 xs:mb-16 md:mb-4">
+    <div id="top_socials_container" class="hidden md:block md:pl-6 md:max-w-75p"></div>
+    <div id="corner_block" class="absolute bottom-0 sm:ml-8 pb-16 md:pb-0 mb-16 md:mb-4">
       <div id="big_name_container"></div>
-      <div id="click_button_container" class="xs:mt-2 md:mt-16 xs:pb-24 xs:px-4 sm:px-0 xl:px-4">
+      <div id="click_button_container" class="mt-2 md:mt-16 pb-24 px-4 sm:px-0 xl:px-4">
       </div>
     </div>
   </section>
@@ -63,9 +63,9 @@
 
 
 
-  <section id="second_block" class="xs:mt-12 md:mt-32 relative inline-block w-full md:pr-48">
+  <section id="second_block" class="mt-12 md:mt-32 relative inline-block w-full md:pr-48">
     <div id="work_showcase_text"
-      class="font-semibold font-display big-text-heading text-textdarker dark:text-secondary md:dark:text-shadow-md xs:dark:text-shadow-min xs:pl-4 md:pl-6 lg:pl-8 xl:pl-12">
+      class="font-semibold font-display big-text-heading text-textdarker dark:text-secondary md:dark:text-shadow-md dark:text-shadow-min pl-4 md:pl-6 lg:pl-8 xl:pl-12">
       <span class="text-textdarker dark:text-primary">Work</span> showcase:
     </div>
     <div id="work_grid_container" class="xl:mt-4 md:pl-2 lg:pl-6 xl:pl-8 w-full"></div>
@@ -74,13 +74,13 @@
 
 
 
-  <section id="third_block" class="xs:mt-16 md:mt-32 relative block">
+  <section id="third_block" class="mt-16 md:mt-32 relative block">
     <div id="about_me_text"
-      class="font-semibold font-display big-text-heading text-textdarker dark:text-secondary dark:text-shadow-md xs:pl-4 md:pl-6 lg:pl-8 xl:pl-12">
+      class="font-semibold font-display big-text-heading text-textdarker dark:text-secondary dark:text-shadow-md pl-4 md:pl-6 lg:pl-8 xl:pl-12">
       <span class="text-textdarker dark:text-primary">About</span> me:
     </div>
     <div
-      class="about-card dark:bg-dark md:ml-6 lg:ml-8 xl:ml-12 text-textdarker dark:text-primary md:max-w-75p lg:max-w-80p xs:text-sm xl:text-lg font-body xs:p-4 sm:p-8">
+      class="about-card dark:bg-dark md:ml-6 lg:ml-8 xl:ml-12 text-textdarker dark:text-primary md:max-w-75p lg:max-w-80p text-sm xl:text-lg font-body p-4 sm:p-8">
       <p>
         So, you made it this far into my website. Hopefully you find it interesting!
       </p>
@@ -131,7 +131,7 @@
 
 
   <section id="contact_section"
-    class="xs:mt-16 md:mt-32 xs:pt-4 md:pt-16 xs:pb-32 md:pb-8 md:min-h-screen w-full relative block fade-section xs:bg-accentlight xs:dark:bg-accent md:bg-transparent md:dark:bg-transparent">
+    class="mt-16 md:mt-32 pt-4 md:pt-16 pb-32 md:pb-8 md:min-h-screen w-full relative block fade-section bg-accentlight dark:bg-accent md:bg-transparent md:dark:bg-transparent">
     
     <!-- A little help for the Netlify bots if you're not using a SSG -->
     <form name="contact" netlify netlify-honeypot="bot-field" hidden>
@@ -146,11 +146,11 @@
     </form>
 
     <div id="contact_me_text"
-      class="font-semibold font-display big-text-heading text-contactlight dark:text-contactdark xs:pl-4 md:pl-6 lg:pl-8 xl:pl-12">
+      class="font-semibold font-display big-text-heading text-contactlight dark:text-contactdark pl-4 md:pl-6 lg:pl-8 xl:pl-12">
       <span>Contact me:</span>
     </div>
-    <div id="contact_form_container" class="xs:px-4 md:pl-6 lg:pl-8 xl:pl-12 md:pr-0 md:max-w-75p"></div>
-    <div id="contact_socials_container" class="xs:pl-4 md:pl-6 lg:pl-8 xl:pl-12 md:max-w-75p"></div>
+    <div id="contact_form_container" class="px-4 md:pl-6 lg:pl-8 xl:pl-12 md:pr-0 md:max-w-75p"></div>
+    <div id="contact_socials_container" class="pl-4 md:pl-6 lg:pl-8 xl:pl-12 md:max-w-75p"></div>
   </section>
 </body>
 
