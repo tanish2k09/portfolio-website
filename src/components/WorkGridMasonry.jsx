@@ -102,7 +102,7 @@ export default function WorkGridMasonry() {
                     { text: "Kotlin" },
                     { text: "XML" }
                 ]}
-                name={"Rescue Dialer"}
+                name={"hubSFU"}
                 description={"A community-focused Android app, built around the needs and feedback of local university students. This project was developed in 1 effective day - from concept to design to app - during a hackathon."}
                 ctas={[
                     { url: github('stormhack2023'), title: CTA_TEXT.GITHUB}
