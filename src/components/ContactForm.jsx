@@ -12,50 +12,55 @@ export default function ContactForm(props) {
           xs:py-12 xs:px-16 md:py-24 md:px-48 xl:px-64 
           w-full rounded-lg">
         <div className="">
-          <label id="user-name-hint" className="text-contactlight dark:text-contactdark xs:text-sm md:text-md font-medium">Your Name:</label>
-          <input className="
-              block w-full
-              bg-transparent 
-              text-black xs:text-md md:text-lg
-              border-b-2 border-contactlight dark:border-contactdark
-            focus:border-black dark:focus:border-black focus:outline-none"
-            type="text"
-            name="name"
-            aria-describedby="user-name-hint"
-            required
-          />
+          <label id="user-name-hint" className="text-contactlight dark:text-contactdark xs:text-sm md:text-md font-medium">Your Name:
+            <input className="
+                block w-full
+                bg-transparent 
+                text-black xs:text-md md:text-lg
+                border-b-2 border-contactlight dark:border-contactdark
+              focus:border-black dark:focus:border-black focus:outline-none"
+              type="text"
+              name="name"
+              aria-describedby="user-name-hint"
+              required
+              autoComplete='name'
+            />
+          </label>
         </div>
 
         <div className="mt-8">
-          <label id="user-email-hint" className="text-contactlight dark:text-contactdark xs:text-sm md:text-md font-medium">Your Email:</label>
-          <input className="
-              block w-full
-              bg-transparent 
-              text-black xs:text-md md:text-lg
-              border-b-2 border-contactlight dark:border-contactdark
-            focus:border-black focus:outline-none
-              required"
-            type="email"
-            name="email"
-            aria-describedby="user-email-hint"
-            required
-          />
+          <label id="user-email-hint" className="text-contactlight dark:text-contactdark xs:text-sm md:text-md font-medium">Your Email:
+            <input className="
+                block w-full
+                bg-transparent 
+                text-black xs:text-md md:text-lg
+                border-b-2 border-contactlight dark:border-contactdark
+              focus:border-black focus:outline-none
+                required"
+              type="email"
+              name="email"
+              aria-describedby="user-email-hint"
+              required
+              autoComplete='email'
+            />
+          </label>
         </div>
 
         <div className="mt-8">
-          <label id="message-hint" className="text-contactlight dark:text-contactdark xs:text-sm md:text-md font-medium">Message:</label>
-          <textarea className="
-              block w-full min-h-32 max-h-64
-              bg-transparent 
-              text-black xs:text-md md:text-lg
-              border-b-2 border-contactlight dark:border-contactdark
-            focus:border-black focus:outline-none
-              required"
-            name="message"
-            aria-describedby="message-hint"
-            rows={5}
-            required
-          />
+          <label id="message-hint" className="text-contactlight dark:text-contactdark xs:text-sm md:text-md font-medium">Message:
+            <textarea className="
+                block w-full min-h-32 max-h-64
+                bg-transparent 
+                text-black xs:text-md md:text-lg
+                border-b-2 border-contactlight dark:border-contactdark
+              focus:border-black focus:outline-none
+                required"
+              name="message"
+              aria-describedby="message-hint"
+              rows={5}
+              required
+            />
+          </label>
         </div>
 
         <div className='mt-16'>
