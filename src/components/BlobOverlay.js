@@ -3,7 +3,7 @@
 //
 // Modified by Tanish Manku - 2020
 
-import { BlobInterpolator, interpolatorValue } from "./BlobInterpolator.js";
+import { BlobInterpolator, interpolatorValue, linearInterpolatorValue } from "./BlobInterpolator.js";
 
 const canvas = document.getElementById("vector_canvas");
 const ctx = canvas.getContext("2d");
@@ -33,7 +33,8 @@ const blobEnergyStates = {
 };
 
 const scaleDuration = 750; // milliseconds
-const energizeDuration = 1000; // milliseconds
+const energizeDuration = 1500; // milliseconds
+const fullEnergyDecayDelay = 750; // milliseconds
 const fillColorDark = '#00d8b6';
 const fillColorDarkShadow = '#00d8b6';
 const fillColor = '#00d8b6';
@@ -42,6 +43,7 @@ export const POLL_INTERVAL = 200;
 
 let scaleInterpolator = new BlobInterpolator(scaleDuration);
 let energyInterpolator = new BlobInterpolator(energizeDuration);
+let decayInterpolator = new BlobInterpolator(fullEnergyDecayDelay);
 
 class Blob {
   constructor() {
@@ -237,7 +239,8 @@ class Blob {
     // Not enough interaction, should decay energy
     // Blob is either maximum or at rest
     // Don't bother blob if it's at REST.
-    if (this.blobEnergyState === blobEnergyStates.MAXIMUM) {
+    // Energy decay should happen after decay delay
+    if (this.blobEnergyState === blobEnergyStates.MAXIMUM && decayInterpolator.getTimeFraction() >= 1) {
       energyInterpolator.trackTime();
       this.blobEnergyState = blobEnergyStates.DECREASING;
     }
@@ -274,7 +277,7 @@ class Blob {
     }
 
     energyInterpolator.syncSubtractFraction();
-    let interpolationFraction = interpolatorValue(energyInterpolator.currentTimeFraction);
+    let interpolationFraction = linearInterpolatorValue(energyInterpolator.currentTimeFraction);
     this.phaseEnergyOffset = interpolationFraction * this.phaseEnergyOffsetMax;
     this.phaseFlux = interpolationFraction * (this.phaseFluxMax - this.phaseFluxMin) + this.phaseFluxMin;
   }
@@ -286,10 +289,13 @@ class Blob {
 
     if (energyInterpolator.currentTimeFraction === 1) {
       this.blobEnergyState = blobEnergyStates.MAXIMUM;
+
+      // Start tracking the decay timer
+      decayInterpolator.trackTime();
     }
 
     energyInterpolator.syncAddFraction();
-    let interpolationFraction = interpolatorValue(energyInterpolator.currentTimeFraction);
+    let interpolationFraction = linearInterpolatorValue(energyInterpolator.currentTimeFraction);
     this.phaseEnergyOffset = interpolationFraction * this.phaseEnergyOffsetMax;
     this.phaseFlux = interpolationFraction * (this.phaseFluxMax - this.phaseFluxMin) + this.phaseFluxMin;
   }

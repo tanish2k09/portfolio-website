@@ -1,8 +1,8 @@
 export class BlobInterpolator {
     constructor(scaleDuration) {
         this.trackedTime = null;
-        this.lastTimeFraction = null;
-        this.currentTimeFraction = null;
+        this.lastTimeFraction = 0;
+        this.currentTimeFraction = 0;
         this.scaleDuration = scaleDuration;
     }
 
@@ -41,4 +41,8 @@ export function interpolatorValue(tf) {
     return tf < 0.5
         ? (1 - Math.sqrt(1 - Math.pow(2 * tf, 2))) / 2
         : (Math.sqrt(1 - Math.pow(-2 * tf + 2, 2)) + 1) / 2;
+}
+
+export function linearInterpolatorValue(tf) {
+    return tf;
 }
