@@ -1,29 +1,17 @@
 import React from 'react';
 
-const githubPath = "https://github.com/tanish2k09/"
-
 export default function SourceButton(props) {
 
-    if (!props.repo && !props.url) {
-        return (null);
-    }
+    var ctaClasses = "border-black hover:text-primary hover:bg-black";
 
-    let link = "";
-    let text = "";
-
-    if (props.url && props.isPlayStore) {
-        link = props.url;
-        text = "View in Play Store";
-    } else {
-        link = githubPath + props.repo;
-        text = "View source code";
+    if (props.ctaClasses) {
+        ctaClasses = props.ctaClasses;
     }
 
     return (
-
-        <a href={link}>
-            <button className="repo-button ml-2 mr-2 font-mono border-black border-2 px-4 py-2 text-sm rounded-sm tracking-wide h-full">
-                {text}
+        <a href={props.url}>
+            <button className={`transition-colors duration-500 ml-2 mr-2 font-mono border-2 px-4 py-2 text-sm rounded-sm tracking-wide h-full ${ctaClasses}`}>
+                {props.text}
             </button>
         </a>
     )

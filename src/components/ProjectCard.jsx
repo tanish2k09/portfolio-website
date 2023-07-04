@@ -2,6 +2,18 @@ import React from 'react';
 import Tag from './Tag';
 import SourceButton from './SourceButton';
 
+export const CTA_TEXT = {
+  GITHUB: 'View source code',
+  PSTORE: 'View in Play Store',
+  BLOG: 'View Articles',
+}
+
+export const githubPath = "https://github.com/tanish2k09/"
+export function github(repo) {
+  return githubPath + repo;
+}
+
+
 /*
  * Props used:
  * 1) cardClasses
@@ -14,12 +26,11 @@ import SourceButton from './SourceButton';
  * 8) tags
  * 9) name
  * 10) description
- * 11) OPTIONAL (use for source code): repo
- * 12) OPTIONAL (use for play store links): isPlayStore + url
+ * 11) ctas
  */
 export default function ProjectCard(props) {
   var buttonProps = "";
-  if (props.url || props.repo) {
+  if (props.ctas) {
     buttonProps = "flex mt-2 pb-6 px-2";
   }
 
@@ -27,6 +38,15 @@ export default function ProjectCard(props) {
   if (!imageClassesDark) {
     imageClassesDark = "hidden";
   }
+
+  var button_key = 1;
+  var cta_buttons = (
+    props.ctas.map(cta => (
+      <SourceButton key={button_key++} url={cta.url} text={cta.title} ctaClasses={props.ctaClasses} />
+    ))
+  );
+
+  var tag_key = 1;
 
   return (
     <div className={"work-card dark:shadow-work-card shadow-lg " + props.cardClasses}>
@@ -37,7 +57,7 @@ export default function ProjectCard(props) {
       <div className={props.cardColor + " font-body relative inline-block w-full"}>
         <div className="mt-2 ml-2 mr-4 inline-block font-mono">
           {props.tags.map(tag => (
-            <Tag key={tag.id.toString()} text={tag.text} colorClass={props.bgColor} />
+            <Tag key={tag_key++} text={tag.text} colorClass={props.bgColor} />
           ))}
         </div>
         <br />
@@ -52,8 +72,7 @@ export default function ProjectCard(props) {
           </div>
         </div>
         <div className={buttonProps}>
-          <SourceButton repo={props.repo} />
-          <SourceButton isPlayStore={props.isPlayStore} url={props.url} />
+          {cta_buttons}
         </div>
       </div>
     </div>

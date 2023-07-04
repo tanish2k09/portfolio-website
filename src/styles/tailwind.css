@@ -1,4 +1,6 @@
 @tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 .nav-blob-wrapper {
   @apply w-3;
@@ -41,7 +43,15 @@
   @apply bg-transparent;
   @apply shadow-work-card;
   @apply inline-block;
-  @apply m-4;
+  @apply md:m-6;
+  @apply xl:m-4;
+  @apply scale-100;
+  @apply transition;
+  @apply duration-500;
+}
+
+.work-card:hover {
+  @apply scale-105;
 }
 
 .about-card {
@@ -62,16 +72,6 @@
   @apply ml-2;
 }
 
-.repo-button {
-  @apply transition-colors;
-  @apply duration-500;
-}
-
-.repo-button:hover {
-  @apply text-primary;
-  @apply bg-black;
-}
-
 .social-button {
   @apply relative;
   @apply mt-3;
@@ -85,31 +85,18 @@
   .social-button span {
     @apply max-w-0;
     @apply transition-all;
-    @apply duration-1000;
+    @apply duration-700;
     @apply inline-block;
     @apply align-top;
     @apply whitespace-nowrap;
     @apply overflow-hidden;
   }
-
-  .social-button:hover svg path {
-    @apply fill-black;
-  }
-
-  .social-button:hover span {
-    @apply max-w-social;
-    @apply text-dark;
-  }
 }
 
 .social-button svg path {
   @apply transition-all;
-  @apply duration-500;
+  @apply duration-700;
 }
-
-@tailwind components;
-
-@tailwind utilities;
 
 body::-webkit-scrollbar {
   @apply w-4;
