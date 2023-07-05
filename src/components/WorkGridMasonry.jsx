@@ -53,7 +53,7 @@ export default function WorkGridMasonry() {
                 svgOptions={"align-center justify-center flex min-h-56 max-h-64"}
                 asset={MEDIUM}
                 assetAlt={"Medium.com vector logo"}
-                imageClasses={"object-contain w-24"}
+                imageClasses={"object-contain w-1/2"}
                 cardColor={"bg-white"}
                 tags={[
                     { text: "Miscellaneous"},

@@ -43,6 +43,8 @@
   @apply bg-transparent;
   @apply shadow-work-card;
   @apply inline-block;
+  @apply mx-8;
+  @apply my-2;
   @apply md:m-6;
   @apply xl:m-4;
   @apply scale-100;
@@ -51,7 +53,7 @@
 }
 
 .work-card:hover {
-  @apply scale-105;
+  @apply md:scale-105;
 }
 
 .about-card {
