@@ -29,7 +29,6 @@ export default class MainLayout extends Component {
   }
 
   afterLoad(origin, destination, direction) {
-    console.log("Onload called for: " + destination.index);
     unFadeNav();
   }
 
@@ -40,9 +39,6 @@ export default class MainLayout extends Component {
   render() {
     const fullPageSection = "fp_section";
     const fullPageClass = `.${fullPageSection}`;
-
-    const firstPageClass = ` ${this.getPageClass(0)}`;
-    const secondPageClass = `h-screen relative block ${this.getPageClass(1)}`;
 
     return (
       <ReactFullpage
