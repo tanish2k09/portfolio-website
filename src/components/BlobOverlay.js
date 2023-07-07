@@ -3,15 +3,20 @@
 //
 // Modified by Tanish Manku - 2020
 
-import { BlobInterpolator, interpolatorValue, linearInterpolatorValue } from "./BlobInterpolator.js";
+import {
+  BlobInterpolator,
+  interpolatorValue,
+  linearInterpolatorValue,
+} from "./BlobInterpolator.js";
 
 const canvas = document.getElementById("vector_canvas");
 const ctx = canvas.getContext("2d");
 
 const HALF_PI = Math.PI / 2;
 const PI = Math.PI;
-const radians = deg => (deg * PI) / 180.0;
-const map = (value, x1, y1, x2, y2) => (value - x1) * (y2 - x2) / (y1 - x1) + x2;
+const radians = (deg) => (deg * PI) / 180.0;
+const map = (value, x1, y1, x2, y2) =>
+  ((value - x1) * (y2 - x2)) / (y1 - x1) + x2;
 
 var gScale = 1;
 if (window.devicePixelRatio < 2) {
@@ -22,23 +27,23 @@ const blobStates = {
   EXPANDED: 0,
   EXPANDING: 1,
   REGULAR: 2,
-  COLLAPSING: 3
+  COLLAPSING: 3,
 };
 
 const blobEnergyStates = {
   REST: 0,
   INCREASING: 1,
   DECREASING: 2,
-  MAXIMUM: 3
+  MAXIMUM: 3,
 };
 
 const scaleDuration = 750; // milliseconds
 const energizeDuration = 1500; // milliseconds
 const fullEnergyDecayDelay = 750; // milliseconds
-const fillColorDark = '#00d8b6';
-const fillColorDarkShadow = '#00d8b6';
-const fillColor = '#00d8b6';
-const fillColorShadow = '#d3d3d3';
+const fillColorDark = "#00d8b6";
+const fillColorDarkShadow = "#00d8b6";
+const fillColor = "#00d8b6";
+const fillColorShadow = "#b2b2b2";
 export const POLL_INTERVAL = 200;
 
 let scaleInterpolator = new BlobInterpolator(scaleDuration);
@@ -60,9 +65,11 @@ class Blob {
     this.fluxRatio = 0.05;
     this.phase = Math.random() * PI * 2;
     this.waveOneHarmonic = 5 + Math.floor(Math.random() * 3);
-    this.waveTwoHarmonic = this.waveOneHarmonic + 2 + Math.floor(Math.random() * 12);
+    this.waveTwoHarmonic =
+      this.waveOneHarmonic + 2 + Math.floor(Math.random() * 12);
     this.waveOnePhaseMultiplier = 1 + Math.floor(Math.random() * 5);
-    this.waveTwoPhaseMultiplier = this.waveOnePhaseMultiplier + 1 + Math.floor(Math.random() * 12);
+    this.waveTwoPhaseMultiplier =
+      this.waveOnePhaseMultiplier + 1 + Math.floor(Math.random() * 12);
     this.phaseFluxMin = 0.005;
     this.phaseFluxMax = 0.03;
     this.phaseFlux = this.phaseFluxMin;
@@ -70,7 +77,9 @@ class Blob {
     this.phaseEnergyOffsetMaxDeviation = 16;
     this.phaseEnergyOffsetMinDeviation = 1;
     this.renewPhaseEnergyOffset();
-    console.log(`${this.waveOneHarmonic} - ${this.waveOnePhaseMultiplier}, ${this.waveTwoHarmonic} - ${this.waveTwoPhaseMultiplier}`)
+    console.log(
+      `${this.waveOneHarmonic} - ${this.waveOnePhaseMultiplier}, ${this.waveTwoHarmonic} - ${this.waveTwoPhaseMultiplier}`
+    );
 
     // Calculate radius
     this.updateValues();
@@ -78,11 +87,18 @@ class Blob {
     // Track state
     this.state = blobStates.REGULAR;
     this.blobEnergyState = blobEnergyStates.REST;
-    this.setDarkMode((localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)));
+    this.setDarkMode(
+      localStorage.theme === "dark" ||
+        (!("theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+    );
   }
 
   isAnimating() {
-    return (this.state === blobStates.EXPANDING || this.state === blobStates.COLLAPSING);
+    return (
+      this.state === blobStates.EXPANDING ||
+      this.state === blobStates.COLLAPSING
+    );
   }
 
   setDarkMode(isDarkMode) {
@@ -124,10 +140,27 @@ class Blob {
 
     // Draw the circular wave
     let endAngle = this.startingAngle + this.sectorAngle;
-    for (let angle = this.startingAngle; angle < endAngle; angle += radians(0.05)) {
+    for (
+      let angle = this.startingAngle;
+      angle < endAngle;
+      angle += radians(0.05)
+    ) {
       // The circular wave is a superposition of 2 sin waves
-      let r = Math.sin((angle - this.startingAngle) * this.waveOneHarmonic - this.phase * this.waveOnePhaseMultiplier) * this.flux / 2;
-      r += Math.sin((angle - this.startingAngle) * (this.waveTwoHarmonic + this.phaseEnergyOffset) + this.phase * this.waveTwoPhaseMultiplier) * this.flux / 2;
+      let r =
+        (Math.sin(
+          (angle - this.startingAngle) * this.waveOneHarmonic -
+            this.phase * this.waveOnePhaseMultiplier
+        ) *
+          this.flux) /
+        2;
+      r +=
+        (Math.sin(
+          (angle - this.startingAngle) *
+            (this.waveTwoHarmonic + this.phaseEnergyOffset) +
+            this.phase * this.waveTwoPhaseMultiplier
+        ) *
+          this.flux) /
+        2;
       r += this.baseRadius + this.radiusOffset;
 
       let x = r * Math.cos(angle);
@@ -162,14 +195,20 @@ class Blob {
   }
 
   cueExpansion() {
-    if (this.state !== blobStates.EXPANDED && this.state !== blobStates.EXPANDING) {
+    if (
+      this.state !== blobStates.EXPANDED &&
+      this.state !== blobStates.EXPANDING
+    ) {
       scaleInterpolator.trackTime();
       this.state = blobStates.EXPANDING;
     }
   }
 
   cueCollapse() {
-    if (this.state !== blobStates.REGULAR && this.state !== blobStates.COLLAPSING) {
+    if (
+      this.state !== blobStates.REGULAR &&
+      this.state !== blobStates.COLLAPSING
+    ) {
       scaleInterpolator.trackTime();
       this.state = blobStates.COLLAPSING;
     }
@@ -240,7 +279,10 @@ class Blob {
     // Blob is either maximum or at rest
     // Don't bother blob if it's at REST.
     // Energy decay should happen after decay delay
-    if (this.blobEnergyState === blobEnergyStates.MAXIMUM && decayInterpolator.getTimeFraction() >= 1) {
+    if (
+      this.blobEnergyState === blobEnergyStates.MAXIMUM &&
+      decayInterpolator.getTimeFraction() >= 1
+    ) {
       energyInterpolator.trackTime();
       this.blobEnergyState = blobEnergyStates.DECREASING;
     }
@@ -262,7 +304,16 @@ class Blob {
   }
 
   renewPhaseEnergyOffset() {
-    this.phaseEnergyOffsetMax = Math.floor(map(Math.random(), 0, 1, this.phaseEnergyOffsetMinDeviation, this.phaseEnergyOffsetMaxDeviation)) * HALF_PI;
+    this.phaseEnergyOffsetMax =
+      Math.floor(
+        map(
+          Math.random(),
+          0,
+          1,
+          this.phaseEnergyOffsetMinDeviation,
+          this.phaseEnergyOffsetMaxDeviation
+        )
+      ) * HALF_PI;
   }
 
   reduceEnergy() {
@@ -270,16 +321,23 @@ class Blob {
       return;
     }
 
-    if (this.phaseEnergyOffset === 0 || energyInterpolator.currentTimeFraction < 0) {
+    if (
+      this.phaseEnergyOffset === 0 ||
+      energyInterpolator.currentTimeFraction < 0
+    ) {
       // A fun little addition, we change the energetic phase shift each time it resets
       this.renewPhaseEnergyOffset();
       this.blobEnergyState = blobEnergyStates.REST;
     }
 
     energyInterpolator.syncSubtractFraction();
-    let interpolationFraction = linearInterpolatorValue(energyInterpolator.currentTimeFraction);
+    let interpolationFraction = linearInterpolatorValue(
+      energyInterpolator.currentTimeFraction
+    );
     this.phaseEnergyOffset = interpolationFraction * this.phaseEnergyOffsetMax;
-    this.phaseFlux = interpolationFraction * (this.phaseFluxMax - this.phaseFluxMin) + this.phaseFluxMin;
+    this.phaseFlux =
+      interpolationFraction * (this.phaseFluxMax - this.phaseFluxMin) +
+      this.phaseFluxMin;
   }
 
   increaseEnergy() {
@@ -295,9 +353,13 @@ class Blob {
     }
 
     energyInterpolator.syncAddFraction();
-    let interpolationFraction = linearInterpolatorValue(energyInterpolator.currentTimeFraction);
+    let interpolationFraction = linearInterpolatorValue(
+      energyInterpolator.currentTimeFraction
+    );
     this.phaseEnergyOffset = interpolationFraction * this.phaseEnergyOffsetMax;
-    this.phaseFlux = interpolationFraction * (this.phaseFluxMax - this.phaseFluxMin) + this.phaseFluxMin;
+    this.phaseFlux =
+      interpolationFraction * (this.phaseFluxMax - this.phaseFluxMin) +
+      this.phaseFluxMin;
   }
 }
 
@@ -316,11 +378,11 @@ loop();
 // I hate to move this outside the blob but phase should be FPS-locked:
 const PHASE_UPDATE_INTERVAL = 8.33; // Milliseconds
 setInterval(() => {
-  blob.updatePhase()
+  blob.updatePhase();
 }, PHASE_UPDATE_INTERVAL);
 
 export function getBlob() {
   return blob;
 }
 
-require('./BlobInteraction');
+require("./BlobInteraction");
