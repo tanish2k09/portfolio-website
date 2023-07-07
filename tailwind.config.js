@@ -4,29 +4,29 @@ module.exports = {
   },
   content: [
     // Example content paths...
-    './public/**/*.html',
-    './src/**/*.{js,jsx,ts,tsx}',
+    "./public/**/*.html",
+    "./src/**/*.{js,jsx,ts,tsx}",
   ],
   darkMode: "class",
   theme: {
     screens: {
-      'sm': '640px',
+      sm: "640px",
       // => @media (min-width: 640px) { ... }
 
-      'md': '768px',
+      md: "768px",
       // => @media (min-width: 768px) { ... }
 
-      'lg': '1024px',
+      lg: "1024px",
       // => @media (min-width: 1024px) { ... }
 
-      'xl': '1280px',
+      xl: "1280px",
       // => @media (min-width: 1280px) { ... }
     },
     fontFamily: {
       display: ["Work Sans", "sans-serif"],
       mono: ["DM Mono"],
       body: ["Work Sans"],
-      nav: ["Poppins"]
+      nav: ["Poppins"],
     },
     textColor: {
       black: "#000000",
@@ -47,7 +47,7 @@ module.exports = {
       textsemidark: "#7d9cab",
       textaccentdark: "#1cceb5",
       contactlight: "#026255",
-      contactdark: "#026255"
+      contactdark: "#026255",
     },
     extend: {
       colors: {
@@ -76,7 +76,7 @@ module.exports = {
         hubSFU: "#fe9096",
         primarylight: "#eceff1",
         contactlight: "#026255",
-        contactdark: "#026255"
+        contactdark: "#026255",
       },
       fontSize: {
         "009": "0.9rem",
@@ -86,7 +86,7 @@ module.exports = {
         "14xl": "14rem",
       },
       opacity: {
-        "90": "0.90",
+        90: "0.90",
       },
       height: {
         quarter: "25%",
@@ -94,39 +94,39 @@ module.exports = {
       },
       width: {
         tenth: "0.1rem",
-        quarter: "25%"
+        quarter: "25%",
       },
       margin: {
         quarter: "25%",
       },
       minHeight: {
         "100px": "100px",
-        "56": "14rem",
-        "64": "16rem",
-        "1": "0.25rem"
+        56: "14rem",
+        64: "16rem",
+        1: "0.25rem",
       },
       minWidth: {
         thirty: "30%",
         "100px": "100px",
-        "1": "0.25rem",
+        1: "0.25rem",
         "25p": "25%",
         "100v": "100vw",
-        "25v": "25vw"
+        "25v": "25vw",
       },
       maxHeight: {
         "50p": "50vh",
-        "64": "16rem",
-        "1": "0.25rem"
+        64: "16rem",
+        1: "0.25rem",
       },
       maxWidth: {
-        "0": "0",
+        0: "0",
         "25p": "25vw",
         "30p": "30%",
         "45p": "45%",
         "75p": "70vw",
         "80p": "80vw",
         "100v": "100vw",
-        "social": "30ch"
+        social: "30ch",
       },
       borderRadius: {
         bigg: "16px",
@@ -135,17 +135,17 @@ module.exports = {
         "-3": "-3",
       },
       inset: {
-        "4": "4px"
+        4: "4px",
       },
       spacing: {
-        "01": "0.1rem"
+        "01": "0.1rem",
       },
       boxShadow: {
-        'work-card': '0 4px 20px 0 rgba(0,0,0, 0.3)',
-        'about-card': '0 8px 36px 8px rgba(0,0,0, 0.25)',
-        xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
-        'nav-shadow': '0px -4px 3px rgba(50, 50, 50, 0.25)'
-      }
-    }
+        "work-card": "0 4px 20px 0 rgba(0,0,0, 0.3)",
+        "about-card": "0 8px 36px 8px rgba(0,0,0, 0.25)",
+        xl: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+        "nav-shadow": "0px -4px 3px rgba(50, 50, 50, 0.25)",
+      },
+    },
   },
 };

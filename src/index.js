@@ -4,10 +4,11 @@ import BigName from "./components/BigName.jsx";
 import AccentedButton from "./components/AccentedButton.jsx";
 import Navbar from "./components/Navbar.jsx";
 import WorkGridMasonry from "./components/WorkGridMasonry.jsx";
-import ContactSocials, { styles } from "./components/ContactSocials.jsx";
+import ContactSocials from "./components/ContactSocials.jsx";
 import ContactForm from "./components/ContactForm.jsx";
 
-require('./components/BlobOverlay');
+require("./components/LogoOverlay");
+require("./components/BlobOverlay");
 
 ReactDOM.render(
   <React.StrictMode>
@@ -23,17 +24,11 @@ ReactDOM.render(
   document.getElementById("big_name_container")
 );
 
-ReactDOM.render(
-  <WorkGridMasonry />,
-  document.getElementById("work_grid_container")
-);
+ReactDOM.render(<WorkGridMasonry />, document.getElementById("work_grid_container"));
 
 ReactDOM.render(
   <React.StrictMode>
-    <AccentedButton
-      text="Check out my work"
-      link="#work_showcase_text"
-    />
+    <AccentedButton text="Check out my work" link="#work_showcase_text" />
   </React.StrictMode>,
   document.getElementById("click_button_container")
 );
@@ -52,16 +47,4 @@ ReactDOM.render(
   document.getElementById("contact_socials_container")
 );
 
-ReactDOM.render(
-  <React.StrictMode>
-    <ContactSocials
-      colors={styles.topColors}
-      textColors={styles.topTextColors}
-      activeColors={styles.topActiveTextColors}
-      activeLogoColors={styles.topActiveLogoColors}
-    />
-  </React.StrictMode>,
-  document.getElementById("top_socials_container")
-);
-
-require('./scripts/ContactBG');
+require("./scripts/ContactBG");
