@@ -135,7 +135,7 @@ function drawPaths() {
       let currentScale = getScaleFromMouseCoords(x, y);
       ctx.save();
       ctx.scale(currentScale, currentScale);
-      ctx.fillStyle = isDark ? "rgba(44, 69, 99, 0.8)" : "rgba(10, 20, 22, 0.2)";
+      ctx.fillStyle = isDark ? "rgba(44, 69, 99, 0.8)" : "rgba(194, 200, 203,0.8)";
       ctx.fill(getPathFromAdapter(x, y), "evenodd");
       ctx.restore();
       ctx.translate(gridSize.box, 0);
