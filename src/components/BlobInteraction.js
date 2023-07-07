@@ -1,6 +1,5 @@
 import { getBlob } from "./BlobOverlay";
 
-const widthBreakPoint = 768;
 let blob = getBlob();
 var anchorResizeToken = null;
 
@@ -14,10 +13,6 @@ function commitResize() {
 window.addEventListener(
   "resize",
   function (event) {
-    if (window.innerWidth < widthBreakPoint) {
-      return;
-    }
-
     if (anchorResizeToken != null) {
       clearTimeout(anchorResizeToken);
     }

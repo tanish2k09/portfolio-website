@@ -118,15 +118,19 @@ body::-webkit-scrollbar-thumb {
 }
 
 @layer utilities {
-    .text-shadow-md {
-      text-shadow: 2px 2px #101924;
-    }
+  .text-shadow-md {
+    text-shadow: 2px 2px #101924;
+  }
 
-    .text-shadow-min {
-      text-shadow: 1px 1px #101924;
-    }
+  .text-shadow-min {
+    text-shadow: 1px 1px #101924;
+  }
 
-    .text-shadow-none {
-      text-shadow: none;
-    }
+  .text-shadow-none {
+    text-shadow: none;
+  }
+
+  .text-shadow-light {
+    text-shadow: 0px 0px 1px #808994;
+  }
 }
