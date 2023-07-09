@@ -6,11 +6,7 @@ var ctx = canvas.getContext("2d");
 // Dark mode logical switch
 var isDark = false;
 
-const svgGridSize = {
-  x: 17,
-  y: 10,
-};
-const svgTotal = svgGridSize.x * svgGridSize.y;
+const svgTotal = 170;
 
 let canvasOverflowScale = 1;
 
@@ -22,7 +18,7 @@ let gridSize = {
   box: 100 * gridDefaultScale,
 };
 var scaleAoeSize;
-const maxScaleBonus = 3;
+var maxScaleBonus = 3;
 
 let adapterOffset = {
   x: 0,
@@ -54,6 +50,10 @@ inflatePaths();
 
 function initCanvas() {
   ctx.scale(canvasOverflowScale, canvasOverflowScale);
+  velocity.x = clampVelocity(2);
+  velocity.y = clampVelocity(-3);
+  targetVelocity.x = velocity.x;
+  targetVelocity.y = velocity.y;
 }
 initCanvas();
 
@@ -67,10 +67,13 @@ function updateValues() {
   canvas.height = window.innerHeight * window.devicePixelRatio;
 
   let screen = canvas.width;
+  maxScaleBonus = 3;
   if (screen < 768) {
-    gridSize.box = 50 * gridDefaultScale;
+    gridSize.box = 60 * gridDefaultScale;
+    maxScaleBonus = 1.5;
   } else if (screen < 1024) {
     gridSize.box = 75 * gridDefaultScale;
+    maxScaleBonus = 2;
   } else if (screen < 1280) {
     gridSize.box = 100 * gridDefaultScale;
   } else {
@@ -83,10 +86,8 @@ function updateValues() {
 
   mouseCoords.x = null;
   mouseCoords.y = null;
-  velocity.x = 2;
-  velocity.y = -3;
-  targetVelocity.x = 2;
-  targetVelocity.y = -3;
+  targetVelocity.x = velocity.x;
+  targetVelocity.y = velocity.y;
 }
 updateValues();
 
@@ -164,6 +165,15 @@ function moveCanvas() {
   }
 }
 
+const fps = 120;
+var lastFrameTime = null;
+function fpsLimitedSyncedFrame(render) {
+  if (lastFrameTime == null || performance.now() - lastFrameTime > 1000 / fps) {
+    render();
+    lastFrameTime = performance.now();
+  }
+}
+
 function render() {
   ctx.clearRect(
     -gridSize.box,
@@ -173,7 +183,11 @@ function render() {
   );
   requestAnimationFrame(render);
   drawPaths();
-  moveCanvas();
+
+  fpsLimitedSyncedFrame(() => {
+    updateVelocities();
+    moveCanvas();
+  });
 }
 render();
 
@@ -199,25 +213,37 @@ window.addEventListener(
 );
 
 // Velocity
-const inertia = 0.5;
-const radialThreshold = 0.12;
+function clampVelocity(newVelocity) {
+  if (Math.abs(newVelocity) > maxVelocity) {
+    return Math.sign(newVelocity) * maxVelocity;
+  }
+
+  return newVelocity;
+}
+
+const inertia = 0.95;
+const radialThreshold = 0.3;
 function updateVelocities() {
   if (mouseCoords.x == null || mouseCoords.y == null) {
     return;
   }
-  targetVelocity.x = ((mouseCoords.x - window.innerWidth / 2) / (window.innerWidth * radialThreshold)) * maxVelocity;
-  targetVelocity.y = ((mouseCoords.y - window.innerHeight / 2) / (window.innerHeight * radialThreshold)) * maxVelocity;
+  targetVelocity.x = clampVelocity(
+    ((mouseCoords.x - window.innerWidth / 2) / (window.innerWidth * radialThreshold)) * maxVelocity
+  );
+  targetVelocity.y = clampVelocity(
+    ((mouseCoords.y - window.innerHeight / 2) / (window.innerHeight * radialThreshold)) * maxVelocity
+  );
 
   let deltaX = targetVelocity.x - velocity.x;
   let deltaY = targetVelocity.y - velocity.y;
 
-  if (Math.abs(deltaX) < 0.005) {
+  if (Math.abs(deltaX) < 0.01) {
     velocity.x = targetVelocity.x;
   } else {
     velocity.x += deltaX * (1 - inertia);
   }
 
-  if (Math.abs(deltaY) < 0.005) {
+  if (Math.abs(deltaY) < 0.01) {
     velocity.y = targetVelocity.y;
   } else {
     velocity.y += deltaY * (1 - inertia);
@@ -229,10 +255,6 @@ document.addEventListener("mousemove", (e) => {
   mouseCoords.x = e.clientX;
   mouseCoords.y = e.clientY;
 });
-
-setInterval(function () {
-  updateVelocities();
-}, 16);
 
 export function toggleLogosDarkMode(isDarkMode) {
   isDark = isDarkMode || false;
