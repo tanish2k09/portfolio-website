@@ -57,13 +57,13 @@ export default function ProjectCard(props) {
       <div className={props.cardColor + " font-body relative inline-block w-full"}>
         <div className="mt-2 ml-2 mr-4 inline-block font-mono">
           {props.tags.map(tag => (
-            <Tag key={tag_key++} text={tag.text} colorClass={props.bgColor} />
+            <Tag key={tag_key++} text={tag.text} colorClass={props.tagColor ? props.tagColor : props.bgColor} />
           ))}
         </div>
         <br />
         <div className="inline-block">
           <div className={"mt-8 mx-4 text-lg w-full " + props.textColor}>
-            <span className={"border-b-2 pb-1 font-medium " + (props.borderColor ? props.borderColor : "border-black")}>
+            <span className={`border-b-2 pb-1 font-medium ${props.textColor} ${(props.borderColor ? props.borderColor : "border-black")}`}>
               {props.name}
             </span>
           </div>
