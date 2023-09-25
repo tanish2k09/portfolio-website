@@ -12,6 +12,8 @@ import RESCUEDIALER from "../assets/rescuedialer.svg";
 import BLOBBYDARK from "../assets/blobbydark.png";
 import BLOBBYLIGHT from "../assets/blobbylight.png";
 import HUBSFU from "../assets/hubSFU.png";
+import LOGOSWALL from "../assets/logos-wallpaper.svg";
+import LOGOSWALLDARK from "../assets/logos-wallpaper-dark.svg";
 
 const masonryOptions = {
     transitionDuration: 200,
@@ -66,6 +68,36 @@ export default function WorkGridMasonry() {
                 ctas={[
                     { url: "https://medium.com/@tanish2k09/", title: CTA_TEXT.BLOG }
                 ]}
+            />
+
+            {/* Logos Wallpaper */}
+            <ProjectCard
+                cardClasses={"lg:max-w-45p xl:max-w-25p"}
+                bgColor={"bg-logosWallpaperFg dark:bg-logosWallpaperFgDark"}
+                svgOptions={"min-h-56 max-h-64 relative flex align-items-center justify-center top-0 left-0"}
+                asset={LOGOSWALLDARK}
+                assetDark={LOGOSWALL}
+                assetAlt={"Logos Wallpaper app vector logo"}
+                // imageClasses={"object-contain w-1/2"}
+                imageClasses={"object-contain w-1/2 relative top-0 left-0 opacity-100 dark:opacity-0 transition-opacity duration-500"}
+                imageClassesDark={"object-contain w-1/2 opacity-0 dark:opacity-100 transition-opacity duration-500"}
+                imageOverlapClasses={'absolute flex align-items-center justify-center top-0 left-0 h-full w-full'}
+                cardColor={"bg-logosWallpaperBg dark:bg-logosWallpaperBgDark"}
+                tagColor={"bg-logosWallpaperFg dark:bg-logosWallpaperFgDark text-logosWallpaperDark dark:text-logosWallpaper"}
+                textColor={"text-logosWallpaperDark dark:text-logosWallpaper"}
+                borderColor={"border-logosWallpaperBgDark dark:border-logosWallpaperBg"}
+                tags={[
+                    { text: "Android" },
+                    { text: "Kotlin" },
+                    { text: "Jetpack Compose" }
+                ]}
+                name={"Logos Wallpaper"}
+                description={"Logos Wallpaper is a modern, clean and minimal wallpaper generator app using beautiful logo sets. Each generated wallpaper is designed specifically for your device. With 400+ logos and a whole lot of customization options you can make the perfect wallpaper - be yourself!"}
+                ctas={[
+                    { url: "https://play.google.com/store/apps/details?id=com.tanish2k09.logoswallpaper", title: CTA_TEXT.PSTORE },
+                    { url: "/privacy/logos_wallpaper.html", title: CTA_TEXT.PPOL }
+                ]}
+                ctaClasses={"border-logosWallpaperBgDark dark:border-logosWallpaperBg text-logosWallpaperDark dark:text-logosWallpaper hover:bg-logosWallpaperBgDark hover:text-logosWallpaper dark:hover:bg-logosWallpaperBg dark:hover:text-logosWallpaperDark transition-colors duration-500"}
             />
 
             {/* Rescue Dialer */}
