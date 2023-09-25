@@ -6,6 +6,7 @@ export const CTA_TEXT = {
   GITHUB: 'View source code',
   PSTORE: 'View in Play Store',
   BLOG: 'View Articles',
+  PPOL: 'Privacy Policy',
 }
 
 export const githubPath = "https://github.com/tanish2k09/"
@@ -34,9 +35,19 @@ export default function ProjectCard(props) {
     buttonProps = "flex mt-2 pb-6 px-2";
   }
 
+  var imageOverlapProps = "";
+  if (props.imageOverlapClasses) {
+    imageOverlapProps = props.imageOverlapClasses;
+  }
+
   var imageClassesDark = props.imageClassesDark;
   if (!imageClassesDark) {
     imageClassesDark = "hidden";
+  }
+
+  var svgOptions = "";
+  if (props.svgOptions) {
+    svgOptions = props.svgOptions;
   }
 
   var button_key = 1;
@@ -49,10 +60,12 @@ export default function ProjectCard(props) {
   var tag_key = 1;
 
   return (
-    <div className={"work-card dark:shadow-work-card shadow-lg " + props.cardClasses}>
-      <div className={props.bgColor + " w-full " + props.svgOptions}>
+    <div className={"work-card dark:shadow-work-card shadow-lg transition-colors duration-500 " + props.cardClasses}>
+      <div className={props.bgColor + " w-full " + svgOptions}>
         <img src={props.asset} alt={props.assetAlt} className={props.imageClasses + " mx-auto"} />
-        <img src={props.assetDark} alt={props.assetAlt} className={imageClassesDark + " mx-auto"} />
+        <div className={imageOverlapProps}>
+          <img src={props.assetDark} alt={props.assetAlt} className={imageClassesDark + " mx-auto"} />
+        </div>
       </div>
       <div className={props.cardColor + " font-body relative inline-block w-full"}>
         <div className="mt-2 ml-2 mr-4 inline-block font-mono">
