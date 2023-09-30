@@ -1,0 +1,5 @@
+# Redirects from what the browser requests to what we serve
+
+/home /
+/logos https://play.google.com/store/apps/details?id=com.tanish2k09.logoswallpaper
+/sce https://play.google.com/store/apps/details?id=com.tanish2k09.sce
