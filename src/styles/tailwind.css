@@ -3,134 +3,116 @@
 @tailwind utilities;
 
 .nav-blob-wrapper {
-  @apply w-3;
-  @apply min-w-1;
-  @apply h-6;
+    @apply w-3;
+    @apply min-w-1;
+    @apply h-6;
 }
 
 .nav-blob {
-  @apply w-1;
-  @apply h-1;
-  @apply transition-all;
-  @apply duration-500;
+    @apply w-1;
+    @apply h-1;
+    @apply transition-all;
+    @apply duration-500;
 }
 
 .nav-blob:before {
-  content: "\200D";
-}
-
-@media screen and (min-width: 768px) {
-  .nav-hover:hover .nav-blob {
-    @apply w-tenth;
-    @apply h-full;
-  }
-
-  .accented-button {
-    @apply transition;
-    @apply duration-500;
-    @apply ease-out;
-    @apply transform;
-  }
-
-  .accented-button:hover {
-    @apply scale-110;
-  }
+    content: "\200D";
 }
 
 .work-card {
-  @apply overflow-hidden;
-  @apply rounded-lg;
-  @apply bg-transparent;
-  @apply shadow-work-card;
-  @apply inline-block;
-  @apply mx-8;
-  @apply my-2;
-  @apply md:m-6;
-  @apply xl:m-4;
-  @apply scale-100;
-  @apply transition;
-  @apply duration-500;
+    @apply overflow-hidden;
+    @apply rounded-lg;
+    @apply bg-transparent;
+    @apply shadow-work-card;
+    @apply inline-block;
+    @apply mx-8;
+    @apply my-2;
+    @apply md:m-6;
+    @apply xl:m-4;
+    @apply scale-100;
+    @apply transition;
+    @apply duration-500;
 }
 
 .work-card:hover {
-  @apply md:scale-105;
+    @apply md:scale-105;
 }
 
 .about-card {
-  @apply overflow-hidden;
-  @apply rounded-lg;
-  @apply dark:bg-dark;
-  @apply bg-primarylight;
-  @apply shadow-about-card;
-  @apply inline-block;
-  @apply m-4;
+    @apply overflow-hidden;
+    @apply rounded-bigg;
+    @apply dark:bg-dark;
+    @apply bg-primarylight;
+    @apply shadow-about-card;
+    @apply inline-block;
+    @apply m-4;
 }
 
 .tag {
-  @apply rounded-md;
-  @apply my-1;
-  @apply py-1;
-  @apply px-2;
-  @apply ml-2;
+    @apply rounded-md;
+    @apply my-1;
+    @apply py-1;
+    @apply px-2;
+    @apply ml-2;
 }
 
 .social-button {
-  @apply relative;
-  @apply mt-3;
+    @apply relative;
+    @apply mt-3;
 }
 
 @media (min-width: 768px) {
-  .social-button {
-    @apply relative;
-  }
+    .social-button {
+        @apply relative;
+    }
 
-  .social-button span {
-    @apply max-w-0;
-    @apply transition-all;
-    @apply duration-700;
-    @apply inline-block;
-    @apply align-top;
-    @apply whitespace-nowrap;
-    @apply overflow-hidden;
-  }
+    .social-button span {
+        @apply max-w-0;
+        @apply transition-all;
+        @apply duration-700;
+        @apply inline-block;
+        @apply align-top;
+        @apply whitespace-nowrap;
+        @apply overflow-hidden;
+    }
 }
 
 .social-button svg path {
-  @apply transition-all;
-  @apply duration-700;
+    @apply transition-all;
+    @apply duration-700;
 }
 
 body::-webkit-scrollbar {
-  @apply w-4;
+    @apply w-4;
 }
 
 body::-webkit-scrollbar-track {
-  background-color: #102027;
+    background-color: #102027;
 }
 
 body::-webkit-scrollbar-thumb {
-  @apply dark:bg-accent;
-  @apply bg-accentlight;
+    @apply dark:bg-accent;
+    @apply bg-accentlight;
 }
 
 .no-scrollbar::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 
 @layer utilities {
-  .text-shadow-md {
-    text-shadow: 2px 2px #101924;
-  }
+    .text-shadow-md {
+        text-shadow: 2px 2px #101924;
+    }
 
-  .text-shadow-min {
-    text-shadow: 1px 1px #101924;
-  }
+    .text-shadow-min {
+        text-shadow: 1px 1px #101924;
+    }
 
-  .text-shadow-none {
-    text-shadow: none;
-  }
+    .text-shadow-none {
+        text-shadow: none;
+    }
 
-  .text-shadow-light {
-    text-shadow: 0px 0px 1px #808994;
-  }
+    .text-shadow-light {
+        text-shadow: 0px 0px 1px #808994;
+    }
 }

@@ -1,15 +1,15 @@
 import React from 'react';
 import SocialButton from './SocialButton';
-import {ReactComponent as EmailIcon} from '../assets/email.svg';
-import {ReactComponent as GithubIcon} from '../assets/github.svg';
-import {ReactComponent as LinkedInIcon} from '../assets/linkedin.svg';
-import {ReactComponent as TwitterIcon} from '../assets/twitter.svg';
+import { ReactComponent as EmailIcon } from '../assets/email.svg';
+import { ReactComponent as GithubIcon } from '../assets/github.svg';
+import { ReactComponent as LinkedInIcon } from '../assets/linkedin.svg';
+import { ReactComponent as TwitterIcon } from '../assets/twitter.svg';
 
 export const styles = {
     defaultColors: "fill-contactlight dark:fill-contactdark",
     defaultTextColors: "text-contactlight dark:text-contactdark",
-    defaultActiveLogoColors: 'group-hover:fill-dark',
-    defaultActiveTextColors: 'group-hover:text-dark',
+    defaultActiveLogoColors: 'group-hover:fill-dark dark:group-hover:fill-accenttrim',
+    defaultActiveTextColors: 'group-hover:text-dark dark:group-hover:text-accenttrim',
     topColors: "fill-semidark dark:fill-secondary",
     topTextColors: "text-textdark dark:text-secondary",
     topActiveLogoColors: `group-hover:fill-dark dark:group-hover:fill-accent`,

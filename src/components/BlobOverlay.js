@@ -3,7 +3,13 @@
 //
 // Modified by Tanish Manku - 2020
 
-import { BlobInterpolator, interpolatorValue, linearInterpolatorValue } from "./BlobInterpolator.js";
+import {
+    BlobInterpolator,
+    interpolatorValue,
+    linearInterpolatorValue,
+    colorInterpolatorValue,
+    interpolateColor,
+} from "./BlobInterpolator.js";
 
 const canvas = document.getElementById("vector_canvas");
 const ctx = canvas.getContext("2d");
@@ -15,30 +21,31 @@ const map = (value, x1, y1, x2, y2) => ((value - x1) * (y2 - x2)) / (y1 - x1) + 
 
 var gScale = 1;
 if (window.devicePixelRatio < 2) {
-  gScale = 2;
+    gScale = 2;
 }
 
 const blobStates = {
-  EXPANDED: 0,
-  EXPANDING: 1,
-  REGULAR: 2,
-  COLLAPSING: 3,
+    EXPANDED: 0,
+    EXPANDING: 1,
+    REGULAR: 2,
+    COLLAPSING: 3,
 };
 
 const blobEnergyStates = {
-  REST: 0,
-  INCREASING: 1,
-  DECREASING: 2,
-  MAXIMUM: 3,
+    REST: 0,
+    INCREASING: 1,
+    DECREASING: 2,
+    MAXIMUM: 3,
 };
 
-const scaleDuration = 750; // milliseconds
+const scaleDuration = 1000; // milliseconds
 const energizeDuration = 2000; // milliseconds
 const fullEnergyDecayDelay = 3000; // milliseconds
-const fillColorDark = "#00d8b6";
-const fillColorDarkShadow = "#00d8b6";
 const fillColor = "#00d8b6";
-const fillColorShadow = "#b2b2b2";
+const trimColor = "#00cdac";
+const expandedDarkColor = "#1e2f43";
+const expandedDarkColorTrim = "#23374f";
+const radianStep = 1;
 export const POLL_INTERVAL = 200;
 
 let scaleInterpolator = new BlobInterpolator(scaleDuration);
@@ -46,282 +53,314 @@ let energyInterpolator = new BlobInterpolator(energizeDuration);
 let decayInterpolator = new BlobInterpolator(fullEnergyDecayDelay);
 
 class Blob {
-  constructor() {
-    // use this to change the size of the screen estate to cover, in the minimum dimension
-    this.screenEstateCoverageV = 0.6;
-    this.screenEstateCoverageH = 0.6;
-    this.radiusOffset = 0;
+    constructor() {
+        // use this to change the size of the screen estate to cover, in the minimum dimension
+        this.screenEstateCoverageV = 0.6;
+        this.screenEstateCoverageH = 0.6;
+        this.radiusOffset = 0;
 
-    this.startingAngle = HALF_PI;
-    this.sectorAngle = HALF_PI;
+        this.startingAngle = HALF_PI;
+        this.sectorAngle = HALF_PI;
 
-    // Controls extent of "distortions"
-    // Let's say, 5% of the blob itself is the wave
-    this.fluxRatio = 0.05;
-    this.phase = Math.random() * PI * 2;
-    this.waveOneHarmonic = 5 + Math.floor(Math.random() * 3);
-    this.waveTwoHarmonic = this.waveOneHarmonic + 2 + Math.floor(Math.random() * 12);
-    this.waveOnePhaseMultiplier = 1 + Math.floor(Math.random() * 5);
-    this.waveTwoPhaseMultiplier = this.waveOnePhaseMultiplier + 1 + Math.floor(Math.random() * 12);
-    this.phaseFluxMin = 0.005;
-    this.phaseFluxMax = 0.03;
-    this.phaseFlux = this.phaseFluxMin;
-    this.phaseEnergyOffset = 0;
-    this.phaseEnergyOffsetMaxDeviation = 16;
-    this.phaseEnergyOffsetMinDeviation = 1;
-    this.renewPhaseEnergyOffset();
-    console.log(
-      `${this.waveOneHarmonic} - ${this.waveOnePhaseMultiplier}, ${this.waveTwoHarmonic} - ${this.waveTwoPhaseMultiplier}`
-    );
+        // Controls extent of "distortions"
+        // Let's say, 5% of the blob itself is the wave
+        this.fluxRatio = 0.05;
+        this.phase = Math.random() * PI * 2;
+        this.waveOneHarmonic = 5 + Math.floor(Math.random() * 3);
+        this.waveTwoHarmonic = this.waveOneHarmonic + 2 + Math.floor(Math.random() * 12);
+        this.waveOnePhaseMultiplier = 1 + Math.floor(Math.random() * 5);
+        this.waveTwoPhaseMultiplier = this.waveOnePhaseMultiplier + 1 + Math.floor(Math.random() * 12);
+        this.phaseFluxMin = 0.005;
+        this.phaseFluxMax = 0.03;
+        this.phaseFlux = this.phaseFluxMin;
+        this.phaseEnergyOffset = 0;
+        this.phaseEnergyOffsetMaxDeviation = 16;
+        this.phaseEnergyOffsetMinDeviation = 1;
+        this.renewPhaseEnergyOffset();
+        console.log(
+            `${this.waveOneHarmonic} - ${this.waveOnePhaseMultiplier}, ${this.waveTwoHarmonic} - ${this.waveTwoPhaseMultiplier}`
+        );
 
-    // Calculate radius
-    this.updateValues();
+        // Calculate radius
+        this.updateValues();
 
-    // Track state
-    this.state = blobStates.REGULAR;
-    this.blobEnergyState = blobEnergyStates.REST;
-    this.setDarkMode(
-      localStorage.theme === "dark" ||
-        (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)
-    );
-  }
-
-  isAnimating() {
-    return this.state === blobStates.EXPANDING || this.state === blobStates.COLLAPSING;
-  }
-
-  setDarkMode(isDarkMode) {
-    if (isDarkMode) {
-      this.fillColor = fillColorDark;
-      this.fillShadow = fillColorDarkShadow;
-    } else {
-      this.fillColor = fillColor;
-      this.fillShadow = fillColorShadow;
-    }
-  }
-
-  update() {
-    if (this.state === blobStates.EXPANDED) {
-      return;
+        // Track state
+        this.state = blobStates.REGULAR;
+        this.blobEnergyState = blobEnergyStates.REST;
+        this.setDarkMode(
+            localStorage.theme === "dark" ||
+                (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)
+        );
     }
 
-    this.updateValues();
-    this.draw();
-  }
-
-  updateValues() {
-    canvas.width = window.innerWidth * gScale;
-    canvas.height = window.innerHeight * gScale;
-    this.baseRadius = this.getDiagonal() * 0.4;
-    this.flux = this.baseRadius * this.fluxRatio;
-  }
-
-  updatePhase() {
-    this.phase += this.phaseFlux;
-  }
-
-  draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Move to the top right corner
-    ctx.beginPath();
-    ctx.moveTo(canvas.width, 0);
-
-    // Draw the circular wave
-    let endAngle = this.startingAngle + this.sectorAngle;
-    for (let angle = this.startingAngle; angle < endAngle; angle += radians(0.05)) {
-      // The circular wave is a superposition of 2 sin waves
-      let r =
-        (Math.sin((angle - this.startingAngle) * this.waveOneHarmonic - this.phase * this.waveOnePhaseMultiplier) *
-          this.flux) /
-        2;
-      r +=
-        (Math.sin(
-          (angle - this.startingAngle) * (this.waveTwoHarmonic + this.phaseEnergyOffset) +
-            this.phase * this.waveTwoPhaseMultiplier
-        ) *
-          this.flux) /
-        2;
-      r += this.baseRadius + this.radiusOffset;
-
-      let x = r * Math.cos(angle);
-      let y = r * Math.sin(angle);
-      ctx.lineTo(canvas.width + x, y);
+    isAnimating() {
+        return this.state === blobStates.EXPANDING || this.state === blobStates.COLLAPSING;
     }
 
-    ctx.closePath();
-    ctx.fillStyle = this.fillColor;
-    ctx.shadowBlur = 40 * gScale;
-    ctx.shadowColor = this.fillShadow;
-    ctx.fill();
-  }
-
-  getDiagonal() {
-    return Math.hypot(canvas.width, canvas.height);
-  }
-
-  animate() {
-    switch (this.state) {
-      case blobStates.EXPANDING:
-        this.expandRadius();
-        break;
-
-      case blobStates.COLLAPSING:
-        this.collapseRadius();
-        break;
-
-      default:
-        return;
-    }
-  }
-
-  cueExpansion() {
-    if (this.state !== blobStates.EXPANDED && this.state !== blobStates.EXPANDING) {
-      scaleInterpolator.trackTime();
-      this.state = blobStates.EXPANDING;
-    }
-  }
-
-  cueCollapse() {
-    if (this.state !== blobStates.REGULAR && this.state !== blobStates.COLLAPSING) {
-      scaleInterpolator.trackTime();
-      this.state = blobStates.COLLAPSING;
-    }
-  }
-
-  expandRadius() {
-    if (this.state === blobStates.EXPANDED) {
-      return;
+    setDarkMode(isDarkMode) {
+        this.darkMode = isDarkMode;
     }
 
-    if (this.isMaximized()) {
-      this.state = blobStates.EXPANDED;
-      this.radiusOffset = this.getMaxRadius();
-      scaleInterpolator.currentTimeFraction = 1;
-      return;
+    update() {
+        if (this.state === blobStates.EXPANDED) {
+            return;
+        }
+
+        this.updateValues();
+        this.draw();
     }
 
-    scaleInterpolator.syncAddFraction();
-    this.radiusOffset = this.getMultiplierToOffset(interpolatorValue(scaleInterpolator.currentTimeFraction));
-  }
-
-  collapseRadius() {
-    if (this.state === blobStates.REGULAR) {
-      return;
+    updateValues() {
+        canvas.width = window.innerWidth * gScale;
+        canvas.height = window.innerHeight * gScale;
+        this.baseRadius = this.getDiagonal() * 0.4;
+        this.flux = this.baseRadius * this.fluxRatio;
     }
 
-    if (scaleInterpolator.currentTimeFraction === 0) {
-      this.state = blobStates.REGULAR;
-      this.radiusOffset = 0;
+    updatePhase() {
+        this.phase += this.phaseFlux;
     }
 
-    scaleInterpolator.syncSubtractFraction();
-    this.radiusOffset = this.getMultiplierToOffset(interpolatorValue(scaleInterpolator.currentTimeFraction));
-  }
+    draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  getMultiplierToOffset(multiplier) {
-    return (this.getMaxRadius() - this.baseRadius) * multiplier;
-  }
+        // Move to the top right corner
+        ctx.lineWidth = 20 * gScale;
+        ctx.beginPath();
+        ctx.moveTo(canvas.width, 0);
 
-  getMaxRadius() {
-    return this.getDiagonal() + this.flux;
-  }
+        // Draw the circular wave
+        let endAngle = this.startingAngle + this.sectorAngle;
+        for (let angle = this.startingAngle; angle < endAngle + radianStep; angle += radians(radianStep)) {
+            // The circular wave is a superposition of 2 sin waves
+            let r =
+                (Math.sin(
+                    (angle - this.startingAngle) * this.waveOneHarmonic - this.phase * this.waveOnePhaseMultiplier
+                ) *
+                    this.flux) /
+                2;
+            r +=
+                (Math.sin(
+                    (angle - this.startingAngle) * (this.waveTwoHarmonic + this.phaseEnergyOffset) +
+                        this.phase * this.waveTwoPhaseMultiplier
+                ) *
+                    this.flux) /
+                2;
+            r += this.baseRadius + this.radiusOffset;
 
-  isMaximized() {
-    return this.radiusOffset >= this.getDiagonal();
-  }
+            let x = r * Math.cos(angle);
+            let y = r * Math.sin(angle);
+            ctx.lineTo(canvas.width + x, y);
+        }
 
-  /* Converts given px acceleration to energy value */
-  reactivePx(isAboveThreshold) {
-    // One-shot the increase if it was ever trigger, let it complete
-    if (this.blobEnergyState === blobEnergyStates.INCREASING) {
-      return;
+        ctx.strokeStyle = this.getStrokeColor();
+        ctx.stroke();
+        ctx.closePath();
+        ctx.fillStyle = this.getFillColor();
+        ctx.fill();
     }
 
-    // Should increase energy
-    // If blob is already decreasing, it will be forced to increase again
-    if (isAboveThreshold) {
-      energyInterpolator.trackTime();
-      this.blobEnergyState = blobEnergyStates.INCREASING;
-      return;
+    getDiagonal() {
+        return Math.hypot(canvas.width, canvas.height);
     }
 
-    // Not enough interaction, should decay energy
-    // Blob is either maximum or at rest
-    // Don't bother blob if it's at REST.
-    // Energy decay should happen after decay delay
-    if (this.blobEnergyState === blobEnergyStates.MAXIMUM && decayInterpolator.getTimeFraction() >= 1) {
-      energyInterpolator.trackTime();
-      this.blobEnergyState = blobEnergyStates.DECREASING;
-    }
-  }
+    syncScale() {
+        switch (this.state) {
+            case blobStates.EXPANDING:
+                this.expandRadius();
+                break;
 
-  energize() {
-    this.reactivePx(false);
+            case blobStates.COLLAPSING:
+                this.collapseRadius();
+                break;
 
-    switch (this.blobEnergyState) {
-      case blobEnergyStates.INCREASING:
-        this.increaseEnergy();
-        break;
-
-      case blobEnergyStates.DECREASING:
-        this.reduceEnergy();
-        break;
-
-      default:
-        return;
-    }
-  }
-
-  renewPhaseEnergyOffset() {
-    this.phaseEnergyOffsetMax =
-      Math.floor(map(Math.random(), 0, 1, this.phaseEnergyOffsetMinDeviation, this.phaseEnergyOffsetMaxDeviation)) *
-      HALF_PI;
-  }
-
-  reduceEnergy() {
-    if (this.blobEnergyState === blobEnergyStates.REST) {
-      return;
+            default:
+                return;
+        }
     }
 
-    if (this.phaseEnergyOffset === 0 || energyInterpolator.currentTimeFraction < 0) {
-      // A fun little addition, we change the energetic phase shift each time it resets
-      this.renewPhaseEnergyOffset();
-      this.blobEnergyState = blobEnergyStates.REST;
+    cueExpansion() {
+        if (this.state !== blobStates.EXPANDED && this.state !== blobStates.EXPANDING) {
+            scaleInterpolator.trackTime();
+            this.state = blobStates.EXPANDING;
+        }
     }
 
-    energyInterpolator.syncSubtractFraction();
-    let interpolationFraction = linearInterpolatorValue(energyInterpolator.currentTimeFraction);
-    this.phaseEnergyOffset = interpolationFraction * this.phaseEnergyOffsetMax;
-    this.phaseFlux = interpolationFraction * (this.phaseFluxMax - this.phaseFluxMin) + this.phaseFluxMin;
-  }
-
-  increaseEnergy() {
-    if (this.blobEnergyState === blobEnergyStates.MAXIMUM) {
-      return;
+    cueCollapse() {
+        if (this.state !== blobStates.REGULAR && this.state !== blobStates.COLLAPSING) {
+            scaleInterpolator.trackTime();
+            this.state = blobStates.COLLAPSING;
+        }
     }
 
-    if (energyInterpolator.currentTimeFraction === 1) {
-      this.blobEnergyState = blobEnergyStates.MAXIMUM;
+    expandRadius() {
+        if (this.state === blobStates.EXPANDED) {
+            return;
+        }
 
-      // Start tracking the decay timer
-      decayInterpolator.trackTime();
+        if (this.isMaximized()) {
+            this.state = blobStates.EXPANDED;
+            this.radiusOffset = this.getMaxRadius();
+            scaleInterpolator.currentTimeFraction = 1;
+            return;
+        }
+
+        scaleInterpolator.syncAddFraction();
+        this.radiusOffset = this.getMultiplierToOffset(interpolatorValue(scaleInterpolator.currentTimeFraction));
     }
 
-    energyInterpolator.syncAddFraction();
-    let interpolationFraction = linearInterpolatorValue(energyInterpolator.currentTimeFraction);
-    this.phaseEnergyOffset = interpolationFraction * this.phaseEnergyOffsetMax;
-    this.phaseFlux = interpolationFraction * (this.phaseFluxMax - this.phaseFluxMin) + this.phaseFluxMin;
-  }
+    collapseRadius() {
+        if (this.state === blobStates.REGULAR) {
+            return;
+        }
+
+        if (scaleInterpolator.currentTimeFraction === 0) {
+            this.state = blobStates.REGULAR;
+            this.radiusOffset = 0;
+        }
+
+        scaleInterpolator.syncSubtractFraction();
+        this.radiusOffset = this.getMultiplierToOffset(interpolatorValue(scaleInterpolator.currentTimeFraction));
+    }
+
+    getMultiplierToOffset(multiplier) {
+        return (this.getMaxRadius() - this.baseRadius) * multiplier;
+    }
+
+    getMaxRadius() {
+        return this.getDiagonal() + this.flux;
+    }
+
+    isMaximized() {
+        return this.radiusOffset >= this.getDiagonal();
+    }
+
+    /* Converts given px acceleration to energy value */
+    reactivePx(isAboveThreshold) {
+        // One-shot the increase if it was ever trigger, let it complete
+        if (this.blobEnergyState === blobEnergyStates.INCREASING) {
+            return;
+        }
+
+        // Should increase energy
+        // If blob is already decreasing, it will be forced to increase again
+        if (isAboveThreshold) {
+            energyInterpolator.trackTime();
+            this.blobEnergyState = blobEnergyStates.INCREASING;
+            return;
+        }
+
+        // Not enough interaction, should decay energy
+        // Blob is either maximum or at rest
+        // Don't bother blob if it's at REST.
+        // Energy decay should happen after decay delay
+        if (this.blobEnergyState === blobEnergyStates.MAXIMUM && decayInterpolator.getTimeFraction() >= 1) {
+            energyInterpolator.trackTime();
+            this.blobEnergyState = blobEnergyStates.DECREASING;
+        }
+    }
+
+    energize() {
+        this.reactivePx(false);
+
+        switch (this.blobEnergyState) {
+            case blobEnergyStates.INCREASING:
+                this.increaseEnergy();
+                break;
+
+            case blobEnergyStates.DECREASING:
+                this.reduceEnergy();
+                break;
+
+            default:
+                return;
+        }
+    }
+
+    renewPhaseEnergyOffset() {
+        this.phaseEnergyOffsetMax =
+            Math.floor(
+                map(Math.random(), 0, 1, this.phaseEnergyOffsetMinDeviation, this.phaseEnergyOffsetMaxDeviation)
+            ) * HALF_PI;
+    }
+
+    reduceEnergy() {
+        if (this.blobEnergyState === blobEnergyStates.REST) {
+            return;
+        }
+
+        if (this.phaseEnergyOffset === 0 || energyInterpolator.currentTimeFraction < 0) {
+            // A fun little addition, we change the energetic phase shift each time it resets
+            this.renewPhaseEnergyOffset();
+            this.blobEnergyState = blobEnergyStates.REST;
+        }
+
+        energyInterpolator.syncSubtractFraction();
+        let interpolationFraction = linearInterpolatorValue(energyInterpolator.currentTimeFraction);
+        this.phaseEnergyOffset = interpolationFraction * this.phaseEnergyOffsetMax;
+        this.phaseFlux = interpolationFraction * (this.phaseFluxMax - this.phaseFluxMin) + this.phaseFluxMin;
+    }
+
+    increaseEnergy() {
+        if (this.blobEnergyState === blobEnergyStates.MAXIMUM) {
+            return;
+        }
+
+        if (energyInterpolator.currentTimeFraction === 1) {
+            this.blobEnergyState = blobEnergyStates.MAXIMUM;
+
+            // Start tracking the decay timer
+            decayInterpolator.trackTime();
+        }
+
+        energyInterpolator.syncAddFraction();
+        let interpolationFraction = linearInterpolatorValue(energyInterpolator.currentTimeFraction);
+        this.phaseEnergyOffset = interpolationFraction * this.phaseEnergyOffsetMax;
+        this.phaseFlux = interpolationFraction * (this.phaseFluxMax - this.phaseFluxMin) + this.phaseFluxMin;
+    }
+
+    getFillColor() {
+        if (!this.darkMode || this.state === blobStates.REGULAR) {
+            return fillColor;
+        }
+
+        if (this.state === blobStates.EXPANDED) {
+            return expandedDarkColor;
+        }
+
+        // We interpolate color on expansion if dark mode is enabled
+        return interpolateColor(
+            fillColor,
+            expandedDarkColor,
+            colorInterpolatorValue(scaleInterpolator.currentTimeFraction)
+        );
+    }
+
+    getStrokeColor() {
+        if (!this.darkMode || this.state === blobStates.REGULAR) {
+            return trimColor;
+        }
+
+        if (this.state === blobStates.EXPANDED) {
+            return expandedDarkColorTrim;
+        }
+
+        // We interpolate color on expansion if dark mode is enabled
+        return interpolateColor(
+            trimColor,
+            expandedDarkColorTrim,
+            colorInterpolatorValue(scaleInterpolator.currentTimeFraction)
+        );
+    }
 }
 
 const blob = new Blob(Math.PI / 2, Math.PI / 2);
 
 function loop() {
-  blob.energize();
-  blob.animate();
-  blob.update();
-  window.requestAnimationFrame(loop);
+    blob.energize();
+    blob.syncScale();
+    blob.update();
+    window.requestAnimationFrame(loop);
 }
 
 // Repeat the animation frames
@@ -330,11 +369,11 @@ loop();
 // I hate to move this outside the blob but phase should be FPS-locked:
 const PHASE_UPDATE_INTERVAL = 8.33; // Milliseconds
 setInterval(() => {
-  blob.updatePhase();
+    blob.updatePhase();
 }, PHASE_UPDATE_INTERVAL);
 
 export function getBlob() {
-  return blob;
+    return blob;
 }
 
 require("./BlobInteraction");
