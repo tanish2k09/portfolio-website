@@ -40,7 +40,7 @@
 
 .about-card {
     @apply overflow-hidden;
-    @apply rounded-lg;
+    @apply rounded-bigg;
     @apply dark:bg-dark;
     @apply bg-primarylight;
     @apply shadow-about-card;

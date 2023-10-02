@@ -16,9 +16,9 @@ export default function ContactForm(props) {
             <input className="
                 block w-full
                 bg-transparent 
-                text-black text-md md:text-lg
+                text-black dark:text-accenttrim text-md md:text-lg
                 border-b-2 border-contactlight dark:border-contactdark
-              focus:border-black dark:focus:border-black focus:outline-none"
+              focus:border-black dark:focus:border-accenttrim focus:outline-none"
               type="text"
               name="name"
               aria-describedby="user-name-hint"
@@ -33,9 +33,9 @@ export default function ContactForm(props) {
             <input className="
                 block w-full
                 bg-transparent 
-                text-black text-md md:text-lg
+                text-black dark:text-accenttrim text-md md:text-lg
                 border-b-2 border-contactlight dark:border-contactdark
-              focus:border-black focus:outline-none
+              focus:border-black dark:focus:border-accenttrim focus:outline-none
                 required"
               type="email"
               name="email"
@@ -51,9 +51,9 @@ export default function ContactForm(props) {
             <textarea className="
                 block w-full min-h-32 max-h-64
                 bg-transparent 
-                text-black text-md md:text-lg
+                text-black dark:text-accenttrim text-md md:text-lg
                 border-b-2 border-contactlight dark:border-contactdark
-              focus:border-black focus:outline-none
+              focus:border-black dark:focus:border-accenttrim focus:outline-none
                 required"
               name="message"
               aria-describedby="message-hint"
@@ -67,12 +67,12 @@ export default function ContactForm(props) {
           <button className="
             px-4 py-2
             border-contactlight dark:border-contactdark border-2 rounded-md 
-            hover:bg-black dark:hover:bg-black
-            hover:border-black dark:hover:border-black
+            hover:bg-black dark:hover:bg-accenttrim
+            hover:border-black dark:hover:border-accenttrim
             text-contactlight dark:text-contactdark
-            hover:text-primary dark:hover:text-primary
+            hover:text-primary dark:hover:text-black
             transition-all duration-500
-            font-body font-medium text-sm md:text-md" 
+            font-body font-medium text-sm md:text-md"
             type="submit">Send</button>
         </div>
       </div>

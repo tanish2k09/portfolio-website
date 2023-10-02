@@ -3,7 +3,13 @@
 //
 // Modified by Tanish Manku - 2020
 
-import { BlobInterpolator, interpolatorValue, linearInterpolatorValue } from "./BlobInterpolator.js";
+import {
+    BlobInterpolator,
+    interpolatorValue,
+    linearInterpolatorValue,
+    colorInterpolatorValue,
+    interpolateColor,
+} from "./BlobInterpolator.js";
 
 const canvas = document.getElementById("vector_canvas");
 const ctx = canvas.getContext("2d");
@@ -32,11 +38,13 @@ const blobEnergyStates = {
     MAXIMUM: 3,
 };
 
-const scaleDuration = 750; // milliseconds
+const scaleDuration = 1000; // milliseconds
 const energizeDuration = 2000; // milliseconds
 const fullEnergyDecayDelay = 3000; // milliseconds
 const fillColor = "#00d8b6";
 const trimColor = "#00cdac";
+const expandedDarkColor = "#1e2f43";
+const expandedDarkColorTrim = "#23374f";
 const radianStep = 1;
 export const POLL_INTERVAL = 200;
 
@@ -89,7 +97,9 @@ class Blob {
         return this.state === blobStates.EXPANDING || this.state === blobStates.COLLAPSING;
     }
 
-    setDarkMode(isDarkMode) {}
+    setDarkMode(isDarkMode) {
+        this.darkMode = isDarkMode;
+    }
 
     update() {
         if (this.state === blobStates.EXPANDED) {
@@ -143,10 +153,10 @@ class Blob {
             ctx.lineTo(canvas.width + x, y);
         }
 
-        ctx.strokeStyle = trimColor;
+        ctx.strokeStyle = this.getStrokeColor();
         ctx.stroke();
         ctx.closePath();
-        ctx.fillStyle = fillColor;
+        ctx.fillStyle = this.getFillColor();
         ctx.fill();
     }
 
@@ -154,7 +164,7 @@ class Blob {
         return Math.hypot(canvas.width, canvas.height);
     }
 
-    animate() {
+    syncScale() {
         switch (this.state) {
             case blobStates.EXPANDING:
                 this.expandRadius();
@@ -308,13 +318,47 @@ class Blob {
         this.phaseEnergyOffset = interpolationFraction * this.phaseEnergyOffsetMax;
         this.phaseFlux = interpolationFraction * (this.phaseFluxMax - this.phaseFluxMin) + this.phaseFluxMin;
     }
+
+    getFillColor() {
+        if (!this.darkMode || this.state === blobStates.REGULAR) {
+            return fillColor;
+        }
+
+        if (this.state === blobStates.EXPANDED) {
+            return expandedDarkColor;
+        }
+
+        // We interpolate color on expansion if dark mode is enabled
+        return interpolateColor(
+            fillColor,
+            expandedDarkColor,
+            colorInterpolatorValue(scaleInterpolator.currentTimeFraction)
+        );
+    }
+
+    getStrokeColor() {
+        if (!this.darkMode || this.state === blobStates.REGULAR) {
+            return trimColor;
+        }
+
+        if (this.state === blobStates.EXPANDED) {
+            return expandedDarkColorTrim;
+        }
+
+        // We interpolate color on expansion if dark mode is enabled
+        return interpolateColor(
+            trimColor,
+            expandedDarkColorTrim,
+            colorInterpolatorValue(scaleInterpolator.currentTimeFraction)
+        );
+    }
 }
 
 const blob = new Blob(Math.PI / 2, Math.PI / 2);
 
 function loop() {
     blob.energize();
-    blob.animate();
+    blob.syncScale();
     blob.update();
     window.requestAnimationFrame(loop);
 }
