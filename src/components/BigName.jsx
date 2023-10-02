@@ -13,7 +13,7 @@ function BigName() {
         </div>
         <div className="flex md:text-xs big-text-sec ml-2 sm:ml-1 xl:ml-4 sm:mt-2">
           <div className="text-textdark dark:text-secondary ">and I&nbsp;</div>
-          <div id="text_morph_container" className="text-accentlight dark:text-accent text-shadow-light">
+          <div id="text_morph_container" className="text-accenttrim">
             <RotatingSelfSegment />
           </div>
         </div>
