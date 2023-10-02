@@ -24,8 +24,8 @@ function Navbar() {
       <ResponsiveNavItem
         text="Resume"
         smallText="Resume"
-        link={"/assets/tmanku_resume_3Jul2023.pdf"}
-        download="tmanku_resume_03-July-2023.pdf"
+        link={"/assets/resume.pdf"}
+        download="tmanku_resume_01-Oct-2023.pdf"
       />
     </div>
   );
