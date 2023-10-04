@@ -32,7 +32,7 @@ export function github(repo) {
 export default function ProjectCard(props) {
   var buttonProps = "";
   if (props.ctas) {
-    buttonProps = "flex mt-2 pb-6 px-2";
+    buttonProps = "flex mt-2 pb-4 px-2";
   }
 
   var imageOverlapProps = "";
@@ -59,15 +59,27 @@ export default function ProjectCard(props) {
 
   var tag_key = 1;
 
-  return (
-    <div className={"work-card dark:shadow-work-card shadow-lg transition-colors duration-500 " + props.cardClasses}>
-      <div className={props.bgColor + " w-full " + svgOptions}>
-        <img src={props.asset} alt={props.assetAlt} className={props.imageClasses + " mx-auto"} />
-        <div className={imageOverlapProps}>
-          <img src={props.assetDark} alt={props.assetAlt} className={imageClassesDark + " mx-auto"} />
-        </div>
+  var imageComponent = (
+    <div className={"w-full" + svgOptions}>
+      <img src={props.asset} alt={props.assetAlt} className={props.imageClasses + " mx-auto"} />
+      <div className={imageOverlapProps}>
+        <img src={props.assetDark} alt={props.assetAlt} className={imageClassesDark + " mx-auto"} />
       </div>
-      <div className={props.cardColor + " font-body relative inline-block w-full"}>
+    </div>
+  );
+  if (props.svg) {
+    imageComponent = (
+      <div className={props.svgOptions}>
+        {props.svg}
+      </div>
+    )
+  }
+
+  return (
+    <div className={props.bgColor + " work-card dark:shadow-work-card shadow-lg transition-colors duration-500 rounded-xl md:rounded-3xl " + props.cardClasses}>
+
+      {imageComponent}
+      <div className={props.cardColor + " font-body relative inline-block m-2 md:m-4 rounded-lg md:rounded-xl transition-colors duration-500"}>
         <div className="mt-2 ml-2 mr-4 inline-block font-mono">
           {props.tags.map(tag => (
             <Tag key={tag_key++} text={tag.text} colorClass={props.tagColor ? props.tagColor : props.bgColor} />
