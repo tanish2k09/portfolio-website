@@ -10,12 +10,12 @@ export default function ContactForm(props) {
           border-2 border-contactlight dark:border-contactdark 
           inline-block 
           py-12 px-16 md:py-24 md:px-48 xl:px-64 
-          w-full rounded-lg">
+          w-full rounded-lg transition-colors duration-500">
         <div className="">
-          <label id="user-name-hint" className="text-contactlight dark:text-contactdark text-sm md:text-md font-medium">Your Name:
+          <label id="user-name-hint" className="text-contactlight dark:text-contactdark text-sm md:text-md font-medium transition-colors duration-500">Your Name:
             <input className="
                 block w-full
-                bg-transparent 
+                bg-transparent transition-colors duration-500
                 text-black dark:text-accenttrim text-md md:text-lg
                 border-b-2 border-contactlight dark:border-contactdark
               focus:border-black dark:focus:border-accenttrim focus:outline-none"
@@ -29,10 +29,10 @@ export default function ContactForm(props) {
         </div>
 
         <div className="mt-8">
-          <label id="user-email-hint" className="text-contactlight dark:text-contactdark text-sm md:text-md font-medium">Your Email:
+          <label id="user-email-hint" className="text-contactlight dark:text-contactdark text-sm md:text-md font-medium transition-colors duration-500">Your Email:
             <input className="
                 block w-full
-                bg-transparent 
+                bg-transparent transition-colors duration-500
                 text-black dark:text-accenttrim text-md md:text-lg
                 border-b-2 border-contactlight dark:border-contactdark
               focus:border-black dark:focus:border-accenttrim focus:outline-none
@@ -47,10 +47,10 @@ export default function ContactForm(props) {
         </div>
 
         <div className="mt-8">
-          <label id="message-hint" className="text-contactlight dark:text-contactdark text-sm md:text-md font-medium">Message:
+          <label id="message-hint" className="text-contactlight dark:text-contactdark text-sm md:text-md font-medium transition-colors duration-500">Message:
             <textarea className="
                 block w-full min-h-32 max-h-64
-                bg-transparent 
+                bg-transparent transition-colors duration-500
                 text-black dark:text-accenttrim text-md md:text-lg
                 border-b-2 border-contactlight dark:border-contactdark
               focus:border-black dark:focus:border-accenttrim focus:outline-none

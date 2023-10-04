@@ -30,10 +30,10 @@ ReactDOM.render(
 ReactDOM.render(<WorkGridMasonry />, document.getElementById("work_grid_container"));
 
 const plane_svg = (
-    <PAPER_PLANE classes="ml-3 sm:mr-0 sm:ml-4 self-center w-5 stroke-black group-hover:stroke-white transition duration-500" />
+    <PAPER_PLANE className="ml-3 sm:mr-0 sm:ml-4 self-center w-5 stroke-black group-hover:stroke-white transition duration-500" />
 );
 const cookie_svg = (
-    <COOKIE classes="ml-3 sm:mr-0 sm:ml-4 self-center w-5 stroke-black group-hover:stroke-white transition duration-500" />
+    <COOKIE className="ml-3 sm:mr-0 sm:ml-4 self-center w-5 stroke-black group-hover:stroke-white transition duration-500" />
 );
 ReactDOM.render(
     <React.StrictMode>

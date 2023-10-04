@@ -15,10 +15,10 @@ function show() {
     blob.cueExpansion();
     contactSection.classList.remove("opacity-0");
 
-    navSection.classList.add("md:dark:text-semidark");
+    navSection.classList.add("md:dark:text-contactdark");
     navDots = document.getElementsByClassName("nav-dot");
     for (let index = 0; index < navDots.length; ++index) {
-        navDots[index].classList.add("md:dark:bg-semidark");
+        navDots[index].classList.add("md:dark:bg-contactdark");
     }
 }
 
@@ -26,10 +26,10 @@ function hide() {
     blob.cueCollapse();
     contactSection.classList.add("opacity-0");
 
-    navSection.classList.remove("md:dark:text-semidark");
+    navSection.classList.remove("md:dark:text-contactdark");
     navDots = document.getElementsByClassName("nav-dot");
     for (let index = 0; index < navDots.length; ++index) {
-        navDots[index].classList.remove("md:dark:bg-semidark");
+        navDots[index].classList.remove("md:dark:bg-contactdark");
     }
 }
 

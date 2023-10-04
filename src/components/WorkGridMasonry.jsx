@@ -3,17 +3,15 @@ import Masonry from 'react-masonry-component';
 import ProjectCard, { CTA_TEXT, github } from './ProjectCard';
 
 import SCE from "../assets/sce-p4xl-mock.png";
-import MEDIUM from "../assets/Medium-Logo-Black-RGB.svg";
+import { MEDIUM_SVG } from "../assets/Medium_SVG";
 import KLAPSE from "../assets/klapse.png";
 import DT2W from "../assets/dt2w.svg";
 import T2S from "../assets/t2s.svg";
 import SPOTIFY from "../assets/spotify.svg";
 import RESCUEDIALER from "../assets/rescuedialer.svg";
-import BLOBBYDARK from "../assets/blobbydark.png";
-import BLOBBYLIGHT from "../assets/blobbylight.png";
+import { BLOBBY_SVG } from "../assets/Blobby_SVG";
 import HUBSFU from "../assets/hubSFU.png";
-import LOGOSWALL from "../assets/logos-wallpaper.svg";
-import LOGOSWALLDARK from "../assets/logos-wallpaper-dark.svg";
+import { LOGOS_WALL_SVG } from '../assets/LogosWallpaper_SVG';
 
 const masonryOptions = {
     transitionDuration: 200,
@@ -33,7 +31,10 @@ export default function WorkGridMasonry() {
                 asset={SCE}
                 assetAlt={"Smurf Config Editor mockup"}
                 imageClasses={"object-contain"}
+                tagColor={"bg-sceteal text-sce"}
                 cardColor={"bg-scedark"}
+                textColor={"text-sce"}
+                borderColor={"border-scedarker"}
                 tags={[
                     { text: "Android" },
                     { text: "Kotlin" },
@@ -46,17 +47,19 @@ export default function WorkGridMasonry() {
                     { url: github("SmurfConfigEditor"), title: CTA_TEXT.GITHUB },
                     { url: "https://play.google.com/store/apps/details?id=com.tanish2k09.sce", title: CTA_TEXT.PSTORE }
                 ]}
+                ctaClasses={"border-scedarker hover:bg-scedarker hover:text-primary"}
             />
 
             {/* Medium articles */}
             <ProjectCard
                 cardClasses={"lg:max-w-45p xl:max-w-25p"}
-                bgColor={"bg-klapsewhite"}
+                bgColor={"bg-white dark:bg-gray-800"}
                 svgOptions={"align-center justify-center flex min-h-56 max-h-64"}
-                asset={MEDIUM}
-                assetAlt={"Medium.com vector logo"}
-                imageClasses={"object-contain w-1/2"}
-                cardColor={"bg-white"}
+                svg={<MEDIUM_SVG className="fill-black dark:fill-white object-contain w-1/2" />}
+                cardColor={"bg-gray-100 dark:bg-black/10"}
+                tagColor={"bg-white dark:bg-white/5 text-dark dark:text-primary"}
+                borderColor={"border-dark dark:border-primarylight"}
+                textColor={"text-dark dark:text-primary"}
                 tags={[
                     { text: "Miscellaneous" },
                     { text: "Blog" },
@@ -68,20 +71,15 @@ export default function WorkGridMasonry() {
                 ctas={[
                     { url: "https://medium.com/@tanish2k09/", title: CTA_TEXT.BLOG }
                 ]}
+                ctaClasses={"border-black text-dark dark:border-primarylight dark:text-primary hover:bg-black hover:text-primary dark:hover:bg-white dark:hover:text-dark"}
             />
 
             {/* Logos Wallpaper */}
             <ProjectCard
                 cardClasses={"lg:max-w-45p xl:max-w-25p"}
                 bgColor={"bg-logosWallpaperFg dark:bg-logosWallpaperFgDark"}
-                svgOptions={"min-h-56 max-h-64 relative flex align-items-center justify-center top-0 left-0"}
-                asset={LOGOSWALLDARK}
-                assetDark={LOGOSWALL}
-                assetAlt={"Logos Wallpaper app vector logo"}
-                // imageClasses={"object-contain w-1/2"}
-                imageClasses={"object-contain w-1/2 relative top-0 left-0 opacity-100 dark:opacity-0 transition-opacity duration-500"}
-                imageClassesDark={"object-contain w-1/2 opacity-0 dark:opacity-100 transition-opacity duration-500"}
-                imageOverlapClasses={'absolute flex align-items-center justify-center top-0 left-0 h-full w-full'}
+                svgOptions={"min-h-56 max-h-64 flex align-items-center justify-center"}
+                svg={<LOGOS_WALL_SVG className="fill-logosWallpaperBgDark dark:fill-logosWallpaperBg object-contain w-full" />}
                 cardColor={"bg-logosWallpaperBg dark:bg-logosWallpaperBgDark"}
                 tagColor={"bg-logosWallpaperFg dark:bg-logosWallpaperFgDark text-logosWallpaperDark dark:text-logosWallpaper"}
                 textColor={"text-logosWallpaperDark dark:text-logosWallpaper"}
@@ -166,15 +164,12 @@ export default function WorkGridMasonry() {
             <ProjectCard
                 cardClasses={"lg:max-w-45p xl:max-w-25p"}
                 bgColor={"dark:bg-primarylight bg-dark transition-colors duration-500"}
-                tagColor={"dark:bg-accentlight bg-accent"}
-                asset={BLOBBYLIGHT}
-                assetDark={BLOBBYDARK}
-                assetAlt={"Portfolio icon"}
-                imageClasses={"object-cover absolute inline opacity-0 dark:opacity-100 transition-opacity duration-500"}
-                imageClassesDark={"object-cover inline opacity-100 dark:opacity-0 transition-opacity duration-500"}
-                cardColor={"dark:bg-primarylight bg-dark transition-colors duration-500"}
-                textColor={"text-primary dark:text-black transition-colors duration-500"}
-                borderColor={"border-primary dark:border-black"}
+                tagColor={"dark:bg-primarylight bg-dark text-primary dark:text-portfolio"}
+                svgOptions={"relative min-h-64"}
+                svg={<BLOBBY_SVG className="fill-accent stroke-accenttrimlight object-contain w-64 h-64 right-0 absolute" />}
+                cardColor={"dark:bg-portfoliolight bg-portfolio transition-colors duration-500"}
+                textColor={"text-primary dark:text-portfolio transition-colors duration-500"}
+                borderColor={"border-primary dark:border-portfoliodarker"}
                 tags={[
                     { text: "React" },
                     { text: "JS" },
@@ -187,17 +182,18 @@ export default function WorkGridMasonry() {
                 ctas={[
                     { title: "Energize Blob? 👀" }
                 ]}
-                ctaClasses={"border-white dark:border-black text-primary dark:text-dark hover:bg-white hover:text-dark dark:hover:bg-black dark:hover:text-primary transition-colors duration-500"}
+                ctaClasses={"border-white dark:border-portfoliodarker text-primary dark:text-portfolio hover:bg-white hover:text-dark dark:hover:bg-portfoliodarker dark:hover:text-primary transition-colors duration-500"}
             />
 
             {/* K-LAPSE */}
             <ProjectCard
-                cardClasses={"lg:max-w-45p xl:max-w-25p"}
-                bgColor={"bg-white"}
+                cardClasses={"lg:max-w-45p xl:max-w-25p dark:border-klapse"}
+                bgColor={"bg-white dark:bg-klapsedark border-2 border-transparent"}
+                tagColor={"bg-white/30 text-dark"}
                 asset={KLAPSE}
                 assetAlt={"K-LAPSE banner image"}
                 imageClasses={"object-cover"}
-                cardColor={"bg-klapsewhite"}
+                cardColor={"opacity-90 dark:opacity-100 bg-klapsegradient transition-opacity duration-500"}
                 tags={[
                     { text: "Android" },
                     { text: "Linux" },

@@ -21,8 +21,6 @@
 
 .work-card {
     @apply overflow-hidden;
-    @apply rounded-lg;
-    @apply bg-transparent;
     @apply shadow-work-card;
     @apply inline-block;
     @apply mx-8;
@@ -114,5 +112,9 @@ body::-webkit-scrollbar-thumb {
 
     .text-shadow-light {
         text-shadow: 0px 0px 1px #808994;
+    }
+
+    .border-klapse {
+        background: theme(backgroundImage.klapseborder);
     }
 }
