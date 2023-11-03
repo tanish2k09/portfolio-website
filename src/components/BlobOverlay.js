@@ -54,9 +54,6 @@ let decayInterpolator = new BlobInterpolator(fullEnergyDecayDelay);
 
 class Blob {
     constructor() {
-        // use this to change the size of the screen estate to cover, in the minimum dimension
-        this.screenEstateCoverageV = 0.6;
-        this.screenEstateCoverageH = 0.6;
         this.radiusOffset = 0;
 
         this.startingAngle = HALF_PI;
