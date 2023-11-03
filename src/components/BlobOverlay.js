@@ -356,21 +356,27 @@ class Blob {
 
 const blob = new Blob(Math.PI / 2, Math.PI / 2);
 
+const fps = 120;
+var lastFrameTime = null;
+function fpsLimitedSyncedFrame(render) {
+    if (lastFrameTime == null || performance.now() - lastFrameTime > 1000 / fps) {
+        render();
+        lastFrameTime = performance.now();
+    }
+}
+
 function loop() {
     blob.energize();
     blob.syncScale();
     blob.update();
+    fpsLimitedSyncedFrame(() => {
+        blob.updatePhase();
+    });
     window.requestAnimationFrame(loop);
 }
 
 // Repeat the animation frames
 loop();
-
-// I hate to move this outside the blob but phase should be FPS-locked:
-const PHASE_UPDATE_INTERVAL = 8.33; // Milliseconds
-setInterval(() => {
-    blob.updatePhase();
-}, PHASE_UPDATE_INTERVAL);
 
 export function getBlob() {
     return blob;
