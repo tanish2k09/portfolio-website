@@ -166,7 +166,7 @@ export default function WorkGridMasonry() {
                 bgColor={"dark:bg-primarylight bg-dark transition-colors duration-500"}
                 tagColor={"dark:bg-primarylight bg-dark text-primary dark:text-portfolio"}
                 svgOptions={"relative min-h-64"}
-                svg={<BLOBBY_SVG className="fill-accent stroke-accenttrimlight object-contain w-64 h-64 right-0 absolute" />}
+                svg={<BLOBBY_SVG className="fill-accent stroke-accenttrim object-contain w-64 h-64 right-0 absolute" />}
                 cardColor={"dark:bg-portfoliolight bg-portfolio transition-colors duration-500"}
                 textColor={"text-primary dark:text-portfolio transition-colors duration-500"}
                 borderColor={"border-primary dark:border-portfoliodarker"}
