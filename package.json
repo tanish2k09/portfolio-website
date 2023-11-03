@@ -1,6 +1,6 @@
 {
     "name": "personal-website",
-    "version": "2.2.0",
+    "version": "2.2.1",
     "private": true,
     "dependencies": {
         "@testing-library/jest-dom": "^5.15.0",
@@ -22,7 +22,7 @@
     },
     "scripts": {
         "start": "react-scripts start",
-        "build": "npm run twbuild && react-scripts build",
+        "build": "GENERATE_SOURCEMAP=false && npm run twbuild && react-scripts build",
         "tw": "npx tailwindcss -i src/styles/tailwind.css -o public/styles/tailwind.css --watch",
         "twbuild": "npx tailwindcss -i src/styles/tailwind.css -o public/styles/tailwind.css --minify"
     },
