@@ -26,3 +26,6 @@ yarn-error.log*
 
 # Local Netlify folder
 .netlify
+
+# Generated tailwind styles file
+public/styles/tailwind.css
