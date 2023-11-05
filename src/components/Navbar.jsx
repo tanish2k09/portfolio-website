@@ -25,7 +25,7 @@ function Navbar() {
         text="Resume"
         smallText="Resume"
         link={"/assets/resume.pdf"}
-        download="tmanku_resume_01-Oct-2023.pdf"
+        download="tmanku_resume_04-Nov-2023.pdf"
       />
     </div>
   );
