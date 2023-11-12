@@ -1,63 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { MoonIcon } from "./MoonIcon";
 import { SunIcon } from "./SunIcon";
 import toggleAppTheme from "../scripts/AppThemeToggle";
 
-class DarkModeToggle extends React.Component {
+const DarkModeToggle = () => {
 
-  constructor() {
-    super();
-    this.toggleTheme = this.toggleTheme.bind(this);
+  const [isDark, setDarkMode] = useState((localStorage.theme === 'dark' ||
+    (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+  ));
 
-    this.isPrefDark = (localStorage.theme === 'dark' || 
-      (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-    )
-    
-    this.state = {
-      isDark: this.isPrefDark,
-      cooldown: false};
-
-    toggleAppTheme(this.isPrefDark);
+  const toggleTheme = () => {
+    localStorage.setItem('theme', isDark ? 'light' : 'dark');
+    setDarkMode(!isDark);
   }
 
-  toggleTheme() {
-    if (this.state.cooldown) {
-      return;
-    }
+  useEffect(() => {
+    toggleAppTheme(isDark);
+    console.log("useEffect")
+  })
 
-    this.setState({cooldown: true});
-    setTimeout(() =>
-      {
-        this.setState({cooldown: false});
-      },
-    1000);
+  let commonClasses = "p-0 float-right"
 
-    toggleAppTheme(!this.state.isDark);
-    localStorage.setItem('theme', this.state.isDark ? 'light' : 'dark');
-    this.setState({isDark: !this.state.isDark});
+  let image;
+  if (isDark) {
+    image = <SunIcon className={commonClasses} />;
+  } else {
+    image = <MoonIcon className={commonClasses} />;
   }
 
-  render() {
-    let commonClasses = "p-0 float-right"
-
-    let image;
-    if (this.state.isDark) {
-      image = <SunIcon className={commonClasses}/>;
-    } else {
-      image = <MoonIcon className={commonClasses}/>;
-    }
-
-    return (
-      <div className="md:w-full md:h-12 md:flex md:float-right md:relative">
-        <button id="dark_mode_toggle" onClick={this.toggleTheme} title="Theme toggle">
-          <div className="md:right-5 md:absolute relative mt-5 md:mt-0 px-2 md:px-0">
+  return (
+    <div className="md:w-full md:h-12 md:flex md:float-right md:relative">
+      <button id="dark_mode_toggle" onClick={toggleTheme} title="Theme toggle">
+        <div className="md:right-5 md:absolute relative mt-5 md:mt-0 px-2 md:px-0">
           {image}
-          </div>
-        </button>
-      </div>
-    );
-  }
+        </div>
+      </button>
+    </div>
+  );
 }
 
 export default DarkModeToggle;
