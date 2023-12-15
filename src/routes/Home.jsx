@@ -1,15 +1,17 @@
-import React from "react";
-import BigName from "./BigName.jsx";
-import AccentedButton, { primary, secondary } from "./AccentedButton.jsx";
-import Navbar from "./Navbar.jsx";
-import WorkGridMasonry from "./WorkGridMasonry.jsx";
-import ContactSocials from "./ContactSocials.jsx";
-import ContactForm from "./ContactForm.jsx";
+import React, { useRef } from "react";
+import BigName from "../components/BigName.jsx";
+import AccentedButton, { primary, secondary } from "../components/AccentedButton.jsx";
+import Navbar from "../components/Navbar.jsx";
+import WorkGridMasonry from "../components/WorkGridMasonry.jsx";
+import ContactSocials from "../components/ContactSocials.jsx";
+import ContactForm from "../components/ContactForm.jsx";
+import BlobCanvas from "../components/BlobCanvas.jsx";
 
 import { PAPER_PLANE } from "../assets/Paper_Plane.jsx";
 import { COOKIE } from "../assets/Cookie.jsx";
+import { Blob, HALF_PI } from "../components/BlobOverlay.js";
 
-function App () {
+function Home() {
     const plane_svg = (
         <PAPER_PLANE className="ml-3 sm:mr-0 sm:ml-4 self-center w-5 stroke-black group-hover:stroke-white transition duration-500" />
     );
@@ -17,8 +19,20 @@ function App () {
         <COOKIE className="ml-3 sm:mr-0 sm:ml-4 self-center w-5 stroke-black group-hover:stroke-white transition duration-500" />
     );
 
+    const blobRef = useRef(null);
+
+    function useBlob() {
+        if (blobRef.current == null) {
+            blobRef.current = new Blob(HALF_PI, HALF_PI);
+        }
+        return blobRef.current;
+    }
+
     return (
         <div id="app">
+            <div className="fixed left-0 z-0 h-full w-full flex">
+                <BlobCanvas canvasId="blob_canvas" canvasClasses="w-full h-full -z-3 absolute" useBlob={useBlob} />
+            </div>
             <nav
                 id="nav_section"
                 className="fixed font-nav z-50 md:right-0 md:inline-block md:bottom-auto md:w-40 xl:w-48 md:h-full bottom-0 min-w-full md:min-w-0 text-dark transition-colors duration-700"
@@ -62,7 +76,7 @@ function App () {
                     <br />
                     <p>
                         <span className="transition-colors duration-500 text-dark dark:text-accent font-medium dark:font-normal"
-                            >👨‍💻 Let me introduce myself:</span
+                        >👨‍💻 Let me introduce myself:</span
                         >
                         I'm Tanish Manku, an originally self-taught and later professionally-trained Software Developer
                         based in Vancouver, Canada.
@@ -100,17 +114,17 @@ function App () {
                     <br />
                     <p className="font-mono">
                         <span className="transition-colors duration-500 text-semidark dark:text-accent text-md block"
-                            >Languages:</span
+                        >Languages:</span
                         >
                         <span className="transition-colors duration-500 mt-2 text-hintdark dark:text-hintyellow block"
-                            >Java, Kotlin, Swift, JavaScript, TypeScript, Dart, C, C++, C#, HTML, SQL, CSS, XML</span
+                        >Java, Kotlin, Swift, JavaScript, TypeScript, Dart, C, C++, C#, HTML, SQL, CSS, XML</span
                         >
                         <br /><br />
                         <span className="transition-colors duration-500 text-semidark dark:text-accent text-md block"
-                            >Have used:</span
+                        >Have used:</span
                         >
                         <span className="transition-colors duration-500 mt-2 text-hintdark dark:text-hintyellow block"
-                            >Android SDK, iOS SDK, Flutter SDK, Spotify Web API, Discord bot API, Twitter bot API, ReactJS,
+                        >Android SDK, iOS SDK, Flutter SDK, Spotify Web API, Discord bot API, Twitter bot API, ReactJS,
                             TailwindCSS, Git, Unity</span
                         >
                     </p>
@@ -148,4 +162,4 @@ function App () {
     );
 }
 
-export default App;
+export default Home;
