@@ -4,15 +4,14 @@ const fps = 120;
 
 const BlobCanvas = (props) => {
 
+    // Use a ref so the canvas doesn't keep rerendering
     const canvasRef = useRef(null);
 
     useEffect(() => {
         let animationFrameId;
         let lastFrameTime = null;
 
-        console.log("useEffect called");
-
-        const render = (timestamp) => {
+        const render = () => {
             const canvas = canvasRef.current;
             const ctx = canvas.getContext("2d");
             const blob = props.useBlob();

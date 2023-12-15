@@ -5,11 +5,11 @@ import Navbar from "../components/Navbar.jsx";
 import WorkGridMasonry from "../components/WorkGridMasonry.jsx";
 import ContactSocials from "../components/ContactSocials.jsx";
 import ContactForm from "../components/ContactForm.jsx";
-import BlobCanvas from "../components/BlobCanvas.jsx";
+import BlobCanvas from "../components/Blobs/BlobCanvas.jsx";
 
 import { PAPER_PLANE } from "../assets/Paper_Plane.jsx";
 import { COOKIE } from "../assets/Cookie.jsx";
-import { Blob, HALF_PI } from "../components/BlobOverlay.js";
+import { Blob, HALF_PI } from "../components/Blobs/BlobOverlay.js";
 
 function Home() {
     const plane_svg = (
@@ -31,7 +31,7 @@ function Home() {
     return (
         <div id="app">
             <div className="fixed left-0 z-0 h-full w-full flex">
-                <BlobCanvas canvasId="blob_canvas" canvasClasses="w-full h-full -z-3 absolute" useBlob={useBlob} />
+                <BlobCanvas canvasId="blob_canvas" canvasClasses="w-full h-full absolute" useBlob={useBlob} />
             </div>
             <nav
                 id="nav_section"

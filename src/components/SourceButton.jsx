@@ -1,5 +1,5 @@
 import React from 'react';
-import { getBlob } from './BlobOverlay';
+import { getBlob } from './Blobs/BlobOverlay';
 
 const exciteBlob = event => {
     console.log("exciting");

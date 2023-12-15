@@ -1,4 +1,4 @@
-import { getBlob } from "../components/BlobOverlay";
+import { getBlob } from "../components/Blobs/BlobOverlay";
 
 const contactSection = document.getElementById("contact_section");
 const navSection = document.getElementById("nav_section");
