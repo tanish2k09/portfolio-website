@@ -43,7 +43,7 @@ function Home() {
             <section id="first_screen_block" className="h-screen relative block">
                 <div id="corner_block" className="absolute bottom-0 sm:ml-8 pb-16 md:pb-0 mb-16 md:mb-4">
                     <BigName />
-                    <div id="click_button_container" className="flex mt-2 md:mt-16 pb-24 px-4 sm:px-0 xl:px-4">
+                    <div id="click_button_container" className="md:flex mt-2 md:mt-16 pb-24 px-4 sm:px-0 xl:px-4">
                         <AccentedButton text="Check out my work" link="#work_showcase_text" classes={primary} svg={cookie_svg} />
                         <AccentedButton text="Got a job? Let's talk!" link="#contact_me_text" classes={secondary} svg={plane_svg} />
                     </div>
