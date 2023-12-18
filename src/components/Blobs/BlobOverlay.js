@@ -42,7 +42,7 @@ const fillColor = "#00d8b6";
 const trimColor = "#00cdac";
 const expandedDarkColor = "#1e2f43";
 const expandedDarkColorTrim = "#23374f";
-const radianStep = 1;
+const RADIAN_STEP = 0.5;
 export const POLL_INTERVAL = 200;
 
 let scaleInterpolator = new BlobInterpolator(scaleDuration);
@@ -94,12 +94,13 @@ export class Blob {
         this.darkMode = isDarkMode;
     }
 
-    update() {
+    updateRender() {
         if (this.state === blobStates.EXPANDED) {
             return;
         }
 
         this.updateValues();
+        this.generateVertices();
         this.draw();
     }
 
@@ -114,18 +115,13 @@ export class Blob {
         this.phase += this.phaseFlux;
     }
 
-    draw() {
-        console.log("draw");
-        this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+    generateVertices() {
+        // Empty vertices array
+        this.vertices = [];
 
-        // Move to the top right corner
-        this.ctx.lineWidth = 20 * gScale;
-        this.ctx.beginPath();
-        this.ctx.moveTo(this.ctx.canvas.width, 0);
-
-        // Draw the circular wave
+        // Generate the sample points on the wave
         let endAngle = this.startingAngle + this.sectorAngle;
-        for (let angle = this.startingAngle; angle < endAngle + radianStep; angle += radians(radianStep)) {
+        for (let angle = this.startingAngle; angle < endAngle + RADIAN_STEP; angle += radians(RADIAN_STEP)) {
             // The circular wave is a superposition of 2 sin waves
             let r =
                 (Math.sin(
@@ -144,11 +140,22 @@ export class Blob {
 
             let x = r * Math.cos(angle);
             let y = r * Math.sin(angle);
-            this.ctx.lineTo(this.ctx.canvas.width + x, y);
+            this.vertices.push({ x: x, y: y });
         }
+    }
+
+    draw() {
+        this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+
+        this.ctx.beginPath();
+        this.ctx.moveTo(this.ctx.canvas.width, 0);
+
+        // Draw the vertices
+        this.vertices.forEach((vertex) => {
+            this.ctx.lineTo(this.ctx.canvas.width + vertex.x, vertex.y);
+        });
 
         this.ctx.strokeStyle = this.getStrokeColor();
-        this.ctx.stroke();
         this.ctx.closePath();
         this.ctx.fillStyle = this.getFillColor();
         this.ctx.fill();

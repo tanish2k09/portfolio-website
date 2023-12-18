@@ -1,4 +1,4 @@
-import { useRef, useEffect, useCallback } from "react";
+import { useRef, useEffect } from "react";
 
 const fps = 120;
 
@@ -6,6 +6,7 @@ const BlobCanvas = (props) => {
 
     // Use a ref so the canvas doesn't keep rerendering
     const canvasRef = useRef(null);
+    let blob = props.useBlob();
 
     useEffect(() => {
         let animationFrameId;
@@ -14,21 +15,20 @@ const BlobCanvas = (props) => {
         const render = () => {
             const canvas = canvasRef.current;
             const ctx = canvas.getContext("2d");
-            const blob = props.useBlob();
 
             // Refresh blob attributes
             blob.setContext(ctx)
             blob.energize();
             blob.syncScale();
 
-            // Draw the blob if necessary
-            blob.update();
-
             // Update the phase of the blob with an FPS-limit
             if (lastFrameTime == null || performance.now() - lastFrameTime > 1000 / fps) {
                 blob.updatePhase()
                 lastFrameTime = performance.now();
             }
+
+            // Draw the blob if necessary
+            blob.updateRender();
 
             // Requeue the render function
             animationFrameId = requestAnimationFrame(render);
@@ -40,7 +40,7 @@ const BlobCanvas = (props) => {
         return () => {
             window.cancelAnimationFrame(animationFrameId)
         }
-    }, []);
+    }, [blob]);
 
     return (
         <canvas id={props.canvasId} className={props.canvasClasses} ref={canvasRef} />
