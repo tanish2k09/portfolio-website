@@ -9,7 +9,6 @@ import BlobCanvas from "../components/Blobs/BlobCanvas.jsx";
 
 import { PAPER_PLANE } from "../assets/Paper_Plane.jsx";
 import { COOKIE } from "../assets/Cookie.jsx";
-import { Blob, HALF_PI } from "../components/Blobs/BlobOverlay.js";
 
 function Home() {
     const plane_svg = (
@@ -19,19 +18,19 @@ function Home() {
         <COOKIE className="ml-3 sm:mr-0 sm:ml-4 self-center w-5 stroke-black group-hover:stroke-white transition duration-500" />
     );
 
-    const blobRef = useRef(null);
+    const workerRef = useRef(null);
 
-    function useBlob() {
-        if (blobRef.current == null) {
-            blobRef.current = new Blob(HALF_PI, HALF_PI);
+    function useWorker() {
+        if (workerRef.current == null) {
+            workerRef.current = new Worker(new URL("./../components/Blobs/BlobWorker.js", import.meta.url));
         }
-        return blobRef.current;
+        return workerRef.current;
     }
 
     return (
         <div id="app">
             <div className="fixed left-0 z-0 h-full w-full flex">
-                <BlobCanvas canvasId="blob_canvas" canvasClasses="w-full h-full absolute" useBlob={useBlob} />
+                <BlobCanvas canvasId="blob_canvas" canvasClasses="w-full h-full absolute" useWorker={useWorker} />
             </div>
             <nav
                 id="nav_section"

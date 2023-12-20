@@ -15,11 +15,7 @@ export const HALF_PI = Math.PI / 2;
 const PI = Math.PI;
 const radians = (deg) => (deg * PI) / 180.0;
 const map = (value, x1, y1, x2, y2) => ((value - x1) * (y2 - x2)) / (y1 - x1) + x2;
-
-var gScale = 1;
-if (window.devicePixelRatio < 2) {
-    gScale = 2;
-}
+// eslint-disable-next-line no-restricted-globals
 
 const blobStates = {
     EXPANDED: 0,
@@ -50,7 +46,7 @@ let energyInterpolator = new BlobInterpolator(energizeDuration);
 let decayInterpolator = new BlobInterpolator(fullEnergyDecayDelay);
 
 export class Blob {
-    constructor(startingAngle, sectorAngle) {
+    constructor(startingAngle, sectorAngle, ctx, window, isDarkMode) {
         this.radiusOffset = 0;
 
         this.startingAngle = startingAngle;
@@ -79,11 +75,14 @@ export class Blob {
         this.state = blobStates.REGULAR;
         this.blobEnergyState = blobEnergyStates.REST;
 
+        this.darkMode = true; // default value for now
+        this.gScale = 2;      // default value for now
         // TODO: Move this outside the class and make it a state param in react
-        this.setDarkMode(
-            localStorage.theme === "dark" ||
-                (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)
-        );
+        // this.setDarkMode(
+        //     localStorage.theme === "dark" ||
+        //         (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)
+        // );
+
     }
 
     isAnimating() {
@@ -105,8 +104,8 @@ export class Blob {
     }
 
     updateValues() {
-        this.ctx.canvas.width = window.innerWidth * gScale;
-        this.ctx.canvas.height = window.innerHeight * gScale;
+        this.ctx.canvas.width = this.window.innerWidth * this.gScale;
+        this.ctx.canvas.height = this.window.innerHeight * this.gScale;
         this.baseRadius = this.getDiagonal() * 0.4;
         this.flux = this.baseRadius * this.fluxRatio;
     }
@@ -357,6 +356,20 @@ export class Blob {
     setContext(ctx) {
         this.ctx = ctx;
         this.canvas = ctx.canvas;
+    }
+
+    setWindow(window) {
+        this.window = {
+            devicePixelRatio: window.devicePixelRatio,
+            innerHeight: window.innerHeight,
+            innerWidth: window.innerWidth
+        };
+
+        if (this.window.devicePixelRatio < 2) {
+            this.gScale = 2;
+        } else {
+            this.gScale = 1;
+        }
     }
 }
 

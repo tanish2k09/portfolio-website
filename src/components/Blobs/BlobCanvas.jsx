@@ -1,46 +1,35 @@
 import { useRef, useEffect } from "react";
 
-const fps = 120;
-
 const BlobCanvas = (props) => {
 
     // Use a ref so the canvas doesn't keep rerendering
     const canvasRef = useRef(null);
-    let blob = props.useBlob();
+    let worker = props.useWorker();
 
     useEffect(() => {
-        let animationFrameId;
-        let lastFrameTime = null;
-
-        const render = () => {
-            const canvas = canvasRef.current;
-            const ctx = canvas.getContext("2d");
-
-            // Refresh blob attributes
-            blob.setContext(ctx)
-            blob.energize();
-            blob.syncScale();
-
-            // Update the phase of the blob with an FPS-limit
-            if (lastFrameTime == null || performance.now() - lastFrameTime > 1000 / fps) {
-                blob.updatePhase()
-                lastFrameTime = performance.now();
-            }
-
-            // Draw the blob if necessary
-            blob.updateRender();
-
-            // Requeue the render function
-            animationFrameId = requestAnimationFrame(render);
-        }
-
-        // First render frame
-        animationFrameId = requestAnimationFrame(render);
+        const canvas = canvasRef.current;
+        const offscreen = canvas.transferControlToOffscreen();
+        const initBlobMessage = {
+            type: "init",   // TODO: make htis an enum
+            canvas: offscreen,
+            window: {
+                devicePixelRatio: window.devicePixelRatio,
+                innerHeight: window.innerHeight,
+                innerWidth: window.innerWidth,
+            },
+            isDarkMade: localStorage.theme === "dark" || (
+                !("theme" in localStorage) 
+                && window.matchMedia("(prefers-color-scheme: dark)").matches
+            ),
+        };
+        worker.postMessage(initBlobMessage, [offscreen]);
 
         return () => {
-            window.cancelAnimationFrame(animationFrameId)
+            // TODO: Potentially figure out how to do this on the web worker
+            // window.cancelAnimationFrame(animationFrameId)
+            worker.terminate();
         }
-    }, [blob]);
+    }, [worker]);
 
     return (
         <canvas id={props.canvasId} className={props.canvasClasses} ref={canvasRef} />

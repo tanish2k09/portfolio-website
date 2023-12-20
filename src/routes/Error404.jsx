@@ -4,18 +4,18 @@ import { Blob, HALF_PI } from "../components/Blobs/BlobOverlay.js";
 
 const Error404 = () => {
 
-    const blobRef = useRef(null);
+    const workerRef = useRef(null);
 
-    function useBlob() {
-        if (blobRef.current == null) {
-            blobRef.current = new Blob(HALF_PI, HALF_PI);
+    function useWorker() {
+        if (workerRef.current == null) {
+            workerRef.current = new Worker(new URL("./../components/Blobs/BlobWorker.js", import.meta.url));
         }
-        return blobRef.current;
+        return workerRef.current;
     }
 
     return (
         <div className="w-screen h-screen relative z-0 md:dark:text-shadow-md dark:text-shadow-min font-nav">
-            <BlobCanvas canvasId="blob_canvas" canvasClasses="w-full h-full absolute -z-[2]" useBlob={useBlob} />
+            <BlobCanvas canvasId="blob_canvas" canvasClasses="w-full h-full absolute -z-[2]" useWorker={useWorker} />
             <div className="w-full h-full flex flex-col justify-center items-center">
                 <h1 className="text-3xl font-semibold text-textdarker dark:text-primary">404</h1>
                 <h2 className="md:text-xl lg:text-5xl font-semibold text-textdark dark:text-secondary lg:mx-64 p-8 text-center">Cuuuurious, how'd you end up here?</h2>
