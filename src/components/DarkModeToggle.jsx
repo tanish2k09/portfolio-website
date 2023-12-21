@@ -1,24 +1,13 @@
-import React, { useEffect, useState } from "react";
-
+import React, { useContext } from "react";
+import { DarkModeContext } from "../contexts/DarkModeContext";
 import { MoonIcon } from "./MoonIcon";
 import { SunIcon } from "./SunIcon";
-import toggleAppTheme from "../scripts/AppThemeToggle";
 
 const DarkModeToggle = () => {
 
-  const [isDark, setDarkMode] = useState((localStorage.theme === 'dark' ||
-    (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-  ));
+  const { isDark, toggleTheme } = useContext(DarkModeContext);
 
-  const toggleTheme = () => {
-    localStorage.setItem('theme', isDark ? 'light' : 'dark');
-    setDarkMode(!isDark);
-  }
-
-  useEffect(() => {
-    toggleAppTheme(isDark);
-    console.log("useEffect")
-  })
+  console.log("DarkModeToggle: isDark = " + isDark);
 
   let commonClasses = "p-0 float-right"
 
