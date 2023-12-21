@@ -1,5 +1,4 @@
-import { useState, useRef, useContext } from "react";
-import BlobCanvas from "../components/Blobs/BlobCanvas.jsx";
+import { useState, useRef, useContext, useCallback } from "react";
 import NameBlock from "../components/NameBlock.jsx";
 
 import { Blob, HALF_PI } from "../components/Blobs/BlobOverlay.js";
@@ -9,6 +8,7 @@ import WorkBlock from "../components/WorkBlock.jsx";
 import { NavBlock } from "../components/NavBlock.jsx";
 import { AboutBlock } from "../components/AboutBlock.jsx";
 import { DarkModeContext } from "../contexts/DarkModeContext.jsx";
+import { BlobContainer } from "../components/Blobs/BlobContainer.jsx";
 
 function Home() {
     const blobRef = useRef(null);
@@ -21,24 +21,25 @@ function Home() {
         }
         return blobRef.current;
     }
+    const useBlobCallback = useCallback(useBlob, [blobRef]);
 
     function onContactShow() {
         if (blobRef.current != null)
             blobRef.current.cueExpansion();
         setContactVisibility(true);
     }
+    const onContactShowCallback = useCallback(onContactShow, [blobRef]);
 
     function onContactHide() {
         if (blobRef.current != null)
             blobRef.current.cueCollapse();
         setContactVisibility(false);
     }
+    const onContactHideCallback = useCallback(onContactHide, [blobRef]);
 
     return (
         <div id="app" className={`${isDark ? "dark" : ""} transition-colors`}>
-            <div className="fixed left-0 z-0 h-full w-full flex">
-                <BlobCanvas canvasId="blob_canvas" canvasClasses="w-full h-full absolute" useBlob={useBlob} />
-            </div>
+            <BlobContainer useBlob={useBlobCallback} />
 
             <ContactVisibilityContext.Provider value={contactVisibility}>
                 <NavBlock />
@@ -50,7 +51,7 @@ function Home() {
 
             <AboutBlock />
 
-            <ContactSection onContactShow={onContactShow} onContactHide={onContactHide} />
+            <ContactSection onContactShow={onContactShowCallback} onContactHide={onContactHideCallback} />
         </div>
     );
 }

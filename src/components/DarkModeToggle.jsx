@@ -7,8 +7,6 @@ const DarkModeToggle = () => {
 
   const { isDark, toggleTheme } = useContext(DarkModeContext);
 
-  console.log("DarkModeToggle: isDark = " + isDark);
-
   let commonClasses = "p-0 float-right"
 
   let image;
