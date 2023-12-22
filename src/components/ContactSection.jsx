@@ -1,13 +1,13 @@
 import ContactSocials from "../components/ContactSocials.jsx";
 import ContactForm from "../components/ContactForm.jsx";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
+import ContactVisibilityContext from "../contexts/ContactVisibilityContext.jsx";
 
-const ContactSection = (props) => {
+const ContactSection = () => {
 
     const [opacity, setOpacity] = useState("opacity-0");
+    const contactVisibilityVM = useContext(ContactVisibilityContext);
     const sectionRef = useRef(null);
-    const onShow = props.onContactShow;
-    const onHide = props.onContactHide;
 
     useEffect(() => {
         function isSectionBound() {
@@ -18,14 +18,12 @@ const ContactSection = (props) => {
 
         function show() {
             if (opacity === "opacity-100") return;
-            setOpacity("opacity-100");
-            onShow();
+            contactVisibilityVM.isVisible = true;
         }
 
         function hide() {
             if (opacity === "opacity-0") return;
-            setOpacity("opacity-0");
-            onHide();
+            contactVisibilityVM.isVisible = false;
         }
 
         function scrollHandler() {
@@ -36,10 +34,28 @@ const ContactSection = (props) => {
             }
         }
 
+        function viewModelObserver(isVisible) {
+            // Attaching an observer also immediately emits
+            // the currently stored value, so we need to check
+            // if the value has changed before updating the state.
+            // Without the opacity state check, the component would render twice.
+            if (isVisible) {
+                if (opacity === "opacity-100") return;
+                setOpacity("opacity-100");
+            } else {
+                if (opacity === "opacity-0") return;
+                setOpacity("opacity-0");
+            }
+        }
+
+        contactVisibilityVM.subscribe(viewModelObserver);
         window.addEventListener("scroll", scrollHandler);
 
-        return () => { window.removeEventListener("scroll", scrollHandler); }
-    }, [onShow, onHide, opacity]);
+        return () => {
+            window.removeEventListener("scroll", scrollHandler);
+            contactVisibilityVM.unsubscribe(viewModelObserver);
+        }
+    }, [contactVisibilityVM, opacity]);
 
     return <section
         ref={sectionRef}

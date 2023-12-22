@@ -1,5 +1,5 @@
 import { createContext } from "react";
 
-const ContactVisibilityContext = createContext(false);
+const ContactVisibilityContext = createContext();
 
 export default ContactVisibilityContext;

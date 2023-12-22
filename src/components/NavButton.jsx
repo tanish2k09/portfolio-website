@@ -1,12 +1,12 @@
 import { useContext } from 'react';
-import ContactVisibilityContext from '../contexts/ContactVisibilityContext';
+import NavContrastContext from './../contexts/NavContrastContext';
 
 export default function NavButton(props) {
 
-    const contactVisibility = useContext(ContactVisibilityContext);
+    const NavContrast = useContext(NavContrastContext);
 
     let overlayStyle = "";
-    if (contactVisibility) {
+    if (NavContrast) {
         overlayStyle = "md:dark:bg-contactdark";
     }
 
