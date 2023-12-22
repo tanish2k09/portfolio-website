@@ -6,7 +6,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ThemeContainer } from "./components/ThemeContainer.jsx";
 
 require("./components/LogoOverlay");
-// require("./components/BlobOverlay");
 
 const router = createBrowserRouter([
     {
@@ -23,9 +22,4 @@ const router = createBrowserRouter([
     },
 ]);
 
-ReactDOM.render(
-    <React.StrictMode>
-        <RouterProvider router={router} />
-    </React.StrictMode>,
-    document.getElementById("root")
-);
+ReactDOM.render(<RouterProvider router={router} />, document.getElementById("root"));
