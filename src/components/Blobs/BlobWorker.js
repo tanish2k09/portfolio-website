@@ -5,6 +5,7 @@ export const MSG_TYPE = {
     SET_DARK_MODE: "setDarkMode",
     SET_EXPANSION: "expansion",
     RESIZE: "resize",
+    ENERGIZE: "energize",
 };
 
 const blob = new Blob(HALF_PI, HALF_PI);
@@ -42,7 +43,9 @@ onmessage = function (event) {
         case MSG_TYPE.SET_DARK_MODE:
             onSetDarkModeMessage(event.data);
             break;
-        // TODO: handle future cases: theme changes and expansion
+        case MSG_TYPE.ENERGIZE:
+            blob.reactivePx(true);
+            break;
         default:
             console.log("Blob: Discarding event - Worker message missing 'type' property");
     }
@@ -69,7 +72,6 @@ function onInitMessage(data) {
 function onResizeMessage(data) {
     const { window } = data;
     blob.setWindow(window);
-    console.log("Blob: Resized");
 }
 
 function onExpandMessage(data) {
@@ -79,11 +81,9 @@ function onExpandMessage(data) {
     } else {
         blob.cueCollapse();
     }
-    console.log("Blob: Expansion");
 }
 
 function onSetDarkModeMessage(data) {
     const { value } = data;
     blob.setDarkMode(value);
-    console.log("Blob: Dark Mode");
 }
