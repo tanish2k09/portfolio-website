@@ -3,14 +3,18 @@ import ReactDOM from "react-dom";
 import Home from "./routes/Home.jsx";
 import Error404 from "./routes/Error404.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { ThemeContainer } from "./components/ThemeContainer.jsx";
 
 require("./components/LogoOverlay");
-// require("./components/BlobOverlay");
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Home />,
+        element: (
+            <ThemeContainer>
+                <Home />
+            </ThemeContainer>
+        ),
     },
     {
         path: "*",
@@ -18,11 +22,4 @@ const router = createBrowserRouter([
     },
 ]);
 
-ReactDOM.render(
-    <React.StrictMode>
-        <RouterProvider router={router} />
-    </React.StrictMode>,
-    document.getElementById("root")
-);
-
-// require("./scripts/ContactBG");
+ReactDOM.render(<RouterProvider router={router} />, document.getElementById("root"));
