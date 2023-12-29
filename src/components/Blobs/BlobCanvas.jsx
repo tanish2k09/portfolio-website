@@ -2,6 +2,10 @@ import { useRef, useEffect } from "react";
 
 import { MSG_TYPE } from "./BlobWorker";
 
+// Rate limit resize events to prevent the canvas from messaging the worker too much
+// This value is in milliseconds.
+const RESIZE_RATE_LIMIT = 200;
+
 const BlobCanvas = (props) => {
 
     // Use a ref so the canvas doesn't keep rerendering
@@ -11,8 +15,10 @@ const BlobCanvas = (props) => {
     useEffect(() => {
         const canvas = canvasRef.current;
         const offscreen = canvas.transferControlToOffscreen();
+        let resizeToken = null;
+
         const initBlobMessage = {
-            type: MSG_TYPE.INIT,   // TODO: make htis an enum
+            type: MSG_TYPE.INIT,
             canvas: offscreen,
             window: {
                 devicePixelRatio: window.devicePixelRatio,
@@ -27,10 +33,32 @@ const BlobCanvas = (props) => {
 
         worker.postMessage(initBlobMessage, [offscreen]);
 
+        // Rate-limited resize event listener
+        let commitResizeToken = null;
+        resizeToken = window.addEventListener("resize", () => {
+            // Clear the previous timeout if it exists
+            if (commitResizeToken) {
+                clearTimeout(commitResizeToken);
+            }
+
+            // Set a new timeout to send the resize message
+            commitResizeToken = setTimeout(() => {
+                const resizeBlobMessage = {
+                    type: MSG_TYPE.RESIZE,
+                    window: {
+                        devicePixelRatio: window.devicePixelRatio,
+                        innerHeight: window.innerHeight,
+                        innerWidth: window.innerWidth,
+                    },
+                };
+                worker.postMessage(resizeBlobMessage);
+            }, RESIZE_RATE_LIMIT);
+        });
+
         return () => {
-            // TODO: Potentially figure out how to do this on the web worker
-            // window.cancelAnimationFrame(animationFrameId)
-            worker.terminate();
+            // Clear any event and timeout tokens
+            clearTimeout(commitResizeToken);
+            window.removeEventListener("resize", resizeToken);
         }
     }, [worker]);
 

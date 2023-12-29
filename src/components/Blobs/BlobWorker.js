@@ -22,12 +22,14 @@ const render = () => {
 };
 
 onmessage = function (event) {
-    // TODO: add an enum to support switch statements
     switch (event.data.type) {
         case MSG_TYPE.INIT:
             onInitMessage(event.data);
             break;
-        // TODO: handle future cases: when window resizes or theme changes
+        case MSG_TYPE.RESIZE:
+            onResizeMessage(event.data);
+            break;
+        // TODO: handle future cases: theme changes and expansion
         default:
             console.log("Blob: Discarding event - Worker message missing 'type' property");
     }
@@ -51,8 +53,15 @@ function onInitMessage(data) {
     animationFrameId = requestAnimationFrame(render);
 }
 
+function onResizeMessage(data) {
+    const { window } = data;
+    blob.setWindow(window);
+    console.log("Blob: Resized");
+}
+
 export const MSG_TYPE = {
     INIT: "init",
     SET_DARK_MODE: "setDarkMode",
     EXPAND: "expansion",
+    RESIZE: "resize",
 };

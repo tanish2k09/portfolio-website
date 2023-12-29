@@ -22,6 +22,8 @@ function Home() {
 
     function useWorker() {
         if (workerRef.current == null) {
+            // Once created, this worker will be reused for the lifetime of the app
+            // This worker is also never terminated. The browser is hopefully smart enough to handle it.
             workerRef.current = new Worker(new URL("./../components/Blobs/BlobWorker.js", import.meta.url));
         }
         return workerRef.current;
