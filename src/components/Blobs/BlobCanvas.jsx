@@ -1,46 +1,97 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useContext } from "react";
+import ContactVisibilityContext from "../../contexts/ContactVisibilityContext";
+import DarkModeContext from "../../contexts/DarkModeContext";
 
-const fps = 120;
+import { MSG_TYPE } from "./BlobWorker";
+
+// Rate limit resize events to prevent the canvas from messaging the worker too much
+// This value is in milliseconds.
+const RESIZE_RATE_LIMIT = 200;
 
 const BlobCanvas = (props) => {
 
     // Use a ref so the canvas doesn't keep rerendering
     const canvasRef = useRef(null);
-    let blob = props.useBlob();
+    const contactVisibilityVM = useContext(ContactVisibilityContext);
+    const darkModeVM = useContext(DarkModeContext);
+    let worker = props.useWorker();
 
+    // Canvas-related events
     useEffect(() => {
-        let animationFrameId;
-        let lastFrameTime = null;
+        const canvas = canvasRef.current;
+        const offscreen = canvas.transferControlToOffscreen();
+        let resizeToken = null;
 
-        const render = () => {
-            const canvas = canvasRef.current;
-            const ctx = canvas.getContext("2d");
+        const initBlobMessage = {
+            type: MSG_TYPE.INIT,
+            canvas: offscreen,
+            window: {
+                devicePixelRatio: window.devicePixelRatio,
+                innerHeight: window.innerHeight,
+                innerWidth: window.innerWidth,
+            },
+            isDarkMade: localStorage.theme === "dark" || (
+                !("theme" in localStorage)
+                && window.matchMedia("(prefers-color-scheme: dark)").matches
+            ),
+        };
 
-            // Refresh blob attributes
-            blob.setContext(ctx)
-            blob.energize();
-            blob.syncScale();
+        worker.postMessage(initBlobMessage, [offscreen]);
 
-            // Update the phase of the blob with an FPS-limit
-            if (lastFrameTime == null || performance.now() - lastFrameTime > 1000 / fps) {
-                blob.updatePhase()
-                lastFrameTime = performance.now();
+        // Rate-limited resize event listener
+        let commitResizeToken = null;
+        resizeToken = window.addEventListener("resize", () => {
+            // Clear the previous timeout if it exists
+            if (commitResizeToken) {
+                clearTimeout(commitResizeToken);
             }
 
-            // Draw the blob if necessary
-            blob.updateRender();
-
-            // Requeue the render function
-            animationFrameId = requestAnimationFrame(render);
-        }
-
-        // First render frame
-        animationFrameId = requestAnimationFrame(render);
+            // Set a new timeout to send the resize message
+            commitResizeToken = setTimeout(() => {
+                const resizeBlobMessage = {
+                    type: MSG_TYPE.RESIZE,
+                    window: {
+                        devicePixelRatio: window.devicePixelRatio,
+                        innerHeight: window.innerHeight,
+                        innerWidth: window.innerWidth,
+                    },
+                };
+                worker.postMessage(resizeBlobMessage);
+            }, RESIZE_RATE_LIMIT);
+        });
 
         return () => {
-            window.cancelAnimationFrame(animationFrameId)
+            // Clear any event and timeout tokens
+            clearTimeout(commitResizeToken);
+            window.removeEventListener("resize", resizeToken);
         }
-    }, [blob]);
+    }, [worker]);
+
+    // Expansion events
+    useEffect(() => {
+        function contactVisibilityObserver(isVisible) {
+            worker.postMessage({ type: MSG_TYPE.SET_EXPANSION, value: isVisible === true });
+        }
+
+        contactVisibilityVM.subscribe(contactVisibilityObserver);
+
+        return () => {
+            contactVisibilityVM.unsubscribe(contactVisibilityObserver);
+        }
+    }, [contactVisibilityVM, worker]);
+
+    // Subscribe to the dark mode changes via VM and manage dark mode
+    useEffect(() => {
+        function darkModeObserver(isDarkMode) {
+            worker.postMessage({ type: MSG_TYPE.SET_DARK_MODE, value: isDarkMode === true });
+        }
+
+        darkModeVM.subscribe(darkModeObserver);
+
+        return () => {
+            darkModeVM.unsubscribe(darkModeObserver);
+        }
+    }, [darkModeVM, worker]);
 
     return (
         <canvas id={props.canvasId} className={props.canvasClasses} ref={canvasRef} />
