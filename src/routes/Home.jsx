@@ -47,7 +47,7 @@ function Home() {
 
                 <NavBlock />
                 <NameBlock />
-                <WorkBlock />
+                <WorkBlock useWorker={useWorkerCallback} />
                 <AboutBlock />
 
                 <ContactSection />

@@ -1,11 +1,6 @@
 import React from 'react';
-import { getBlob } from './Blobs/BlobOverlay';
+import { MSG_TYPE } from './Blobs/BlobWorker';
 
-const exciteBlob = event => {
-    console.log("exciting");
-    let blob = getBlob();
-    blob.reactivePx(true);
-}
 
 export default function SourceButton(props) {
 
@@ -14,6 +9,13 @@ export default function SourceButton(props) {
 
     if (props.ctaClasses) {
         ctaClasses = props.ctaClasses;
+    }
+
+    function exciteBlob() {
+        if (!props.useWorker) return;
+        const worker = props.useWorker();
+        console.log("Exciting blob");
+        worker.postMessage({ type: MSG_TYPE.ENERGIZE });
     }
 
     if (!props.url) {

@@ -53,7 +53,7 @@ export default function ProjectCard(props) {
   var button_key = 1;
   var cta_buttons = (
     props.ctas.map(cta => (
-      <SourceButton key={button_key++} url={cta.url} text={cta.title} ctaClasses={props.ctaClasses} />
+      <SourceButton key={button_key++} url={cta.url} text={cta.title} ctaClasses={props.ctaClasses} useWorker={props.useWorker} />
     ))
   );
 
