@@ -1,4 +1,6 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useContext } from "react";
+import ContactVisibilityContext from "../../contexts/ContactVisibilityContext";
+import DarkModeContext from "../../contexts/DarkModeContext";
 
 import { MSG_TYPE } from "./BlobWorker";
 
@@ -10,8 +12,11 @@ const BlobCanvas = (props) => {
 
     // Use a ref so the canvas doesn't keep rerendering
     const canvasRef = useRef(null);
+    const contactVisibilityVM = useContext(ContactVisibilityContext);
+    const darkModeVM = useContext(DarkModeContext);
     let worker = props.useWorker();
 
+    // Canvas-related events
     useEffect(() => {
         const canvas = canvasRef.current;
         const offscreen = canvas.transferControlToOffscreen();
@@ -61,6 +66,32 @@ const BlobCanvas = (props) => {
             window.removeEventListener("resize", resizeToken);
         }
     }, [worker]);
+
+    // Expansion events
+    useEffect(() => {
+        function contactVisibilityObserver(isVisible) {
+            worker.postMessage({ type: MSG_TYPE.SET_EXPANSION, value: isVisible === true });
+        }
+
+        contactVisibilityVM.subscribe(contactVisibilityObserver);
+
+        return () => {
+            contactVisibilityVM.unsubscribe(contactVisibilityObserver);
+        }
+    }, [contactVisibilityVM, worker]);
+
+    // Subscribe to the dark mode changes via VM and manage dark mode
+    useEffect(() => {
+        function darkModeObserver(isDarkMode) {
+            worker.postMessage({ type: MSG_TYPE.SET_DARK_MODE, value: isDarkMode === true });
+        }
+
+        darkModeVM.subscribe(darkModeObserver);
+
+        return () => {
+            darkModeVM.unsubscribe(darkModeObserver);
+        }
+    }, [darkModeVM, worker]);
 
     return (
         <canvas id={props.canvasId} className={props.canvasClasses} ref={canvasRef} />

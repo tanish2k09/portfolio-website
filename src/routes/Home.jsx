@@ -12,14 +12,12 @@ import ContactVisibilityViewModel from "../viewmodels/ContactVisibilityViewModel
 
 function Home() {
     const workerRef = useRef(null);
-    const [isDark, setDarkMode] = useState(true);
-    const darkModeVM = useContext(DarkModeContext);
+
 
     // The VM should never change, so we use a ref
     // In order to avoid passing a useVM hook down to components, 
     // we can provide the ref via ContactVisibilityContext
     const contactVisibilityVMRef = useRef(new ContactVisibilityViewModel(false));
-    const contactVisibilityVM = contactVisibilityVMRef.current;
 
     function useWorker() {
         if (workerRef.current === null)
@@ -28,51 +26,12 @@ function Home() {
             workerRef.current = new Worker(new URL("./../components/Blobs/BlobWorker.js", import.meta.url));
         return workerRef.current;
     }
-
-    // Subscribe to the contact visibility changes via VM and manage blob expansion/collapse 
-    useEffect(() => {
-        function contactVisibilityObserver(isVisible) {
-            if (isVisible) {
-                blobRef.current.cueExpansion();
-            } else {
-                blobRef.current.cueCollapse();
-            }
-        }
-
-        contactVisibilityVM.subscribe(contactVisibilityObserver);
-
-        return () => {
-            contactVisibilityVM.unsubscribe(contactVisibilityObserver);
-        }
-    }, [contactVisibilityVM]);
-
-    // Subscribe to the dark mode changes via VM and manage dark mode
-    useEffect(() => {
-        function darkModeObserver(isDarkMode) {
-            // Prevent duplicate state changes
-            if (isDark === isDarkMode)
-                return;
-
-            // Update the state - will cause Home to re-render
-            setDarkMode(isDarkMode);
-
-            // Update the blob's dark mode
-            if (blobRef.current !== undefined) {
-                blobRef.current.setDarkMode(isDarkMode);
-            }
-        }
-
-        darkModeVM.subscribe(darkModeObserver);
-
-        return () => {
-            darkModeVM.unsubscribe(darkModeObserver);
-        }
-    }, [blobRef, darkModeVM, isDark, setDarkMode]);
+    const useWorkerCallback = useCallback(useWorker, [workerRef]);
 
     return (
-        <div id="app" className={`${isDark ? "dark" : ""} transition-colors`}>
+        <div id="app" className="dark:bg-dark bg-primarylight m-0 overscroll-x-none transition-colors duration-500">
             <ContactVisibilityContext.Provider value={contactVisibilityVMRef.current}>
-                <BlobContainer useBlob={useBlobCallback} />
+                <BlobContainer useWorker={useWorkerCallback} />
 
                 <NavBlock />
                 <NameBlock />

@@ -1,5 +1,12 @@
 import { Blob, HALF_PI } from "./BlobOverlay.js";
 
+export const MSG_TYPE = {
+    INIT: "init",
+    SET_DARK_MODE: "setDarkMode",
+    SET_EXPANSION: "expansion",
+    RESIZE: "resize",
+};
+
 const blob = new Blob(HALF_PI, HALF_PI);
 const phaseFPS = 120;
 let animationFrameId;
@@ -28,6 +35,12 @@ onmessage = function (event) {
             break;
         case MSG_TYPE.RESIZE:
             onResizeMessage(event.data);
+            break;
+        case MSG_TYPE.SET_EXPANSION:
+            onExpandMessage(event.data);
+            break;
+        case MSG_TYPE.SET_DARK_MODE:
+            onSetDarkModeMessage(event.data);
             break;
         // TODO: handle future cases: theme changes and expansion
         default:
@@ -59,9 +72,18 @@ function onResizeMessage(data) {
     console.log("Blob: Resized");
 }
 
-export const MSG_TYPE = {
-    INIT: "init",
-    SET_DARK_MODE: "setDarkMode",
-    EXPAND: "expansion",
-    RESIZE: "resize",
-};
+function onExpandMessage(data) {
+    const { value } = data;
+    if (value) {
+        blob.cueExpansion();
+    } else {
+        blob.cueCollapse();
+    }
+    console.log("Blob: Expansion");
+}
+
+function onSetDarkModeMessage(data) {
+    const { value } = data;
+    blob.setDarkMode(value);
+    console.log("Blob: Dark Mode");
+}
