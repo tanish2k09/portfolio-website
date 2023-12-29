@@ -149,8 +149,8 @@ export class Blob {
 
         this.ctx.closePath();
         this.ctx.fillStyle = this.getFillColor();
-        this.ctx.shadowColor = this.darkMode ? "transparent" : trimColor;
-        this.ctx.shadowBlur = 40 * this.gScale;
+        this.ctx.shadowColor = this.getFillColor();
+        this.ctx.shadowBlur = 2 * this.gScale;
         this.ctx.fill();
     }
 
