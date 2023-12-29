@@ -18,6 +18,7 @@ export default class DarkModeViewModel {
     }
 
     toggle() {
+        localStorage.setItem("theme", this.isDark ? "light" : "dark");
         this.isDark = !this.isDark;
     }
 
