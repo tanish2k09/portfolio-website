@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import DarkModeContext from './../contexts/DarkModeContext';
 import DarkModeViewModel from '../viewmodels/DarkModeViewModel';
 

@@ -5,7 +5,7 @@ import Error404 from "./routes/Error404.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ThemeContainer } from "./components/ThemeContainer.jsx";
 
-require("./components/LogoOverlay");
+require("./components/Logos/LogoOverlay.js");
 
 const router = createBrowserRouter([
     {

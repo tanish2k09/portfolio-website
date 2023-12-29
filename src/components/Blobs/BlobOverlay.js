@@ -46,7 +46,7 @@ let energyInterpolator = new BlobInterpolator(energizeDuration);
 let decayInterpolator = new BlobInterpolator(fullEnergyDecayDelay);
 
 export class Blob {
-    constructor(startingAngle, sectorAngle, ctx, window, isDarkMode) {
+    constructor(startingAngle, sectorAngle) {
         this.radiusOffset = 0;
 
         this.startingAngle = startingAngle;
@@ -76,13 +76,7 @@ export class Blob {
         this.blobEnergyState = blobEnergyStates.REST;
 
         this.darkMode = true; // default value for now
-        this.gScale = 2;      // default value for now
-        // TODO: Move this outside the class and make it a state param in react
-        // this.setDarkMode(
-        //     localStorage.theme === "dark" ||
-        //         (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)
-        // );
-
+        this.gScale = 2; // default value for now
     }
 
     isAnimating() {
@@ -154,6 +148,7 @@ export class Blob {
             this.ctx.lineTo(this.ctx.canvas.width + vertex.x, vertex.y);
         });
 
+        this.ctx.shadowColor = this.getFillColor();
         this.ctx.strokeStyle = this.getStrokeColor();
         this.ctx.closePath();
         this.ctx.fillStyle = this.getFillColor();
@@ -356,13 +351,14 @@ export class Blob {
     setContext(ctx) {
         this.ctx = ctx;
         this.canvas = ctx.canvas;
+        this.ctx.shadowBlur = 15;
     }
 
     setWindow(window) {
         this.window = {
             devicePixelRatio: window.devicePixelRatio,
             innerHeight: window.innerHeight,
-            innerWidth: window.innerWidth
+            innerWidth: window.innerWidth,
         };
 
         if (this.window.devicePixelRatio < 2) {

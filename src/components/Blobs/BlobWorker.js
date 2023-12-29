@@ -8,15 +8,15 @@ export const MSG_TYPE = {
 };
 
 const blob = new Blob(HALF_PI, HALF_PI);
-const phaseFPS = 120;
+const PHASE_FPS = 120;
 let animationFrameId;
-let lastFrameTime = null;
+let lastFrameTime = 0;
 const render = () => {
     blob.energize();
     blob.syncScale();
 
     // Update the phase of the blob with an FPS-limit
-    if (lastFrameTime == null || performance.now() - lastFrameTime > 1000 / phaseFPS) {
+    if (performance.now() - lastFrameTime > 1000 / PHASE_FPS) {
         blob.updatePhase();
         lastFrameTime = performance.now();
     }

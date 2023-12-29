@@ -20,7 +20,6 @@ const BlobCanvas = (props) => {
     useEffect(() => {
         const canvas = canvasRef.current;
         const offscreen = canvas.transferControlToOffscreen();
-        let resizeToken = null;
 
         const initBlobMessage = {
             type: MSG_TYPE.INIT,
@@ -39,6 +38,7 @@ const BlobCanvas = (props) => {
         worker.postMessage(initBlobMessage, [offscreen]);
 
         // Rate-limited resize event listener
+        let resizeToken = null;
         let commitResizeToken = null;
         resizeToken = window.addEventListener("resize", () => {
             // Clear the previous timeout if it exists
@@ -57,6 +57,7 @@ const BlobCanvas = (props) => {
                     },
                 };
                 worker.postMessage(resizeBlobMessage);
+                resizeToken = null;
             }, RESIZE_RATE_LIMIT);
         });
 
@@ -69,6 +70,11 @@ const BlobCanvas = (props) => {
 
     // Expansion events
     useEffect(() => {
+        if (props.disableExpansion === true) {
+            console.log("returning expansion")
+            return;
+        }
+
         function contactVisibilityObserver(isVisible) {
             worker.postMessage({ type: MSG_TYPE.SET_EXPANSION, value: isVisible === true });
         }
@@ -78,7 +84,7 @@ const BlobCanvas = (props) => {
         return () => {
             contactVisibilityVM.unsubscribe(contactVisibilityObserver);
         }
-    }, [contactVisibilityVM, worker]);
+    }, [contactVisibilityVM, worker, props.disableExpansion]);
 
     // Subscribe to the dark mode changes via VM and manage dark mode
     useEffect(() => {
