@@ -71,7 +71,6 @@ const BlobCanvas = (props) => {
     // Expansion events
     useEffect(() => {
         if (props.disableExpansion === true) {
-            console.log("returning expansion")
             return;
         }
 
