@@ -19,7 +19,7 @@ const masonryOptions = {
     percentPosition: true
 };
 
-export default function WorkGridMasonry() {
+export default function WorkGridMasonry(props) {
     return (
         <Masonry options={masonryOptions}>
             <div className="work-grid md:m-0"></div>
@@ -183,6 +183,7 @@ export default function WorkGridMasonry() {
                     { title: "Energize Blob? 👀" }
                 ]}
                 ctaClasses={"border-white dark:border-portfoliodarker text-primary dark:text-portfolio hover:bg-white hover:text-dark dark:hover:bg-portfoliodarker dark:hover:text-primary transition-colors duration-500"}
+                useWorker={props.useWorker}
             />
 
             {/* K-LAPSE */}

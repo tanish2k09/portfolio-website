@@ -1,15 +1,25 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./components/App.jsx";
+import Home from "./routes/Home.jsx";
+import Error404 from "./routes/Error404.jsx";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { ThemeContainer } from "./components/ThemeContainer.jsx";
 
-require("./components/LogoOverlay");
-require("./components/BlobOverlay");
+require("./components/Logos/LogoOverlay.js");
 
-ReactDOM.render(
-    <React.StrictMode>
-        <App />
-    </React.StrictMode>,
-    document.getElementById("root")
-)
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: (
+            <ThemeContainer>
+                <Home />
+            </ThemeContainer>
+        ),
+    },
+    {
+        path: "*",
+        element: <Error404 />,
+    },
+]);
 
-require("./scripts/ContactBG");
+ReactDOM.render(<RouterProvider router={router} />, document.getElementById("root"));
