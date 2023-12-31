@@ -11,18 +11,11 @@ import {
     interpolateColor,
 } from "./BlobInterpolator.js";
 
-const canvas = document.getElementById("vector_canvas");
-const ctx = canvas.getContext("2d");
-
-const HALF_PI = Math.PI / 2;
+export const HALF_PI = Math.PI / 2;
 const PI = Math.PI;
 const radians = (deg) => (deg * PI) / 180.0;
 const map = (value, x1, y1, x2, y2) => ((value - x1) * (y2 - x2)) / (y1 - x1) + x2;
-
-var gScale = 1;
-if (window.devicePixelRatio < 2) {
-    gScale = 2;
-}
+// eslint-disable-next-line no-restricted-globals
 
 const blobStates = {
     EXPANDED: 0,
@@ -42,22 +35,20 @@ const scaleDuration = 1000; // milliseconds
 const energizeDuration = 2000; // milliseconds
 const fullEnergyDecayDelay = 3000; // milliseconds
 const fillColor = "#00d8b6";
-const trimColor = "#00cdac";
 const expandedDarkColor = "#1e2f43";
-const expandedDarkColorTrim = "#23374f";
-const radianStep = 1;
+const RADIAN_STEP = 0.5;
 export const POLL_INTERVAL = 200;
 
 let scaleInterpolator = new BlobInterpolator(scaleDuration);
 let energyInterpolator = new BlobInterpolator(energizeDuration);
 let decayInterpolator = new BlobInterpolator(fullEnergyDecayDelay);
 
-class Blob {
-    constructor() {
+export class Blob {
+    constructor(startingAngle, sectorAngle) {
         this.radiusOffset = 0;
 
-        this.startingAngle = HALF_PI;
-        this.sectorAngle = HALF_PI;
+        this.startingAngle = startingAngle;
+        this.sectorAngle = sectorAngle;
 
         // Controls extent of "distortions"
         // Let's say, 5% of the blob itself is the wave
@@ -78,16 +69,12 @@ class Blob {
             `${this.waveOneHarmonic} - ${this.waveOnePhaseMultiplier}, ${this.waveTwoHarmonic} - ${this.waveTwoPhaseMultiplier}`
         );
 
-        // Calculate radius
-        this.updateValues();
-
         // Track state
         this.state = blobStates.REGULAR;
         this.blobEnergyState = blobEnergyStates.REST;
-        this.setDarkMode(
-            localStorage.theme === "dark" ||
-                (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)
-        );
+
+        this.darkMode = true; // default value for now
+        this.gScale = 2; // default value for now
     }
 
     isAnimating() {
@@ -98,18 +85,19 @@ class Blob {
         this.darkMode = isDarkMode;
     }
 
-    update() {
+    updateRender() {
         if (this.state === blobStates.EXPANDED) {
             return;
         }
 
         this.updateValues();
+        this.generateVertices();
         this.draw();
     }
 
     updateValues() {
-        canvas.width = window.innerWidth * gScale;
-        canvas.height = window.innerHeight * gScale;
+        this.ctx.canvas.width = this.window.innerWidth * this.gScale;
+        this.ctx.canvas.height = this.window.innerHeight * this.gScale;
         this.baseRadius = this.getDiagonal() * 0.4;
         this.flux = this.baseRadius * this.fluxRatio;
     }
@@ -118,17 +106,13 @@ class Blob {
         this.phase += this.phaseFlux;
     }
 
-    draw() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    generateVertices() {
+        // Empty vertices array
+        this.vertices = [];
 
-        // Move to the top right corner
-        ctx.lineWidth = 20 * gScale;
-        ctx.beginPath();
-        ctx.moveTo(canvas.width, 0);
-
-        // Draw the circular wave
+        // Generate the sample points on the wave
         let endAngle = this.startingAngle + this.sectorAngle;
-        for (let angle = this.startingAngle; angle < endAngle + radianStep; angle += radians(radianStep)) {
+        for (let angle = this.startingAngle; angle < endAngle + RADIAN_STEP; angle += radians(RADIAN_STEP)) {
             // The circular wave is a superposition of 2 sin waves
             let r =
                 (Math.sin(
@@ -147,18 +131,30 @@ class Blob {
 
             let x = r * Math.cos(angle);
             let y = r * Math.sin(angle);
-            ctx.lineTo(canvas.width + x, y);
+            this.vertices.push({ x: x, y: y });
         }
+    }
 
-        ctx.strokeStyle = this.getStrokeColor();
-        ctx.stroke();
-        ctx.closePath();
-        ctx.fillStyle = this.getFillColor();
-        ctx.fill();
+    draw() {
+        this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+
+        this.ctx.beginPath();
+        this.ctx.moveTo(this.ctx.canvas.width, 0);
+
+        // Draw the vertices
+        this.vertices.forEach((vertex) => {
+            this.ctx.lineTo(this.ctx.canvas.width + vertex.x, vertex.y);
+        });
+
+        this.ctx.closePath();
+        this.ctx.fillStyle = this.getFillColor();
+        this.ctx.shadowColor = this.getFillColor();
+        this.ctx.shadowBlur = 2 * this.gScale;
+        this.ctx.fill();
     }
 
     getDiagonal() {
-        return Math.hypot(canvas.width, canvas.height);
+        return Math.hypot(this.ctx.canvas.width, this.ctx.canvas.height);
     }
 
     syncScale() {
@@ -333,50 +329,22 @@ class Blob {
         );
     }
 
-    getStrokeColor() {
-        if (!this.darkMode || this.state === blobStates.REGULAR) {
-            return trimColor;
-        }
+    setContext(ctx) {
+        this.ctx = ctx;
+        this.canvas = ctx.canvas;
+    }
 
-        if (this.state === blobStates.EXPANDED) {
-            return expandedDarkColorTrim;
-        }
+    setWindow(window) {
+        this.window = {
+            devicePixelRatio: window.devicePixelRatio,
+            innerHeight: window.innerHeight,
+            innerWidth: window.innerWidth,
+        };
 
-        // We interpolate color on expansion if dark mode is enabled
-        return interpolateColor(
-            trimColor,
-            expandedDarkColorTrim,
-            colorInterpolatorValue(scaleInterpolator.currentTimeFraction)
-        );
+        if (this.window.devicePixelRatio < 2) {
+            this.gScale = 2;
+        } else {
+            this.gScale = 1;
+        }
     }
 }
-
-const blob = new Blob(Math.PI / 2, Math.PI / 2);
-
-const fps = 120;
-var lastFrameTime = null;
-function fpsLimitedSyncedFrame(render) {
-    if (lastFrameTime == null || performance.now() - lastFrameTime > 1000 / fps) {
-        render();
-        lastFrameTime = performance.now();
-    }
-}
-
-function loop() {
-    blob.energize();
-    blob.syncScale();
-    blob.update();
-    fpsLimitedSyncedFrame(() => {
-        blob.updatePhase();
-    });
-    window.requestAnimationFrame(loop);
-}
-
-// Repeat the animation frames
-loop();
-
-export function getBlob() {
-    return blob;
-}
-
-require("./BlobInteraction");

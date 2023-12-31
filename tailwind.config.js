@@ -23,9 +23,9 @@ module.exports = {
             // => @media (min-width: 1280px) { ... }
         },
         fontFamily: {
-            display: ["Work Sans", "sans-serif"],
+            display: ["Poppins", "sans-serif"],
             mono: ["DM Mono"],
-            body: ["Work Sans"],
+            body: ["Poppins"],
             nav: ["Poppins"],
         },
         textColor: {
