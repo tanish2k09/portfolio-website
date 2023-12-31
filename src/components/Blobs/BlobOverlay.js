@@ -35,7 +35,6 @@ const scaleDuration = 1000; // milliseconds
 const energizeDuration = 2000; // milliseconds
 const fullEnergyDecayDelay = 3000; // milliseconds
 const fillColor = "#00d8b6";
-const trimColor = "#00b79a";
 const expandedDarkColor = "#1e2f43";
 const RADIAN_STEP = 0.5;
 export const POLL_INTERVAL = 200;
