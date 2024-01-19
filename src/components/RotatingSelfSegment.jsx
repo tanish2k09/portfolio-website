@@ -3,7 +3,7 @@ import TextLoop from "react-text-loop";
 
 function RotatingSelfSegment() {
   return (
-    <TextLoop interval={1800} springConfig={{ stiffness: 300, damping: 50 }}>
+    <TextLoop interval={3000} springConfig={{ stiffness: 300, damping: 50 }}>
       <span>am a Software Developer 💻</span>
       <span>make some cool stuff 🦄</span>
       <span>really like minimalism 🖋️</span>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { MSG_TYPE } from './Blobs/BlobWorker';
 
 
 export default function SourceButton(props) {
@@ -13,9 +12,10 @@ export default function SourceButton(props) {
 
     function exciteBlob() {
         if (!props.useWorker) return;
-        const worker = props.useWorker();
+        const worker = props.useWorker;
         console.log("Exciting blob");
-        worker.postMessage({ type: MSG_TYPE.ENERGIZE });
+
+        worker.instance.reactivePx(true);;
     }
 
     if (!props.url) {

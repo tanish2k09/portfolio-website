@@ -12,6 +12,7 @@ import {
 } from "./BlobInterpolator.js";
 
 export const HALF_PI = Math.PI / 2;
+export const BLOB_PHASE_FPS = 120;
 const PI = Math.PI;
 const radians = (deg) => (deg * PI) / 180.0;
 const map = (value, x1, y1, x2, y2) => ((value - x1) * (y2 - x2)) / (y1 - x1) + x2;
@@ -186,6 +187,14 @@ export class Blob {
         }
     }
 
+    setExpansion(value) {
+        if (value) {
+            this.cueExpansion();
+        } else {
+            this.cueCollapse();
+        }
+    }
+
     expandRadius() {
         if (this.state === blobStates.EXPANDED) {
             return;
@@ -345,6 +354,37 @@ export class Blob {
             this.gScale = 2;
         } else {
             this.gScale = 1;
+        }
+    }
+}
+
+export class BlobRenderer {
+    constructor(blob) {
+        this.blob = blob;
+        this.animationFrameId = null;
+        this.lastFrameTime = 0;
+    }
+
+    startLoop() {
+        this.blob.energize();
+        this.blob.syncScale();
+
+        // Update the phase of the blob with an FPS-limit
+        if (performance.now() - this.lastFrameTime > 1000 / BLOB_PHASE_FPS) {
+            this.blob.updatePhase();
+            this.lastFrameTime = performance.now();
+        }
+
+        // Draw the blob if necessary
+        this.blob.updateRender();
+
+        // Requeue the render function
+        this.animationFrameId = requestAnimationFrame(this.startLoop.bind(this));
+    }
+
+    stopLoop() {
+        if (this.animationFrameId) {
+            cancelAnimationFrame(this.animationFrameId);
         }
     }
 }
