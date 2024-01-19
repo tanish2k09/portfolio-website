@@ -2,7 +2,6 @@ import { useRef, useEffect, useContext } from "react";
 import ContactVisibilityContext from "../../contexts/ContactVisibilityContext";
 import DarkModeContext from "../../contexts/DarkModeContext";
 import { BlobRenderer } from "./BlobOverlay";
-import { MSG_TYPE } from "./BlobWorker";
 
 // Rate limit resize events to prevent the canvas from messaging the worker too much
 // This value is in milliseconds.
