@@ -11,24 +11,16 @@ import LogoCanvas from "../components/Logos/LogoCanvas.jsx";
 import { LogosGrid } from "../components/Logos/LogoOverlay.js";
 import { OverlayContainer } from "../components/OverlayContainer.jsx";
 import BlobCanvas from "../components/Blobs/BlobCanvas.jsx";
+import { useWorker } from "../hooks/UseWorker.jsx";
 
 function Home() {
-    const workerRef = useRef(null);
+    const workerRef = useWorker();
     const logosRef = useRef(null);
 
     // The VM should never change, so we use a ref
     // In order to avoid passing a useVM hook down to components, 
     // we can provide the ref via ContactVisibilityContext
     const contactVisibilityVMRef = useRef(new ContactVisibilityViewModel(false));
-
-    function useWorker() {
-        if (workerRef.current === null)
-            // Once created, this worker will be reused for the lifetime of the app
-            // This worker is also never terminated. The browser is hopefully smart enough to handle it.
-            workerRef.current = new Worker(new URL("./../components/Blobs/BlobWorker.js", import.meta.url));
-        return workerRef.current;
-    }
-    const useWorkerCallback = useCallback(useWorker, [workerRef]);
 
     function useLogos() {
         if (logosRef.current === null)
@@ -42,12 +34,12 @@ function Home() {
             <ContactVisibilityContext.Provider value={contactVisibilityVMRef.current}>
                 <OverlayContainer>
                     <LogoCanvas canvasClasses="w-full h-full z-[-1] absolute" useLogos={useLogosCallback} />
-                    <BlobCanvas canvasClasses="w-full h-full z-0 absolute" useWorker={useWorkerCallback} />
+                    <BlobCanvas canvasClasses="w-full h-full z-0 absolute" useWorker={workerRef} />
                 </OverlayContainer>
 
                 <NavBlock />
                 <NameBlock />
-                <WorkBlock useWorker={useWorkerCallback} />
+                <WorkBlock useWorker={workerRef} />
                 <AboutBlock />
 
                 <ContactSection />

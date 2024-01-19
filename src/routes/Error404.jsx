@@ -5,19 +5,12 @@ import { OverlayContainer } from "../components/OverlayContainer";
 import { LogosGrid } from "../components/Logos/LogoOverlay";
 import { ThemeContainer } from "../components/ThemeContainer";
 import DarkModeToggle from "../components/DarkModeToggle";
+import { useWorker } from "../hooks/UseWorker";
 
 const Error404 = () => {
 
-    const workerRef = useRef(null);
+    const workerRef = useWorker();
     const logosRef = useRef(null);
-
-    function useWorker() {
-        if (workerRef.current == null) {
-            workerRef.current = new Worker(new URL("./../components/Blobs/BlobWorker.js", import.meta.url));
-        }
-        return workerRef.current;
-    }
-    const useWorkerCallback = useWorker;
 
     function useLogos() {
         if (logosRef.current == null) {
@@ -32,7 +25,7 @@ const Error404 = () => {
             <div className="w-screen h-screen relative z-0 dark:bg-dark bg-primarylight overscroll-x-none transition-all duration-500 md:dark:text-shadow-md dark:text-shadow-min font-nav">
                 <OverlayContainer>
                     <LogoCanvas canvasClasses="w-full h-full z-[-1] absolute" useLogos={useLogosCallback} />
-                    <BlobCanvas canvasClasses="w-full h-full z-0 absolute" useWorker={useWorkerCallback} disableExpansion={true} />
+                    <BlobCanvas canvasClasses="w-full h-full z-0 absolute" useWorker={workerRef} disableExpansion={true} />
                 </OverlayContainer>
                 <div className="relative w-full h-full flex flex-col justify-center items-center z-[1]">
                     <h1 className="text-3xl font-semibold text-textdarker dark:text-primary">404</h1>
