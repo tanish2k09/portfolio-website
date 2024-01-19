@@ -1,4 +1,13 @@
-import { Blob, HALF_PI } from "./BlobOverlay.js";
+/*
+NOTE: 
+This file is a Web Worker. It is run in a separate thread from the main.
+This file is likely executed twice, once in the main JS thread to read all the exports, sorta like 'require'
+and once in a separate thread to actually run the code, created with 'new Worker()'.
+
+Because of this detail, global vars have been made null until first init.
+*/
+
+import { Blob, BlobRenderer, HALF_PI } from "./BlobOverlay.js";
 
 export const MSG_TYPE = {
     INIT: "init",
@@ -8,26 +17,8 @@ export const MSG_TYPE = {
     ENERGIZE: "energize",
 };
 
-const blob = new Blob(HALF_PI, HALF_PI);
-const PHASE_FPS = 120;
-let animationFrameId;
-let lastFrameTime = 0;
-const render = () => {
-    blob.energize();
-    blob.syncScale();
-
-    // Update the phase of the blob with an FPS-limit
-    if (performance.now() - lastFrameTime > 1000 / PHASE_FPS) {
-        blob.updatePhase();
-        lastFrameTime = performance.now();
-    }
-
-    // Draw the blob if necessary
-    blob.updateRender();
-
-    // Requeue the render function
-    animationFrameId = requestAnimationFrame(render);
-};
+let blob = null;
+let renderer = null;
 
 onmessage = function (event) {
     switch (event.data.type) {
@@ -47,26 +38,31 @@ onmessage = function (event) {
             blob.reactivePx(true);
             break;
         default:
-            console.log("Blob: Discarding event - Worker message missing 'type' property");
+            return;
     }
 };
 
 function onInitMessage(data) {
-    const { canvas, window, isDarkMode } = data;
+    const { canvas, window } = data;
     const ctx = canvas.getContext("2d");
 
-    // Make sure any previous calculations are cleared
-    if (animationFrameId) {
-        cancelAnimationFrame(animationFrameId);
+    if (blob === null) {
+        blob = new Blob(HALF_PI, HALF_PI);
     }
+
+    if (renderer === null) {
+        renderer = new BlobRenderer(blob);
+    }
+
+    // Make sure any previous calculations are cleared
+    renderer.stopLoop();
 
     // Refresh blob attributes
     blob.setContext(ctx);
     blob.setWindow(window);
-    blob.setDarkMode(isDarkMode);
 
     // First render frame
-    animationFrameId = requestAnimationFrame(render);
+    renderer.startLoop();
 }
 
 function onResizeMessage(data) {
@@ -76,11 +72,7 @@ function onResizeMessage(data) {
 
 function onExpandMessage(data) {
     const { value } = data;
-    if (value) {
-        blob.cueExpansion();
-    } else {
-        blob.cueCollapse();
-    }
+    blob.setExpansion(value);
 }
 
 function onSetDarkModeMessage(data) {
