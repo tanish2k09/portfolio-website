@@ -1,13 +1,27 @@
 import React from 'react';
 import Tag from './Tag';
-import SourceButton from './SourceButton';
+import SourceButton, { IconSourceButton } from './SourceButton';
+import { ReactComponent as GITHUB_SVG } from '../assets/github.svg';
+import { ReactComponent as PLAY_STORE_SVG } from '../assets/play-logo.svg';
+import { ReactComponent as SHIELD_SVG } from '../assets/Shield.svg';
+import { ReactComponent as QUOTES_SVG } from '../assets/double_quotes.svg';
 
+// !! These strings should be less than 20 characters long !!
+// !! If you want longer strings, you'll have to change the sourcebutton max-width in tailwind.config.js !!
 export const CTA_TEXT = {
-  GITHUB: 'View source code',
+  GITHUB: 'Source Code',
   PSTORE: 'View in Play Store',
   BLOG: 'View Articles',
   PPOL: 'Privacy Policy',
-}
+  SITE: 'Visit Site',
+};
+
+export const CTA_LOGO = {
+  GITHUB: { src: GITHUB_SVG, alt: "GitHub Logo" },
+  PSTORE: { src: PLAY_STORE_SVG, alt: "Play Store Logo" },
+  BLOG: { src: QUOTES_SVG, alt: "Closed quote mark for blog" },
+  PPOL: { src: SHIELD_SVG, alt: "Shield Logo for Privacy Policy action" },
+};
 
 export const githubPath = "https://github.com/tanish2k09/"
 export function github(repo) {
@@ -52,9 +66,22 @@ export default function ProjectCard(props) {
 
   var button_key = 1;
   var cta_buttons = (
-    props.ctas.map(cta => (
-      <SourceButton key={button_key++} url={cta.url} text={cta.title} ctaClasses={props.ctaClasses} useWorker={props.useWorker} />
-    ))
+    props.ctas.map(cta => {
+      if (cta.icon) {
+        return <IconSourceButton
+          key={button_key++}
+          url={cta.url}
+          text={cta.title}
+          ctaClasses={props.ctaClasses}
+          useWorker={props.useWorker}
+          icon={cta.icon}
+          persistent={cta.persistent}
+          iconClasses={cta.iconClasses}
+        />
+      } else {
+        return <SourceButton key={button_key++} url={cta.url} text={cta.title} ctaClasses={props.ctaClasses} useWorker={props.useWorker} />
+      }
+    })
   );
 
   var tag_key = 1;
@@ -76,28 +103,28 @@ export default function ProjectCard(props) {
   }
 
   return (
-    <div className={props.bgColor + " work-card dark:shadow-work-card shadow-lg transition-colors duration-500 rounded-xl md:rounded-3xl " + props.cardClasses}>
-
+    <div className={props.bgColor + " work-card dark:shadow-work-card shadow-lg transition-all duration-700 rounded-xl md:rounded-2xl " + props.cardClasses}>
       {imageComponent}
-      <div className={props.cardColor + " font-body relative inline-block m-2 md:m-4 rounded-lg md:rounded-xl transition-colors duration-500"}>
-        <div className="mt-2 ml-2 mr-4 inline-block font-mono">
+      <div className={"font-body relative inline-block m-4 mb-0 md:m-6 md:mb-0 duration-700 max-w-2"}>
+        <div className="mt-2 inline-flex justify-start flex-wrap font-mono gap-x-2">
           {props.tags.map(tag => (
             <Tag key={tag_key++} text={tag.text} colorClass={props.tagColor ? props.tagColor : props.bgColor} />
           ))}
         </div>
-        <br />
-        <div className="inline-block">
-          <div className={"mt-8 mx-4 text-lg w-full " + props.textColor}>
-            <span className={`border-b-2 pb-1 font-medium ${props.textColor} ${(props.borderColor ? props.borderColor : "border-black")}`}>
-              {props.name}
-            </span>
+        <div className={props.cardColor + " mt-2 pb-2 rounded-t-xl md:rounded-t-2xl transition-colors duration-700"}>
+          <div className="inline-block">
+            <div className={"mt-8 mx-4 text-lg w-full"}>
+              <span className={`border-b-[3px] pb-1 font-medium transition-colors duration-700 ${props.textColor} ${(props.borderColor ? props.borderColor : "border-black")}`}>
+                {props.name}
+              </span>
+            </div>
+            <div className={"mb-4 mt-6 mx-4 inline-block text-sm md:text-md xl:text-lg font-normal transition-colors duration-700 " + props.textColor}>
+              {props.description}
+            </div>
           </div>
-          <div className={"my-4 mx-4 inline-block text-sm font-normal " + props.textColor}>
-            {props.description}
+          <div className={buttonProps}>
+            {cta_buttons}
           </div>
-        </div>
-        <div className={buttonProps}>
-          {cta_buttons}
         </div>
       </div>
     </div>

@@ -11,5 +11,6 @@ export const useWorker = () => {
             instance: new Blob(HALF_PI, HALF_PI),
         }
     }
+
     return workerRef.current;
 }

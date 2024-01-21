@@ -25,6 +25,8 @@ const DarkModeToggle = () => {
     function darkModeObserver(isDarkMode) {
       if (isDark === isDarkMode)
         return;
+
+      // Change application-state dark mode
       setDarkMode(isDarkMode);
     }
 
