@@ -22,10 +22,9 @@
 .work-card {
     @apply overflow-hidden;
     @apply inline-block;
-    @apply mx-8;
+    @apply mx-4;
     @apply my-2;
-    @apply md:m-6;
-    @apply xl:m-4;
+    @apply md:my-4;
     @apply scale-100;
 }
 

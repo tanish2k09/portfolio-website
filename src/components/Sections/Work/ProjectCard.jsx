@@ -110,7 +110,7 @@ export default function ProjectCard(props) {
   return (
     <div className={props.bgColor + " work-card dark:shadow-work-card shadow-lg transition-all duration-700 rounded-xl md:rounded-2xl " + props.cardClasses}>
       {imageComponent}
-      <div className={"font-body relative inline-block m-4 mb-0 md:m-6 md:mb-0 duration-700 max-w-2"}>
+      <div className={"font-body relative inline-block p-4 pb-0 md:p-6 md:pb-0 duration-700 w-full"}>
         <div className="mt-2 inline-flex justify-start flex-wrap font-mono gap-x-2">
           {props.tags.map(tag => (
             <Tag key={tag_key++} text={tag.text} colorClass={props.tagColor ? props.tagColor : props.bgColor} />
