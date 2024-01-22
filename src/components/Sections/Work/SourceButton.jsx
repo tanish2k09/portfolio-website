@@ -10,22 +10,6 @@ export default function SourceButton(props) {
         ctaClasses = props.ctaClasses;
     }
 
-    function exciteBlob() {
-        if (!props.useWorker) return;
-        const worker = props.useWorker;
-        console.log("Exciting blob");
-
-        worker.instance.reactivePx(true);;
-    }
-
-    if (!props.url) {
-        return (
-            <button className={`${buttonClasses} ${ctaClasses}`} onClick={exciteBlob}>
-                {props.text}
-            </button>
-        )
-    }
-
     return (
         <a href={props.url}>
             <button className={`${buttonClasses} ${ctaClasses}`}>
@@ -60,7 +44,7 @@ export const IconSourceButton = (props) => {
 
     return (
         <a href={props.url} target="_blank" rel='noreferrer' className='group'>
-            <button className={`${buttonClasses} ${props.ctaClasses}`}>
+            <button className={`${buttonClasses} ${props.ctaClasses}`} onClick={props.onClick}>
                 <props.icon.src className={"w-4 h-4 my-auto inline-block transition-colors duration-700 " + props.iconClasses} alt={props.icon.alt} />
                 <span className={textClasses}>{props.text} {props.persistent}</span>
             </button>

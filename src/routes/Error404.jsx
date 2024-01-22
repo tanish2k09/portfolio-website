@@ -4,7 +4,7 @@ import LogoCanvas from "../components/Logos/LogoCanvas";
 import { OverlayContainer } from "../components/OverlayContainer";
 import { LogosGrid } from "../components/Logos/LogoOverlay";
 import { ThemeContainer } from "../components/ThemeContainer";
-import DarkModeToggle from "../components/DarkModeToggle";
+import DarkModeToggle from "../components/Sections/Nav/DarkModeToggle";
 import { useWorker } from "../hooks/UseWorker";
 
 const Error404 = () => {

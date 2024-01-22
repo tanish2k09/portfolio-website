@@ -105,8 +105,12 @@ body::-webkit-scrollbar-thumb {
         text-shadow: 0px 0px 1px #808994;
     }
 
-    .border-klapse {
-        background: theme(backgroundImage.klapseborder);
+    .border-klapse-dark {
+        background: theme(backgroundImage.klapseborderdark);
+    }
+
+    .border-klapse-light {
+        background: theme(backgroundImage.klapseborderlight);
     }
 }
 
@@ -149,7 +153,7 @@ body::-webkit-scrollbar-thumb {
 /* Styling for the Portfolio SVG */
 #logo-fills {
     @apply fill-dark;
-    @apply dark:fill-primarylight;
+    @apply dark:fill-dark-overlay;
     @apply stroke-none;
     @apply transition-colors;
     @apply duration-700;
@@ -157,12 +161,17 @@ body::-webkit-scrollbar-thumb {
 
 #portfolio-svg > g {
     @apply stroke-dark;
-    @apply dark:stroke-primarylight;
+    @apply dark:stroke-dark-overlay;
     @apply transition-colors;
     @apply duration-700;
 }
 
 #blob-fill {
     @apply fill-accent;
+    @apply stroke-[16px];
+    @apply transition-colors;
+    @apply duration-700;
+
     @apply stroke-dark;
+    @apply dark:stroke-accenttrim;
 }

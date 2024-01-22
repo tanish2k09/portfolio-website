@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import Navbar from "./Navbar";
-import ContactVisibilityContext from "../contexts/ContactVisibilityContext";
-import NavContrastContext from "../contexts/NavContrastContext";
+import ContactVisibilityContext from "../../../contexts/ContactVisibilityContext";
+import NavContrastContext from "../../../contexts/NavContrastContext";
 
 export const NavBlock = () => {
 

@@ -5,8 +5,10 @@ function BigName() {
   return (
     <div className="font-display my-8 mx-3 sm:mx-0 leading-none font-semibold md:dark:text-shadow-md dark:text-shadow-min">
       <div>
-        <div className="text-textdark dark:text-secondary big-text-sec transition-all bg-secondary/10 backdrop-blur-sm w-fit px-2 py-1 md:py-2 rounded-lg">Hi! I'm</div>
-        <div className="text-textdarker dark:text-primary big-text-main transition-all">
+        <div className="text-textdark dark:text-secondary big-text-sec transition-all backdrop-blur-sm w-fit py-1 md:py-2 rounded-lg">
+          Hi! I'm
+        </div>
+        <div className="w-fit text-textdarker dark:text-primary big-text-main transition-all backdrop-blur-sm rounded-lg md:rounded-none md:backdrop-blur-0">
           Tanish
           <br />
           Manku

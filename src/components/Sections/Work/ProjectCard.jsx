@@ -1,10 +1,12 @@
 import React from 'react';
 import Tag from './Tag';
 import SourceButton, { IconSourceButton } from './SourceButton';
-import { ReactComponent as GITHUB_SVG } from '../assets/github.svg';
-import { ReactComponent as PLAY_STORE_SVG } from '../assets/play-logo.svg';
-import { ReactComponent as SHIELD_SVG } from '../assets/Shield.svg';
-import { ReactComponent as QUOTES_SVG } from '../assets/double_quotes.svg';
+import { ReactComponent as GITHUB_SVG } from '../../../assets/github.svg';
+import { ReactComponent as PLAY_STORE_SVG } from '../../../assets/play-logo.svg';
+import { ReactComponent as SHIELD_SVG } from '../../../assets/Shield.svg';
+import { ReactComponent as QUOTES_SVG } from '../../../assets/double_quotes.svg';
+import { ReactComponent as BLOBBY_SVG } from '../../../assets/blobby.svg';
+
 
 // !! These strings should be less than 20 characters long !!
 // !! If you want longer strings, you'll have to change the sourcebutton max-width in tailwind.config.js !!
@@ -14,6 +16,7 @@ export const CTA_TEXT = {
   BLOG: 'View Articles',
   PPOL: 'Privacy Policy',
   SITE: 'Visit Site',
+  ENERGIZE: 'Energize Blob?',
 };
 
 export const CTA_LOGO = {
@@ -21,6 +24,7 @@ export const CTA_LOGO = {
   PSTORE: { src: PLAY_STORE_SVG, alt: "Play Store Logo" },
   BLOG: { src: QUOTES_SVG, alt: "Closed quote mark for blog" },
   PPOL: { src: SHIELD_SVG, alt: "Shield Logo for Privacy Policy action" },
+  BLOBBY: { src: BLOBBY_SVG, alt: "Blobby Logo for blob energize action" },
 };
 
 export const githubPath = "https://github.com/tanish2k09/"
@@ -77,9 +81,10 @@ export default function ProjectCard(props) {
           icon={cta.icon}
           persistent={cta.persistent}
           iconClasses={cta.iconClasses}
+          onClick={cta.onClick}
         />
       } else {
-        return <SourceButton key={button_key++} url={cta.url} text={cta.title} ctaClasses={props.ctaClasses} useWorker={props.useWorker} />
+        return <SourceButton key={button_key++} url={cta.url} text={cta.title} ctaClasses={props.ctaClasses} />
       }
     })
   );
@@ -113,12 +118,13 @@ export default function ProjectCard(props) {
         </div>
         <div className={props.cardColor + " mt-2 pb-2 rounded-t-xl md:rounded-t-2xl transition-colors duration-700"}>
           <div className="inline-block">
-            <div className={"mt-8 mx-4 text-lg w-full"}>
-              <span className={`border-b-[3px] pb-1 font-medium transition-colors duration-700 ${props.textColor} ${(props.borderColor ? props.borderColor : "border-black")}`}>
+            <div className={"mt-4 mx-4 text-lg xl:text-xl w-fit relative"}>
+              <span className={`pb-1 font-medium transition-colors duration-700 ${props.textColor}`}>
                 {props.name}
               </span>
+              <div className={`h-[.4rem] transition-colors duration-700 w-full rounded-sm ${(props.borderColor ? props.borderColor : "border-black")}`}></div>
             </div>
-            <div className={"mb-4 mt-6 mx-4 inline-block text-sm md:text-md xl:text-lg font-normal transition-colors duration-700 " + props.textColor}>
+            <div className={"mb-4 mt-6 md:mt-12 mx-4 inline-block text-md xl:text-lg font-normal transition-colors duration-700 " + props.textColor}>
               {props.description}
             </div>
           </div>

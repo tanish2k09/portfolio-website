@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, useCallback } from "react";
-import DarkModeContext from "../contexts/DarkModeContext";
+import DarkModeContext from "../../../contexts/DarkModeContext";
 import { MoonIcon } from "./MoonIcon";
 import { SunIcon } from "./SunIcon";
 
@@ -8,7 +8,7 @@ const DarkModeToggle = () => {
   const darkModeVM = useContext(DarkModeContext);
   const [isDark, setDarkMode] = useState(darkModeVM.isDark);
 
-  let commonClasses = "p-0 float-right"
+  let commonClasses = "p-0 float-right fill-dark dark:fill-white dark:md:fill-dark";
 
   let image;
   if (isDark) {
@@ -40,7 +40,7 @@ const DarkModeToggle = () => {
   return (
     <div className="md:w-full md:h-12 md:flex md:float-right md:relative">
       <button id="dark_mode_toggle" onClick={toggle} title="Theme toggle">
-        <div className="md:right-5 md:absolute relative mt-5 md:mt-0 px-2 md:px-0">
+        <div className="md:right-5 md:absolute relative mt-5 md:mt-0 px-2 md:px-0 dark:fill-white">
           {image}
         </div>
       </button>

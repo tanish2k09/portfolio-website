@@ -2,17 +2,15 @@ import React from 'react';
 import Masonry from 'react-masonry-component';
 import ProjectCard, { CTA_LOGO, CTA_TEXT, github } from './ProjectCard';
 
-import SCE from "../assets/sce-p4xl-mock.png";
-import { MEDIUM_SVG } from "../assets/Medium_SVG";
-import KLAPSE from "../assets/klapse.png";
-import DT2W from "../assets/dt2w.svg";
-import T2S from "../assets/t2s.svg";
-import SPOTIFY_SVG from "../assets/spotify_svg";
-import RESCUEDIALER from "../assets/rescuedialer.svg";
-import { BLOBBY_SVG } from "../assets/Blobby_SVG";
-import HUBSFU from "../assets/hubSFU.png";
-import { LOGOS_WALL_SVG } from '../assets/LogosWallpaper_SVG';
-import { PORTFOLIO_DARK_SVG, PORTFOLIO_SVG } from '../assets/portfolio_svg';
+import SCE from '../../../assets/sce-p4xl-mock.png';
+import { MEDIUM_SVG } from '../../../assets/Medium_SVG';
+import KLAPSE from '../../../assets/klapse.png';
+import T2S from '../../../assets/t2s.svg';
+import SPOTIFY_SVG from "../../../assets/spotify_svg";
+import RESCUEDIALER from '../../../assets/rescuedialer.svg';
+import HUBSFU from '../../../assets/hubSFU.png';
+import { LOGOS_WALL_SVG } from '../../../assets/LogosWallpaper_SVG';
+import { PORTFOLIO_SVG } from '../../../assets/portfolio_svg';
 
 const masonryOptions = {
     transitionDuration: 200,
@@ -21,8 +19,16 @@ const masonryOptions = {
 };
 
 export default function WorkGridMasonry(props) {
+
+    function energizeBlob() {
+        if (props.useWorker) {
+            props.useWorker.instance.reactivePx(true);
+        }
+    }
+
     return (
         <Masonry options={masonryOptions}>
+            {/* I have no idea why this div is here, but it's necessary for the masonry to work */}
             <div className="work-grid md:m-0"></div>
 
             {/* SCE */}
@@ -35,7 +41,7 @@ export default function WorkGridMasonry(props) {
                 tagColor={"bg-sceteal/[.85] dark:bg-sceteal/10 dark:md:bg-sceteal/10 text-sce dark:text-sceteal dark:backdrop-blur-xl dark:md:backdrop-blur-md"}
                 cardColor={"bg-sceteal/80 dark:bg-sceteal/10 dark:md:bg-sceteal/[.08] dark:backdrop-blur-xl dark:md:backdrop-blur-md"}
                 textColor={"text-sce dark:text-sceteal"}
-                borderColor={"border-scedarker dark:border-sceteal"}
+                borderColor={"bg-scedarker dark:bg-sceteal"}
                 tags={[
                     { text: "Android" },
                     { text: "Kotlin" },
@@ -60,7 +66,7 @@ export default function WorkGridMasonry(props) {
                 cardColor={"bg-white/20 dark:bg-logosWallpaperBgDark/30 dark:backdrop-blur-xl dark:md:backdrop-blur-sm"}
                 tagColor={"bg-white/[.25] dark:bg-logosWallpaperBgDark/30 text-logosWallpaperDark dark:text-logosWallpaper dark:backdrop-blur-xl dark:md:backdrop-blur-sm"}
                 textColor={"text-logosWallpaperDark dark:text-logosWallpaper"}
-                borderColor={"border-logosWallpaperBgDark dark:border-logosWallpaperBg"}
+                borderColor={"bg-logosWallpaperBgDark dark:bg-logosWallpaperBg"}
                 tags={[
                     { text: "Android" },
                     { text: "Kotlin" },
@@ -83,7 +89,7 @@ export default function WorkGridMasonry(props) {
                 svg={<MEDIUM_SVG className="fill-black dark:fill-white object-contain w-1/2" />}
                 cardColor={"bg-white/50 dark:bg-white/10"}
                 tagColor={"bg-white/50 dark:bg-white/10 text-dark dark:text-primary"}
-                borderColor={"border-dark dark:border-primarylight"}
+                borderColor={"bg-dark dark:bg-primarylight"}
                 textColor={"text-dark dark:text-primary"}
                 tags={[
                     { text: "Miscellaneous" },
@@ -96,7 +102,7 @@ export default function WorkGridMasonry(props) {
                 ctas={[
                     { url: "https://medium.com/@tanish2k09/", title: CTA_TEXT.BLOG, icon: CTA_LOGO.BLOG, persistent: true, iconClasses: "fill-dark stroke-dark dark:stroke-white group-hover:fill-primarylight group-hover:stroke-primarylight dark:fill-primarylight dark:group-hover:fill-dark dark:group-hover:stroke-dark" }
                 ]}
-                ctaClasses={"border-2 dark:border-transparent border-dark backdrop-blur-md dark:bg-primarylight/10 text-dark dark:text-primary hover:bg-black hover:text-primary dark:hover:bg-white dark:hover:text-dark"}
+                ctaClasses={"bg-black/[.03] border-2 border-black/5 dark:border-transparent backdrop-blur-md dark:bg-primarylight/10 text-dark dark:text-primary hover:bg-black hover:text-primary dark:hover:bg-white dark:hover:text-dark"}
             />
 
             {/* Rescue Dialer */}
@@ -110,7 +116,7 @@ export default function WorkGridMasonry(props) {
                 cardColor={"bg-rescuedialer/40 dark:bg-rescuedialer/10 backdrop-blur-xl"}
                 tagColor={"bg-rescuedialer/40 dark:bg-rescuedialer/10 backdrop-blur-xl text-dark dark:text-rescuedialer"}
                 textColor={"text-dark dark:text-rescuedialer"}
-                borderColor={"border-dark dark:border-rescuedialerlight"}
+                borderColor={"bg-dark dark:bg-rescuedialerlight"}
                 tags={[
                     { text: "Android" },
                     { text: "Kotlin" },
@@ -126,15 +132,15 @@ export default function WorkGridMasonry(props) {
 
             {/* hubSFU */}
             <ProjectCard
-                cardClasses={"lg:max-w-45p xl:max-w-25p border-hubSFUdark/70 dark:border-hubSFUdark/[.15] border-[0.1rem]"}
-                bgColor={"bg-hubSFUdark/70 dark:bg-hubSFUdarkest/20 backdrop-blur-lg md:backdrop-blur-sm backdrop-hue-rotate-[178deg] dark:backdrop-hue-rotate-[178deg]"}
+                cardClasses={"lg:max-w-45p xl:max-w-25p border-hubSFUdark/70 dark:border-hubSFUdark/[.15] border-[0.1rem] dark:backdrop-saturate-50"}
+                bgColor={"bg-hubSFUdark/70 dark:bg-dark/20 backdrop-blur-lg md:backdrop-blur-sm backdrop-hue-rotate-[178deg] dark:backdrop-hue-rotate-[178deg]"}
                 asset={HUBSFU}
                 assetAlt={"hubSFU image"}
                 imageClasses={"object-contain"}
-                cardColor={"bg-white/20 dark:bg-hubSFUdark/5 dark:backdrop-blur-xl"}
-                tagColor={"bg-white/20 dark:bg-hubSFUdark/10 text-dark dark:text-hubSFU"}
+                cardColor={"bg-white/20 dark:bg-hubSFUdarkest/5 dark:md:bg-hubSFUdark/5 dark:backdrop-blur-3xl"}
+                tagColor={"bg-white/20 dark:bg-hubSFUdarkest/10 dark:md:bg-hubSFUdark/10 text-dark dark:text-hubSFU dark:backdrop-blur-3xl"}
                 textColor={"text-dark dark:text-hubSFU"}
-                borderColor={"border-dark dark:border-hubSFU"}
+                borderColor={"bg-dark dark:bg-hubSFU"}
                 tags={[
                     { text: "Android" },
                     { text: "Kotlin" },
@@ -151,11 +157,11 @@ export default function WorkGridMasonry(props) {
             {/* Spotify Release Reader */}
             <ProjectCard
                 cardClasses={"lg:max-w-45p xl:max-w-25p border-spotify/50 dark:border-spotify/10 border-[0.1rem]"}
-                bgColor={"bg-spotify/50 dark:bg-spotifydark/20 backdrop-blur-md backdrop-hue-rotation-[270deg]"}
-                cardColor={"bg-spotify/[.25] dark:bg-spotify/5 backdrop-blur-sm"}
-                tagColor={"bg-spotify/[.35] dark:bg-spotify/10 text-dark dark:text-spotify backdrop-blur-sm"}
+                bgColor={"bg-spotify/50 dark:bg-dark/30 backdrop-blur-md backdrop-hue-rotate-[360deg] dark:backdrop-hue-rotate-[300deg] dark:backdrop-saturate-100"}
+                cardColor={"bg-spotify/[.25] dark:bg-spotify/5 dark:md:bg-spotify/5 dark:backdrop-blur-3xl md:backdrop-blur-sm"}
+                tagColor={"bg-spotify/[.35] dark:bg-spotify/10 text-dark dark:text-spotify backdrop-blur-sm dark:backdrop-blur-3xl"}
                 textColor={"text-dark dark:text-spotify"}
-                borderColor={"border-dark dark:border-spotify"}
+                borderColor={"bg-dark dark:bg-spotify"}
                 svg={<SPOTIFY_SVG className="fill-black dark:fill-spotify transition-colors duration-700 object-contain w-full p-8" />}
                 svgOptions={"align-center justify-center flex min-h-48 max-h-56"}
                 tags={[
@@ -168,19 +174,19 @@ export default function WorkGridMasonry(props) {
                 ctas={[
                     { url: github("Spotify-Release-Reader"), title: CTA_TEXT.GITHUB, icon: CTA_LOGO.GITHUB, persistent: true, iconClasses: "fill-dark group-hover:fill-primarylight dark:fill-spotify dark:group-hover:fill-dark" }
                 ]}
-                ctaClasses={"hover:bg-dark hover:text-primary dark:bg-spotify/10 dark:border-transparent dark:text-spotify dark:hover:bg-spotify dark:hover:text-dark"}
+                ctaClasses={"bg-white/20 hover:bg-dark hover:text-primary dark:bg-spotify/10 dark:text-spotify dark:hover:bg-spotify dark:hover:text-dark"}
             />
 
             {/* Portfolio Website */}
             <ProjectCard
-                cardClasses={"lg:max-w-45p xl:max-w-25p border-dark/90 dark:border-portfoliodarker border-[0.1rem]"}
-                bgColor={"bg-primarylight/50 dark:bg-dark/90 backdrop-blur-md backdrop-hue-rotation-[270deg]"}
-                tagColor={"bg-primarylight dark:bg-portfolio text-primary dark:text-portfolio"}
+                cardClasses={"lg:max-w-45p xl:max-w-25p border-gray-100/40 dark:border-portfoliodarker border-[0.1rem]"}
+                bgColor={"bg-gray-100/60 dark:bg-dark/90 backdrop-blur-lg backdrop-hue-rotation-[270deg]"}
+                tagColor={"bg-white/50 dark:bg-white/10 text-dark dark:text-primary"}
                 svgOptions={"align-center justify-center flex relative"}
-                svg={<PORTFOLIO_SVG />}
-                cardColor={"bg-portfoliolight dark:bg-white/10"}
-                textColor={"text-primary dark:text-portfolio"}
-                borderColor={"border-primary dark:border-portfoliodarker"}
+                svg={<PORTFOLIO_SVG className="object-contain w-full" />}
+                cardColor={"bg-white/50 dark:bg-white/5"}
+                textColor={"text-dark dark:text-primary"}
+                borderColor={"bg-dark dark:bg-primary"}
                 tags={
                     [
                         { text: "React" },
@@ -189,25 +195,27 @@ export default function WorkGridMasonry(props) {
                         { text: "CSS" },
                         { text: "Node" }
                     ]}
-                name={"🎉 Portfolio Website 💻"}
+                name={"Portfolio Website"}
                 description={"This portfolio website is also a personal project which I built to learn React and Tailwind. You're interacting with it 😄 "}
                 ctas={
                     [
-                        { title: "Energize Blob? 👀" }
+                        { title: CTA_TEXT.ENERGIZE, icon: CTA_LOGO.BLOBBY, persistent: true, onClick: energizeBlob }
                     ]}
-                ctaClasses={"border-white dark:border-portfoliodarker text-primary dark:text-portfolio hover:bg-white hover:text-dark dark:hover:bg-portfoliodarker dark:hover:text-primary"}
+                ctaClasses={"bg-black/[.03] dark:bg-white/10 border-2 border-black/5 dark:border-transparent text-dark hover:bg-dark hover:text-primary dark:text-primary dark:hover:bg-white dark:hover:text-dark"}
                 useWorker={props.useWorker}
             />
 
             {/* K-LAPSE */}
             < ProjectCard
-                cardClasses={"lg:max-w-45p xl:max-w-25p dark:border-klapse"}
-                bgColor={"bg-white dark:bg-klapsedark border-2 border-transparent"}
-                tagColor={"bg-white/30 text-dark"}
+                cardClasses={"lg:max-w-45p xl:max-w-25p border-klapse-light dark:border-klapse-dark"}
+                bgColor={"bg-white dark:bg-klapsedark border-2 border-transparent backdrop-blur-md backdrop-hue-rotate-[100deg] dark:backdrop-hue-rotate-[50deg]"}
+                tagColor={"bg-white/40 dark:bg-white/10 text-dark dark:text-primary"}
                 asset={KLAPSE}
                 assetAlt={"K-LAPSE banner image"}
                 imageClasses={"object-cover"}
-                cardColor={"opacity-90 dark:opacity-100 bg-klapsegradient transition-opacity"}
+                cardColor={"opacity-90 dark:opacity-100 bg-white/30 dark:bg-white/5 transition-opacity"}
+                textColor={"text-dark dark:text-primary"}
+                borderColor={"bg-dark dark:bg-primary"}
                 tags={
                     [
                         { text: "Android" },
@@ -219,44 +227,23 @@ export default function WorkGridMasonry(props) {
                 description={"A Linux kernel time-based and hook-based linear RGB interpolation module, used in hundreds of custom Android kernels for thousands of devices."}
                 ctas={
                     [
-                        { url: github("klapse-livedisplay"), title: CTA_TEXT.GITHUB }
+                        { url: github("klapse-livedisplay"), title: CTA_TEXT.GITHUB, icon: CTA_LOGO.GITHUB, persistent: true, iconClasses: "fill-dark group-hover:fill-primarylight dark:fill-primary dark:group-hover:fill-dark" }
                     ]}
-            />
-
-            {/* DT2W */}
-            < ProjectCard
-                cardClasses={"lg:max-w-45p xl:max-w-25p"}
-                bgColor={"bg-dt2wblue"}
-                svgOptions={"align-center justify-center flex min-h-56 max-h-64"}
-                asset={DT2W}
-                assetAlt={"DT2W vector logo"}
-                imageClasses={"object-contain w-24"}
-                cardColor={"bg-dt2wbluedark"}
-                tags={
-                    [
-                        { text: "Miscellaneous" },
-                        { text: "Android" },
-                        { text: "Linux" },
-                        { text: "C" },
-                        { text: "Makefile" }
-                    ]}
-                name={"Double Tap 2 Wake"}
-                description={"An Android Linux kernel display tap-detection driver for waking up the device display or sleeping. Built for Linux kernel v3.10 but can be easily ported to newer versions."}
-                ctas={
-                    [
-                        { url: github("doubletap2wake-2.0"), title: CTA_TEXT.GITHUB }
-                    ]}
+                ctaClasses={"bg-black/[.03] dark:bg-white/5 border-2 border-black/5 dark:border-transparent hover:bg-dark hover:text-primary dark:text-primary dark:hover:bg-primarylight dark:hover:text-dark"}
             />
 
             {/* T2S */}
             < ProjectCard
-                cardClasses={"lg:max-w-45p xl:max-w-25p"}
-                bgColor={"bg-t2syellow"}
+                cardClasses={"lg:max-w-45p xl:max-w-25p border-t2syellowdark/50 dark:border-t2syellowdark/10 border-[0.1rem]"}
+                bgColor={"bg-t2syellowdark/60 dark:bg-black/10 backdrop-blur-sm backdrop-hue-rotate-[220deg] dark:backdrop-hue-rotate-[240deg] dark:backdrop-saturate-[.80]"}
                 svgOptions={"align-center justify-center flex min-h-64"}
                 asset={T2S}
                 assetAlt={"T2S vector logo"}
                 imageClasses={"object-contain w-64 h-64 transform scale-50"}
-                cardColor={"bg-t2syellowdark"}
+                cardColor={"bg-white/[.25] dark:bg-t2syellowdark/10 backdrop-blur-3xl"}
+                tagColor={"bg-white/[.35] dark:bg-t2syellowdark/[.15] text-dark dark:text-t2syellow backdrop-blur-3xl"}
+                textColor={"text-dark dark:text-t2syellow"}
+                borderColor={"bg-dark dark:bg-t2syellow"}
                 tags={
                     [
                         { text: "Miscellaneous" },
@@ -269,8 +256,9 @@ export default function WorkGridMasonry(props) {
                 description={"An Android Linux kernel display parabolic corner-to-corner customizable gesture driver for waking up the device display or sleeping. Built for Linux kernel v3.10 but can be easily ported to newer versions."}
                 ctas={
                     [
-                        { url: github("trace2sleep"), title: CTA_TEXT.GITHUB }
+                        { url: github("trace2sleep"), title: CTA_TEXT.GITHUB, icon: CTA_LOGO.GITHUB, persistent: true, iconClasses: "fill-dark group-hover:fill-primarylight dark:fill-t2syellow dark:group-hover:fill-dark" }
                     ]}
+                ctaClasses={"bg-white/30 dark:bg-t2syellowdark/10 dark:text-t2syellow hover:bg-dark hover:text-primary dark:hover:bg-t2syellowdark dark:hover:text-dark"}
             />
         </Masonry >
     );

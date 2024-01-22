@@ -1,7 +1,7 @@
-import ContactSocials from "../components/ContactSocials.jsx";
-import ContactForm from "../components/ContactForm.jsx";
+import ContactSocials from "./ContactSocials.jsx";
+import ContactForm from "./ContactForm.jsx";
 import { useEffect, useRef, useState, useContext } from "react";
-import ContactVisibilityContext from "../contexts/ContactVisibilityContext.jsx";
+import ContactVisibilityContext from "../../../contexts/ContactVisibilityContext.jsx";
 
 const ContactSection = () => {
 

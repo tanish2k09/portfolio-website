@@ -42,6 +42,7 @@ module.exports = {
             hintyellow: "#ffe0b2",
             hintdark: "#7986cb",
             hubSFU: "#fe9096",
+            klapse: "rgba(216, 79, 199, 1)",
             primarylight: "#eceff1",
             textdarker: "#354A54",
             textdark: "#9DB4C0",
@@ -52,11 +53,14 @@ module.exports = {
             logosWallpaper: "#F0B4D5",
             logosWallpaperDark: "#4B213B",
             portfolio: "#292f35",
+            t2syellow: "#ffe0b2",
             transparent: "transparent",
         },
         extend: {
             colors: {
                 dark: "#101924",
+                "dark-overlay": "#2C4563",
+                "light-overlay": "#C2C8CB",
                 textdark: "#000a12",
                 semidark: "#7d9cab",
                 primary: "#cbd2d9",
@@ -71,13 +75,25 @@ module.exports = {
                 scedark: "#12bda1",
                 scedarker: "#1F2624",
                 sceteal: "#14D2B3",
-                klapsedark: "#0F110C",
-                klapsegreen: "#B9FD89",
-                klapseblue: "#6CE0FC",
-                klapsered: "#A24363",
-                klapseyellow: "#F5C66B",
-                klapsepink: "#D84FC7",
-                klapsepurple: "#5B28F2",
+                klapsedark: "rgba(15, 17, 12)",
+                klapsegreen: "rgba(185, 253, 137, 1)",
+                klapseblue: "rgba(108, 224, 252, 1)",
+                klapsered: "rgba(162, 67, 99, 1)",
+                klapseyellow: "rgba(245, 198, 107, 1)",
+                klapsepink: "rgba(216, 79, 199, 1)",
+                klapsepurple: "rgba(91, 40, 242, 1)",
+                "klapsegreen-translucent": "rgba(185, 253, 137, 0.6)",
+                "klapseblue-translucent": "rgba(108, 224, 252, 0.6)",
+                "klapsered-translucent": "rgba(162, 67, 99, 0.6)",
+                "klapseyellow-translucent": "rgba(245, 198, 107, 0.6)",
+                "klapsepink-translucent": "rgba(216, 79, 199, 0.6)",
+                "klapsepurple-translucent": "rgba(91, 40, 242, 0.6)",
+                "klapsegreen-translucent-light": "rgba(185, 253, 137, 0.15)",
+                "klapseblue-translucent-light": "rgba(54, 112, 200, 0.6)",
+                "klapsered-translucent-light": "rgba(162, 67, 99, 0.15)",
+                "klapseyellow-translucent-light": "rgba(245, 198, 107, 0.3)",
+                "klapsepink-translucent-light": "rgba(216, 79, 199, 0.3)",
+                "klapsepurple-translucent-light": "rgba(91, 40, 242, 0.4)",
                 dt2wblue: "#64b5f6",
                 dt2wbluedark: "#42a5f5",
                 t2syellow: "#ffe0b2",
@@ -100,8 +116,6 @@ module.exports = {
                 portfolio: "#172433",
                 portfoliolight: "#E0E3E6",
                 portfoliodarker: "#292f35",
-                overlaylight: "rgba(255, 255, 255, 0.15)",
-                overlaydark: "rgba(255, 255, 255, 0.05)",
             },
             fontSize: {
                 "009": "0.9rem",
@@ -173,15 +187,24 @@ module.exports = {
                 "nav-shadow": "0px -4px 3px rgba(50, 50, 50, 0.25)",
             },
             backgroundImage: ({ theme }) => ({
-                klapsegradient: `linear-gradient(to top right, ${theme("colors.klapseblue")},${theme(
-                    "colors.klapsegreen"
-                )},${theme("colors.klapseyellow")},${theme("colors.klapsepink")},${theme("colors.klapsepurple")})`,
-                klapseborder: `linear-gradient(${theme("colors.klapsedark")}, ${theme(
-                    "colors.klapsedark"
-                )}) padding-box, linear-gradient(to top right, ${theme("colors.klapseblue")},${theme(
-                    "colors.klapsegreen"
-                )},${theme("colors.klapseyellow")},${theme("colors.klapsepink")},${theme(
-                    "colors.klapsepurple"
+                klapsegradient: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)) padding-box), linear-gradient(to top right, ${theme(
+                    "colors.klapseblue-translucent-light"
+                )},${theme("colors.klapsegreen-translucent-light")},${theme(
+                    "colors.klapseyellow-translucent-light"
+                )},${theme("colors.klapsepink-translucent-light")},${theme("colors.klapsepurple-translucent-light")})`,
+
+                klapseborderdark: `linear-gradient(rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0)) padding-box, linear-gradient(to top right, ${theme(
+                    "colors.klapseblue-translucent-light"
+                )},${theme("colors.klapsepink-translucent-light")},${theme(
+                    "colors.klapsepurple-translucent-light"
+                )}) border-box`,
+
+                klapseborderlight: `linear-gradient(rgba(255, 255, 255, 0), ${theme(
+                    "colors.transparent"
+                )}) padding-box, linear-gradient(to top right, ${theme("colors.klapseblue-translucent")},${theme(
+                    "colors.klapsegreen-translucent"
+                )},${theme("colors.klapseyellow-translucent")},${theme("colors.klapsepink-translucent")},${theme(
+                    "colors.klapsepurple-translucent"
                 )}) border-box`,
             }),
         },

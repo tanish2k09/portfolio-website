@@ -1,7 +1,7 @@
-import BigName from "../components/BigName.jsx";
-import AccentedButton, { primary, secondary } from "../components/AccentedButton.jsx";
-import { PAPER_PLANE } from "../assets/Paper_Plane.jsx";
-import { COOKIE } from "../assets/Cookie.jsx";
+import BigName from "./BigName.jsx";
+import AccentedButton, { primary, secondary } from "./AccentedButton.jsx";
+import { PAPER_PLANE } from "../../../assets/Paper_Plane.jsx";
+import { COOKIE } from "../../../assets/Cookie.jsx";
 import { memo } from "react";
 
 const NameBlock = memo(() => {

@@ -4,7 +4,7 @@ export const AboutBlock = memo(() => {
     return <section id="third_block" className="mt-16 md:mt-32 relative block">
         <div
             id="about_me_text"
-            className="font-semibold font-display big-text-heading text-textdarker dark:text-secondary dark:text-shadow-md pl-4 md:pl-6 lg:pl-8 xl:pl-12 transition-all"
+            className="backdrop-blur-sm w-fit rounded-lg font-semibold font-display big-text-heading text-textdarker dark:text-secondary dark:text-shadow-md pl-4 md:pl-6 lg:pl-8 xl:pl-12 transition-all"
         >
             <span className="text-textdarker dark:text-primary">About</span> me:
         </div>

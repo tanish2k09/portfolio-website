@@ -1,6 +1,6 @@
-import React from "react";
 import { motion } from "framer-motion";
-import { transition, whileTap } from "../scripts/Constants";
+import React from "react";
+import { transition, whileTap } from "../../../scripts/Constants";
 
 export const MoonIcon = () => {
   const variants = {
