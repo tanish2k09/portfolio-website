@@ -8,12 +8,12 @@ export const common =
 
 export const primary =
   "bg-accent text-black group hover:bg-black dark:hover:bg-black hover:text-primary " +
-  "m-0 text-xs md:text-base " +
+  "m-0 text-sm md:text-base " +
   "rounded border-accenttrim border-4";
 
 export const secondary =
   "bg-accentsecondary text-black group hover:bg-black dark:hover:bg-black hover:text-primary " +
-  "m-0 md:ml-6 mt-6 md:mt-auto text-xs md:text-base " +
+  "m-0 md:ml-6 mt-6 md:mt-auto text-sm md:text-base " +
   "rounded-full border-accentsecondarytrim border-4";
 
 export default function AccentedButton(props) {
