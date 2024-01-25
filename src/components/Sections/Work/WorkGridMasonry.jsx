@@ -149,9 +149,9 @@ export default function WorkGridMasonry(props) {
                 {/* Spotify Release Reader */}
                 <ProjectCard
                     cardClasses={"w-fit border-spotify/50 dark:border-spotify/10 border-[0.1rem]"}
-                    bgColor={"bg-spotify/50 dark:bg-dark/30 backdrop-blur-md backdrop-hue-rotate-[360deg] dark:backdrop-hue-rotate-[300deg] dark:backdrop-saturate-100"}
-                    cardColor={"bg-spotify/[.25] dark:bg-spotify/5 dark:md:bg-spotify/5 dark:backdrop-blur-3xl md:backdrop-blur-sm"}
-                    tagColor={"bg-spotify/[.35] dark:bg-spotify/10 text-dark dark:text-spotify backdrop-blur-sm dark:backdrop-blur-3xl"}
+                    bgColor={"bg-spotify/50 dark:bg-dark/50 backdrop-blur-md backdrop-hue-rotate-[360deg] dark:backdrop-hue-rotate-[300deg] dark:backdrop-saturate-100"}
+                    cardColor={"bg-spotify/[.25] dark:bg-spotify/5 dark:md:bg-spotify/5 backdrop-blur-3xl dark:backdrop-contrast-[1.1]"}
+                    tagColor={"bg-spotify/[.35] dark:bg-spotify/10 text-dark dark:text-spotify backdrop-blur-3xl dark:backdrop-blur-3xl"}
                     textColor={"text-dark dark:text-spotify"}
                     borderColor={"bg-dark dark:bg-spotify"}
                     svg={<SPOTIFY_SVG className="fill-black dark:fill-spotify transition-colors duration-700 object-contain w-full p-8" />}
@@ -201,11 +201,11 @@ export default function WorkGridMasonry(props) {
                 < ProjectCard
                     cardClasses={"w-fit border-klapse-light dark:border-klapse-dark"}
                     bgColor={"bg-white dark:bg-klapsedark border-2 border-transparent backdrop-blur-md backdrop-hue-rotate-[100deg] dark:backdrop-hue-rotate-[50deg]"}
-                    tagColor={"bg-white/40 dark:bg-white/10 text-dark dark:text-primary"}
+                    tagColor={"bg-white/40 dark:bg-white/10 text-dark dark:text-primary dark:backdrop-blur-3xl"}
                     asset={KLAPSE}
                     assetAlt={"K-LAPSE banner image"}
                     imageClasses={"object-cover"}
-                    cardColor={"opacity-90 dark:opacity-100 bg-white/30 dark:bg-white/5 transition-opacity"}
+                    cardColor={"opacity-90 dark:opacity-100 bg-white/30 dark:bg-white/5 transition-opacity dark:backdrop-blur-3xl"}
                     textColor={"text-dark dark:text-primary"}
                     borderColor={"bg-dark dark:bg-primary"}
                     tags={
@@ -232,8 +232,8 @@ export default function WorkGridMasonry(props) {
                     asset={T2S}
                     assetAlt={"T2S vector logo"}
                     imageClasses={"object-contain w-64 h-64 transform scale-50"}
-                    cardColor={"bg-white/[.25] dark:bg-t2syellowdark/10 backdrop-blur-3xl"}
-                    tagColor={"bg-white/[.35] dark:bg-t2syellowdark/[.15] text-dark dark:text-t2syellow backdrop-blur-3xl"}
+                    cardColor={"bg-white/[.25] dark:bg-t2syellowdark/10 backdrop-blur-3xl dark:backdrop-contrast-[1.1]"}
+                    tagColor={"bg-white/[.35] dark:bg-t2syellowdark/[.15] text-dark dark:text-t2syellow backdrop-blur-3xl dark:backdrop-contrast-[1.1]"}
                     textColor={"text-dark dark:text-t2syellow"}
                     borderColor={"bg-dark dark:bg-t2syellow"}
                     tags={
