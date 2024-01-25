@@ -1,43 +1,32 @@
-import { useRef, useState, useEffect } from 'react';
 import DarkModeContext from './../contexts/DarkModeContext';
-import DarkModeViewModel from '../viewmodels/DarkModeViewModel';
+import { useDarkModeVM } from './../hooks/UseDarkModeVM';
+import { useEffect } from 'react';
 
 export const ThemeContainer = (props) => {
 
-    const darkModeVMRef = useRef(null);
-
-    const useDarkModeVM = () => {
-        if (darkModeVMRef.current === null)
-            darkModeVMRef.current = new DarkModeViewModel();
-        return darkModeVMRef.current;
-    };
-
-    const [isDark, setDarkMode] = useState(true);
-
-    // Subscribe to the dark mode changes via VM and manage dark mode
     const darkModeVM = useDarkModeVM();
+
+    console.log("ThemeContainer: ", darkModeVM);
+
     useEffect(() => {
         function darkModeObserver(isDarkMode) {
-            // Prevent duplicate state changes
-            if (isDark === isDarkMode)
-                return;
-
-            // Update the state - will cause Home to re-render
-            setDarkMode(isDarkMode);
+            // Change HTML class dark mode
+            if (isDarkMode) {
+                document.documentElement.classList.add("dark");
+            } else {
+                document.documentElement.classList.remove("dark");
+            }
         }
 
         darkModeVM.subscribe(darkModeObserver);
-
         return () => {
             darkModeVM.unsubscribe(darkModeObserver);
         }
-    }, [darkModeVM, isDark, setDarkMode]);
+    }, [darkModeVM]);
 
     return (
         <DarkModeContext.Provider value={darkModeVM}>
-            <div className={`${isDark ? "dark" : ""}`}>
-                {props.children}
-            </div>
+            {props.children}
         </DarkModeContext.Provider>
     )
 };

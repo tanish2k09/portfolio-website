@@ -1,11 +1,11 @@
 import { useRef, useCallback } from "react";
-import NameBlock from "../components/NameBlock.jsx";
+import NameBlock from "../components/Sections/BigName/NameBlock.jsx";
 
-import ContactSection from "../components/ContactSection.jsx";
+import ContactSection from "../components/Sections/Contact/ContactSection.jsx";
 import ContactVisibilityContext from "../contexts/ContactVisibilityContext.jsx";
-import WorkBlock from "../components/WorkBlock.jsx";
-import { NavBlock } from "../components/NavBlock.jsx";
-import { AboutBlock } from "../components/AboutBlock.jsx";
+import WorkBlock from "../components/Sections/Work/WorkBlock.jsx";
+import { NavBlock } from "../components/Sections/Nav/NavBlock.jsx";
+import { AboutBlock } from "../components/Sections/AboutBlock.jsx";
 import ContactVisibilityViewModel from "../viewmodels/ContactVisibilityViewModel.js";
 import LogoCanvas from "../components/Logos/LogoCanvas.jsx";
 import { LogosGrid } from "../components/Logos/LogoOverlay.js";
@@ -33,8 +33,8 @@ function Home() {
         <div id="app" className="dark:bg-dark bg-primarylight m-0 overscroll-x-none transition-colors duration-500">
             <ContactVisibilityContext.Provider value={contactVisibilityVMRef.current}>
                 <OverlayContainer>
-                    <LogoCanvas canvasClasses="w-full h-full z-[-1] absolute" useLogos={useLogosCallback} />
-                    <BlobCanvas canvasClasses="w-full h-full z-0 absolute" useWorker={workerRef} />
+                    <LogoCanvas canvasClasses="w-full h-lvh z-[-1] absolute" useLogos={useLogosCallback} />
+                    <BlobCanvas canvasClasses="w-full h-lvh h-full z-0 absolute" useWorker={workerRef} />
                 </OverlayContainer>
 
                 <NavBlock />

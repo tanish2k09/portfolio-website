@@ -21,42 +21,38 @@
 
 .work-card {
     @apply overflow-hidden;
-    @apply shadow-work-card;
     @apply inline-block;
-    @apply mx-8;
+    @apply mx-4;
     @apply my-2;
-    @apply md:m-6;
-    @apply xl:m-4;
+    @apply md:my-4;
     @apply scale-100;
-    @apply transition;
-    @apply duration-500;
 }
 
 .work-card:hover {
-    @apply md:scale-105;
+    @apply md:scale-[1.02];
 }
 
 .about-card {
     @apply overflow-hidden;
     @apply rounded-bigg;
-    @apply dark:bg-dark;
-    @apply bg-primarylight;
     @apply shadow-about-card;
     @apply inline-block;
     @apply m-4;
 }
 
-.tag {
-    @apply rounded-md;
-    @apply my-1;
-    @apply py-1;
-    @apply px-2;
-    @apply ml-2;
-}
-
 .social-button {
     @apply relative;
     @apply mt-3;
+}
+
+.button-text-expand {
+    @apply max-w-0;
+    @apply transition-all;
+    @apply duration-700;
+    @apply inline-block;
+    @apply align-top;
+    @apply whitespace-nowrap;
+    @apply overflow-hidden;
 }
 
 @media (min-width: 768px) {
@@ -65,13 +61,7 @@
     }
 
     .social-button span {
-        @apply max-w-0;
-        @apply transition-all;
-        @apply duration-700;
-        @apply inline-block;
-        @apply align-top;
-        @apply whitespace-nowrap;
-        @apply overflow-hidden;
+        @apply button-text-expand;
     }
 }
 
@@ -114,7 +104,73 @@ body::-webkit-scrollbar-thumb {
         text-shadow: 0px 0px 1px #808994;
     }
 
-    .border-klapse {
-        background: theme(backgroundImage.klapseborder);
+    .border-klapse-dark {
+        background: theme(backgroundImage.klapseborderdark);
     }
+
+    .border-klapse-light {
+        background: theme(backgroundImage.klapseborderlight);
+    }
+}
+
+/* Fonts */
+
+/*
+ * Legal Disclaimer for Student/Education licence
+ *
+ * Student/Education Licence - Our package includes OTF, TTF, WOFF and WOFF2 font formats.
+ *
+ * For expiry date please check the relevant Licence Document.
+ *
+ * Licence to produce and publish work within educational context.
+ * Any commercial exploitation is subject to separate licencing by the client.
+ * The student/educational license expires at the end of the study period.
+ * An upgrade to a full licence for professional use is required after expiry.
+ * The upgrade within 3 months of expiry will be available at a reduced price for the educational Licence Holder.
+ *
+ */
+@layer base {
+    @font-face {
+        font-family: "CircularXXEduWeb";
+        src: url(/font/CircularXXEduWeb-Regular.woff2) format("woff2");
+        font-weight: 400;
+    }
+
+    @font-face {
+        font-family: "CircularXXEduWeb";
+        src: url(/font/CircularXXEduWeb-Medium.woff2) format("woff");
+        font-weight: 500;
+    }
+
+    @font-face {
+        font-family: "CircularXXEduWeb";
+        src: url(/font/CircularXXEduWeb-Bold.woff2) format("woff2");
+        font-weight: 700;
+    }
+}
+
+/* Styling for the Portfolio SVG */
+#logo-fills {
+    @apply fill-dark;
+    @apply dark:fill-dark-overlay;
+    @apply stroke-none;
+    @apply transition-colors;
+    @apply duration-700;
+}
+
+#portfolio-svg > g {
+    @apply stroke-dark;
+    @apply dark:stroke-dark-overlay;
+    @apply transition-colors;
+    @apply duration-700;
+}
+
+#blob-fill {
+    @apply fill-accent;
+    @apply stroke-[16px];
+    @apply transition-colors;
+    @apply duration-700;
+
+    @apply stroke-dark;
+    @apply dark:stroke-accenttrim;
 }
