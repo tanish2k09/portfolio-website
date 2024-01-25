@@ -23,14 +23,14 @@ export const NavBlock = () => {
         }
     }, [contactVisibilityVM, contactVisibility, setContactVisibility]);
 
-    let overlayStyle = "";
+    let overlayStyle = "md:dark:text-dark";
     if (contactVisibility) {
         overlayStyle = "md:dark:text-contactdark";
     }
 
     return <nav
         id="nav_section"
-        className={`${overlayStyle} fixed font-nav z-50 md:right-0 md:inline-block md:bottom-auto md:w-40 xl:w-48 md:h-full bottom-0 min-w-full md:min-w-0 text-dark transition-colors duration-700`}
+        className={`${overlayStyle} dark:text-primarylight fixed font-nav z-50 md:right-0 md:inline-block md:bottom-auto md:w-40 xl:w-48 md:h-full bottom-0 min-w-full md:min-w-0 text-dark transition-colors duration-700`}
     >
         <NavContrastContext.Provider value={contactVisibility}>
             <Navbar />
