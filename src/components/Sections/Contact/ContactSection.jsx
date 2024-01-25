@@ -78,7 +78,7 @@ const ContactSection = () => {
         >
             <span>Contact me:</span>
         </div>
-        <div id="contact_form_container" className="mx-4 md:ml-6 lg:ml-8 xl:ml-12 md:pr-0 md:max-w-75p backdrop-blur-md">
+        <div id="contact_form_container" className="mx-4 md:ml-6 lg:ml-8 xl:ml-12 md:pr-0 md:max-w-75p">
             <ContactForm />
         </div>
         <div id="contact_socials_container" className="ml-4 md:ml-6 lg:ml-8 xl:ml-12 md:max-w-75p">
