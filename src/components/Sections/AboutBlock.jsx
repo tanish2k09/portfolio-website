@@ -9,7 +9,7 @@ export const AboutBlock = memo(() => {
             <span className="text-textdarker dark:text-primary">About</span> me:
         </div>
         <div
-            className="about-card transition-colors duration-500 bg-primarylight/75 md:bg-primarylight/25 dark:bg-dark/75 dark:md:bg-dark/50 backdrop-blur-md md:ml-6 lg:ml-8 xl:ml-12 text-textdarker dark:text-primary md:max-w-75p lg:max-w-80p text-sm xl:text-lg font-body p-4 sm:p-8 border-[2px] border-gray-100/40 dark:border-dark/50"
+            className="about-card text-md md:text-xl transition-colors duration-500 bg-primarylight/75 md:bg-primarylight/50 dark:bg-dark/75 dark:md:bg-dark/[.60] backdrop-blur-md md:ml-6 lg:ml-8 xl:ml-12 text-textdarker dark:text-primary md:max-w-75p lg:max-w-80p font-body p-4 sm:p-8 border-[2px] border-gray-100/40 dark:border-dark/50"
         >
             <p>So, you made it this far into my website. Hopefully you find it interesting!</p>
             <br />
