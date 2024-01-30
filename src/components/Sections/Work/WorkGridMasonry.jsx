@@ -94,7 +94,7 @@ export default function WorkGridMasonry(props) {
                     ctas={[
                         { url: "https://medium.com/@tanish2k09/", title: CTA_TEXT.BLOG, icon: CTA_LOGO.BLOG, persistent: true, iconClasses: "fill-dark stroke-dark dark:stroke-white group-hover:fill-primarylight group-hover:stroke-primarylight dark:fill-primarylight dark:group-hover:fill-dark dark:group-hover:stroke-dark" }
                     ]}
-                    ctaClasses={"bg-black/[.03] border-2 border-black/5 dark:border-transparent backdrop-blur-md dark:bg-primarylight/10 text-dark dark:text-primary hover:bg-black hover:text-primary dark:hover:bg-white dark:hover:text-dark"}
+                    ctaClasses={"bg-black/[.03] border-2 border-black/5 dark:border-transparent dark:bg-primarylight/10 text-dark dark:text-primary hover:bg-black hover:text-primary dark:hover:bg-white dark:hover:text-dark"}
                 />
 
                 {/* Rescue Dialer */}
