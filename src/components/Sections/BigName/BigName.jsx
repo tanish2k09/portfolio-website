@@ -15,7 +15,7 @@ function BigName() {
         </div>
         <div className="flex md:text-xs big-text-sec mt-2 items-center">
           <div className="text-textdark dark:text-secondary big-text-sec transition-all ">and I&nbsp;</div>
-          <div id="text_morph_container" className="big-text-sec text-textdarker dark:text-accenttrim dark:bg-accenttrim/10 dark:backdrop-blur-sm dark:md:px-1 md:ml-1 rounded-lg transition-all">
+          <div id="text_morph_container" className="big-text-sec text-textdarker dark:text-accenttrim dark:bg-accenttrim/10 dark:backdrop-blur-sm dark:px-2 py-3 rounded-lg transition-all">
             <RotatingSelfSegment />
           </div>
         </div>
