@@ -1,101 +1,16 @@
 * {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 html {
-  font-size: 16px;
+    font-size: 16px;
 }
 
 .scrolling-wrapper {
-  -webkit-overflow-scrolling: touch;
-}
-
-@media screen and (max-width: 640px) {
-  .big-text-main {
-    font-size: 4.5rem;
-  }
-  .big-text-heading {
-    font-size: 2.1rem;
-  }
-
-  .big-text-sec {
-    font-size: 1.1rem;
-  }
-
-  .work-grid {
-    width: 100%;
-  }
-}
-
-@media screen and (max-width: 768px) and (min-width: 640px) {
-  .big-text-main {
-    font-size: 6rem;
-  }
-  .big-text-heading {
-    font-size: 4rem;
-  }
-
-  .big-text-sec {
-    font-size: 1.75rem;
-  }
-
-  .work-grid {
-    width: 100%;
-  }
-}
-
-@media screen and (max-width: 1024px) and (min-width: 768px) {
-  .big-text-main {
-    font-size: min(12vw, 18vh);
-  }
-  .big-text-heading {
-    font-size: min(6vw, 12vh);
-  }
-
-  .big-text-sec {
-    font-size: min(2vw, 4vh);
-  }
-
-  .work-grid {
-    width: 0.1%;
-  }
-}
-
-@media screen and (max-width:1200px) and (min-width: 1024px) {
-  .big-text-main {
-    font-size: min(14vw, 12rem);
-  }
-  .big-text-heading {
-    font-size: min(8vw, 6rem);
-  }
-
-  .big-text-sec {
-    font-size: min(3vw, 3rem);
-  }
-
-  .work-grid {
-    width: 0.1%;
-  }
-}
-
-@media screen and (min-width: 1200px) {
-  .big-text-main {
-    font-size: min(12vw, 18vh);
-  }
-  .big-text-heading {
-    font-size: min(6vw, 12vh);
-  }
-
-  .big-text-sec {
-    font-size: min(2vw, 4vh);
-  }
-
-  .work-grid {
-    width: 0.1%;
-  }
+    -webkit-overflow-scrolling: touch;
 }
 
 .fade-section {
-  transition: opacity 750ms ease;
+    transition: opacity 750ms ease;
 }

@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global heading texts */
+.big-text-main {
+    @apply text-dynamic-main;
+}
+
+.big-text-heading {
+    @apply text-2xl;
+    @apply md:text-7xl;
+}
+
+.big-text-sec {
+    @apply text-dynamic-sec;
+}
+
 .nav-blob-wrapper {
     @apply w-3;
     @apply min-w-1;
@@ -21,42 +35,38 @@
 
 .work-card {
     @apply overflow-hidden;
-    @apply shadow-work-card;
     @apply inline-block;
-    @apply mx-8;
+    @apply mx-4;
     @apply my-2;
-    @apply md:m-6;
-    @apply xl:m-4;
+    @apply md:my-4;
     @apply scale-100;
-    @apply transition;
-    @apply duration-500;
 }
 
 .work-card:hover {
-    @apply md:scale-105;
+    @apply md:scale-[1.02];
 }
 
 .about-card {
     @apply overflow-hidden;
     @apply rounded-bigg;
-    @apply dark:bg-dark;
-    @apply bg-primarylight;
     @apply shadow-about-card;
     @apply inline-block;
     @apply m-4;
 }
 
-.tag {
-    @apply rounded-md;
-    @apply my-1;
-    @apply py-1;
-    @apply px-2;
-    @apply ml-2;
-}
-
 .social-button {
     @apply relative;
     @apply mt-3;
+}
+
+.button-text-expand {
+    @apply max-w-0;
+    @apply transition-all;
+    @apply duration-700;
+    @apply inline-block;
+    @apply align-top;
+    @apply whitespace-nowrap;
+    @apply overflow-hidden;
 }
 
 @media (min-width: 768px) {
@@ -65,13 +75,7 @@
     }
 
     .social-button span {
-        @apply max-w-0;
-        @apply transition-all;
-        @apply duration-700;
-        @apply inline-block;
-        @apply align-top;
-        @apply whitespace-nowrap;
-        @apply overflow-hidden;
+        @apply button-text-expand;
     }
 }
 
@@ -114,7 +118,108 @@ body::-webkit-scrollbar-thumb {
         text-shadow: 0px 0px 1px #808994;
     }
 
-    .border-klapse {
-        background: theme(backgroundImage.klapseborder);
+    .border-klapse-dark {
+        background: theme(backgroundImage.klapseborderdark);
+    }
+
+    .border-klapse-light {
+        background: theme(backgroundImage.klapseborderlight);
+    }
+}
+
+/* Fonts */
+
+/*
+ * Legal Disclaimer for Student/Education licence
+ *
+ * Student/Education Licence - Our package includes OTF, TTF, WOFF and WOFF2 font formats.
+ *
+ * For expiry date please check the relevant Licence Document.
+ *
+ * Licence to produce and publish work within educational context.
+ * Any commercial exploitation is subject to separate licencing by the client.
+ * The student/educational license expires at the end of the study period.
+ * An upgrade to a full licence for professional use is required after expiry.
+ * The upgrade within 3 months of expiry will be available at a reduced price for the educational Licence Holder.
+ *
+ */
+@layer base {
+    @font-face {
+        font-family: "CircularXXEduWeb";
+        src: url(/font/CircularXXEduWeb-Regular.woff2) format("woff2");
+        font-weight: 400;
+    }
+
+    @font-face {
+        font-family: "CircularXXEduWeb";
+        src: url(/font/CircularXXEduWeb-Medium.woff2) format("woff");
+        font-weight: 500;
+    }
+
+    @font-face {
+        font-family: "CircularXXEduWeb";
+        src: url(/font/CircularXXEduWeb-Bold.woff2) format("woff2");
+        font-weight: 700;
+    }
+
+    @font-face {
+        font-family: "CircularXXMonoEduWeb";
+        src: url(/font/CircularXXMonoEduWeb-Regular.woff2) format("woff2");
+    }
+}
+
+/* Styling for the Portfolio SVG */
+#logo-fills {
+    @apply fill-dark;
+    @apply dark:fill-dark-overlay;
+    @apply stroke-none;
+    @apply transition-colors;
+    @apply duration-700;
+}
+
+#portfolio-svg > g {
+    @apply stroke-dark;
+    @apply dark:stroke-dark-overlay;
+    @apply transition-colors;
+    @apply duration-700;
+}
+
+#blob-fill {
+    @apply fill-accent;
+    @apply stroke-[16px];
+    @apply transition-colors;
+    @apply duration-700;
+
+    @apply stroke-dark;
+    @apply dark:stroke-accenttrim;
+}
+
+/* Background gradients */
+.bg-hero-gradients {
+    background-color: hsla(284, 0%, 100%, 1);
+    background-image: radial-gradient(circle at 80% 97%, hsla(310, 94%, 79%, 1) 0px, transparent 50%),
+        radial-gradient(circle at 60% 18%, hsla(43, 65%, 76%, 1) 0px, transparent 50%),
+        radial-gradient(circle at 0% 0%, hsla(241, 89%, 66%, 1) 20px, transparent 50%),
+        /* radial-gradient(at 93% 80%, hsla(95, 64%, 77%, 1) 0px, transparent 50%), */
+            /*    radial-gradient(at 35% 47%, hsla(172, 72%, 71%, 0.5) 0px, transparent 50%), */
+            /* radial-gradient(at 60% 30%, hsla(241, 89%, 66%, 0.6) 0px, transparent 50%), */
+            /* radial-gradient(at 7% 60%, hsla(191, 85%, 65%, 0.5) 0px, transparent 50%), */
+            radial-gradient(at 10% 90%, hsla(167, 70%, 67%, 1) 0px, transparent 60%);
+    /* radial-gradient(at 8% 80%, hsla(351, 70%, 76%, 0.8) 0px, transparent 50%), */
+    /* radial-gradient(at 92% 10%, hsla(200, 72%, 70%, 0.5) 0px, transparent 50%); */
+
+    animation: name duration timing-function delay iteration-count direction fill-mode;
+}
+
+.rotate {
+    animation: rotation 30s infinite linear;
+}
+
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
     }
 }

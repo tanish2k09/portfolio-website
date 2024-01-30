@@ -1,9 +1,9 @@
 import React from 'react';
 import SocialButton from './SocialButton';
-import { ReactComponent as EmailIcon } from '../assets/email.svg';
-import { ReactComponent as GithubIcon } from '../assets/github.svg';
-import { ReactComponent as LinkedInIcon } from '../assets/linkedin.svg';
-import { ReactComponent as TwitterIcon } from '../assets/twitter.svg';
+import { ReactComponent as EmailIcon } from '../../../assets/email.svg';
+import { ReactComponent as GithubIcon } from '../../../assets/github.svg';
+import { ReactComponent as LinkedInIcon } from '../../../assets/linkedin.svg';
+import { ReactComponent as TwitterIcon } from '../../../assets/twitter.svg';
 
 export const styles = {
     defaultColors: "fill-contactlight dark:fill-contactdark",

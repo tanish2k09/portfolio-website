@@ -5,6 +5,8 @@ const extraOverflowGrid = 2; // Defines how many columns or rows should be rende
 const maxVelocity = 3;
 const inertia = 0.95;
 const radialThreshold = 0.3;
+const lightColor = "rgba(0, 0, 0, 0.15)";
+const darkColor = "rgba(44, 69, 99, 0.8)";
 
 export class LogosGrid {
     constructor() {
@@ -106,7 +108,7 @@ export class LogosGrid {
                 let currentScale = this.getScaleFromMouseCoords(x, y);
                 this.ctx.save();
                 this.ctx.scale(currentScale, currentScale);
-                this.ctx.fillStyle = this.darkMode ? "rgba(44, 69, 99, 0.8)" : "rgba(194, 200, 203,0.8)";
+                this.ctx.fillStyle = this.darkMode ? darkColor : lightColor;
                 this.ctx.fill(this.getPathFromAdapter(x, y), "evenodd");
                 this.ctx.restore();
                 this.ctx.translate(this.gridSize.box, 0);

@@ -5,7 +5,7 @@ const WorkBlock = memo(({ useWorker }) => {
     return <section id="second_block" className="mt-12 md:mt-32 relative inline-block w-full md:pr-48">
         <div
             id="work_showcase_text"
-            className="font-semibold font-display big-text-heading text-textdarker dark:text-secondary md:dark:text-shadow-md dark:text-shadow-min pl-4 md:pl-6 lg:pl-8 xl:pl-12 transition-all"
+            className="backdrop-blur-sm w-fit rounded-lg font-bold font-display big-text-heading text-textdarker dark:text-secondary md:dark:text-shadow-md dark:text-shadow-min px-2 ml-4 md:ml-6 lg:ml-8 xl:ml-12 transition-all"
         >
             <span className="text-textdarker dark:text-primary transition-all">Work</span> showcase:
         </div>

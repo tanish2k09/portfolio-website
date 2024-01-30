@@ -1,7 +1,7 @@
-import ContactSocials from "../components/ContactSocials.jsx";
-import ContactForm from "../components/ContactForm.jsx";
+import ContactSocials from "./ContactSocials.jsx";
+import ContactForm from "./ContactForm.jsx";
 import { useEffect, useRef, useState, useContext } from "react";
-import ContactVisibilityContext from "../contexts/ContactVisibilityContext.jsx";
+import ContactVisibilityContext from "../../../contexts/ContactVisibilityContext.jsx";
 
 const ContactSection = () => {
 
@@ -60,7 +60,7 @@ const ContactSection = () => {
     return <section
         ref={sectionRef}
         id="contact_section"
-        className={`mt-16 md:mt-32 pt-4 md:pt-16 pb-32 md:pb-8 md:min-h-screen w-full relative block fade-section ${opacity}`}
+        className={`mt-16 md:mt-32 pt-4 md:pt-16 pb-32 md:pb-8 md:min-h-screen w-full relative block transition-opacity duration-700 ease-in-out ${opacity}`}
     >
         {/* <!-- A little help for the Netlify bots if you're not using a SSG --> */}
         <form name="contact" netlify="true" netlify-honeypot="bot-field" hidden>
@@ -78,10 +78,10 @@ const ContactSection = () => {
         >
             <span>Contact me:</span>
         </div>
-        <div id="contact_form_container" className="px-4 md:pl-6 lg:pl-8 xl:pl-12 md:pr-0 md:max-w-75p">
+        <div id="contact_form_container" className="mx-4 md:ml-6 lg:ml-8 xl:ml-12 md:pr-0 md:max-w-75p">
             <ContactForm />
         </div>
-        <div id="contact_socials_container" className="pl-4 md:pl-6 lg:pl-8 xl:pl-12 md:max-w-75p">
+        <div id="contact_socials_container" className="ml-4 md:ml-6 lg:ml-8 xl:ml-12 md:max-w-75p">
             <ContactSocials />
         </div>
     </section>
