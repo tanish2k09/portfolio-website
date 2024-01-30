@@ -26,12 +26,12 @@ export default function WorkGridMasonry(props) {
                 {/* SCE */}
                 <ProjectCard
                     cardClasses={"w-fit border-scedark/50 dark:border-sceteal/10 border-[0.1rem]"}
-                    bgColor={"bg-scedark/50 dark:bg-black/70 dark:md:bg-scedark/5 backdrop-blur-md md:backdrop-blur-sm"}
+                    bgColor={"bg-scedark/80 dark:bg-black/70 dark:md:bg-scedark/5 backdrop-blur-md md:backdrop-blur-sm"}
                     asset={SCE}
                     assetAlt={"Smurf Config Editor mockup"}
                     imageClasses={"object-contain"}
-                    tagColor={"bg-sceteal/[.85] dark:bg-sceteal/10 dark:md:bg-sceteal/10 text-sce dark:text-sceteal dark:backdrop-blur-xl dark:md:backdrop-blur-md"}
-                    cardColor={"bg-sceteal/80 dark:bg-sceteal/10 dark:md:bg-sceteal/[.08] dark:backdrop-blur-xl dark:md:backdrop-blur-md"}
+                    tagColor={"bg-sceteal/50 dark:bg-sceteal/10 dark:md:bg-sceteal/10 text-sce dark:text-sceteal dark:backdrop-blur-xl dark:md:backdrop-blur-md"}
+                    cardColor={"bg-sceteal/40 dark:bg-sceteal/10 dark:md:bg-sceteal/[.08] dark:backdrop-blur-xl dark:md:backdrop-blur-md"}
                     textColor={"text-sce dark:text-sceteal"}
                     borderColor={"bg-scedarker dark:bg-sceteal"}
                     tags={[
@@ -52,7 +52,7 @@ export default function WorkGridMasonry(props) {
                 {/* Logos Wallpaper */}
                 <ProjectCard
                     cardClasses={"w-fit border-logosWallpaperFg/80 dark:border-logosWallpaperBgDark/70 border-[0.1rem]"}
-                    bgColor={"bg-logosWallpaperFg/50 dark:bg-logosWallpaperFgDark/60 backdrop-blur-lg md:backdrop-blur-sm backdrop-hue-rotate-[100deg]"}
+                    bgColor={"bg-logosWallpaperFg/[.70] dark:bg-logosWallpaperFgDark/60 backdrop-blur-lg md:backdrop-blur-sm backdrop-hue-rotate-[100deg]"}
                     svgOptions={"min-h-56 max-h-64 flex align-items-center justify-center"}
                     svg={<LOGOS_WALL_SVG className="fill-logosWallpaperBgDark dark:fill-logosWallpaperBg object-contain w-full" />}
                     cardColor={"bg-white/20 dark:bg-logosWallpaperBgDark/30 dark:backdrop-blur-xl dark:md:backdrop-blur-sm"}
@@ -100,13 +100,13 @@ export default function WorkGridMasonry(props) {
                 {/* Rescue Dialer */}
                 <ProjectCard
                     cardClasses={"w-fit border-rescuedialer/60 dark:border-rescuedialer/[.15] border-[0.1rem]"}
-                    bgColor={"bg-rescuedialer/20 dark:bg-rescuedialerdark/40 backdrop-blur-md md:backdrop-blur-sm backdrop-hue-rotate-[250deg]"}
+                    bgColor={"bg-rescuedialer/[.70] dark:bg-rescuedialerdark/40 backdrop-blur-md md:backdrop-blur-sm backdrop-hue-rotate-[220deg]"}
                     svgOptions={"align-center justify-center flex min-h-64"}
                     asset={RESCUEDIALER}
                     assetAlt={"Rescue Dialer vector logo"}
                     imageClasses={"object-contain w-64 h-64 transform scale-50"}
-                    cardColor={"bg-rescuedialer/40 dark:bg-rescuedialer/10 backdrop-blur-xl"}
-                    tagColor={"bg-rescuedialer/40 dark:bg-rescuedialer/10 backdrop-blur-xl text-dark dark:text-rescuedialer"}
+                    cardColor={"bg-white/20 dark:bg-rescuedialer/10 backdrop-blur-xl"}
+                    tagColor={"bg-white/20 dark:bg-rescuedialer/10 backdrop-blur-xl text-dark dark:text-rescuedialer"}
                     textColor={"text-dark dark:text-rescuedialer"}
                     borderColor={"bg-dark dark:bg-rescuedialerlight"}
                     tags={[
@@ -149,9 +149,9 @@ export default function WorkGridMasonry(props) {
                 {/* Spotify Release Reader */}
                 <ProjectCard
                     cardClasses={"w-fit border-spotify/50 dark:border-spotify/10 border-[0.1rem]"}
-                    bgColor={"bg-spotify/50 dark:bg-dark/50 backdrop-blur-md backdrop-hue-rotate-[360deg] dark:backdrop-hue-rotate-[300deg] dark:backdrop-saturate-100"}
-                    cardColor={"bg-spotify/[.25] dark:bg-spotify/5 dark:md:bg-spotify/5 backdrop-blur-3xl dark:backdrop-contrast-[1.1]"}
-                    tagColor={"bg-spotify/[.35] dark:bg-spotify/10 text-dark dark:text-spotify backdrop-blur-3xl dark:backdrop-blur-3xl"}
+                    bgColor={"bg-spotify/[.65] dark:bg-dark/50 backdrop-blur-sm dark:backdrop-blur-md backdrop-hue-rotate-[360deg] dark:backdrop-hue-rotate-[300deg] dark:backdrop-saturate-100"}
+                    cardColor={"bg-white/[.15] dark:bg-spotify/5 dark:md:bg-spotify/5 backdrop-blur-3xl dark:backdrop-contrast-[1] dark:backdrop-contrast-[1.1]"}
+                    tagColor={"bg-white/[.2] dark:bg-spotify/10 text-dark dark:text-spotify backdrop-blur-3xl dark:backdrop-blur-3xl"}
                     textColor={"text-dark dark:text-spotify"}
                     borderColor={"bg-dark dark:bg-spotify"}
                     svg={<SPOTIFY_SVG className="fill-black dark:fill-spotify transition-colors duration-700 object-contain w-full p-8" />}
@@ -227,13 +227,13 @@ export default function WorkGridMasonry(props) {
                 {/* T2S */}
                 < ProjectCard
                     cardClasses={"w-fit border-t2syellowdark/50 dark:border-t2syellowdark/10 border-[0.1rem]"}
-                    bgColor={"bg-t2syellowdark/60 dark:bg-black/10 backdrop-blur-sm backdrop-hue-rotate-[220deg] dark:backdrop-hue-rotate-[240deg] dark:backdrop-saturate-[.80]"}
+                    bgColor={"bg-t2syellowdark/[.80] dark:bg-black/10 backdrop-blur-sm backdrop-hue-rotate-[225deg] dark:backdrop-hue-rotate-[240deg] dark:backdrop-saturate-[.80]"}
                     svgOptions={"align-center justify-center flex min-h-64"}
                     asset={T2S}
                     assetAlt={"T2S vector logo"}
                     imageClasses={"object-contain w-64 h-64 transform scale-50"}
-                    cardColor={"bg-white/[.25] dark:bg-t2syellowdark/10 backdrop-blur-3xl dark:backdrop-contrast-[1.1]"}
-                    tagColor={"bg-white/[.35] dark:bg-t2syellowdark/[.15] text-dark dark:text-t2syellow backdrop-blur-3xl dark:backdrop-contrast-[1.1]"}
+                    cardColor={"bg-white/[.15] dark:bg-t2syellowdark/10 backdrop-blur-3xl dark:backdrop-contrast-[1.1]"}
+                    tagColor={"bg-white/[.2] dark:bg-t2syellowdark/[.15] text-dark dark:text-t2syellow backdrop-blur-3xl dark:backdrop-contrast-[1.1]"}
                     textColor={"text-dark dark:text-t2syellow"}
                     borderColor={"bg-dark dark:bg-t2syellow"}
                     tags={

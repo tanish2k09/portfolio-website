@@ -33,6 +33,7 @@ function Home() {
         <div id="app" className="dark:bg-dark bg-primarylight m-0 overscroll-x-none transition-colors duration-500">
             <ContactVisibilityContext.Provider value={contactVisibilityVMRef.current}>
                 <OverlayContainer>
+                    <div className="w-full h-lvh h-full z-[-2] absolute bg-hero-gradients dark:opacity-0 transition-all duration-700" />
                     <LogoCanvas canvasClasses="w-full h-lvh z-[-1] absolute" useLogos={useLogosCallback} />
                     <BlobCanvas canvasClasses="w-full h-lvh h-full z-0 absolute" useWorker={workerRef} />
                 </OverlayContainer>

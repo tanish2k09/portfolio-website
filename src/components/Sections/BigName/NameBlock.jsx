@@ -13,11 +13,11 @@ const NameBlock = memo(() => {
         <COOKIE className="ml-3 sm:mr-0 sm:ml-4 self-center w-5 stroke-black group-hover:stroke-white transition duration-500" />
     );
 
-    return <section id="first_screen_block" className="h-screen relative block">
-        <div id="corner_block" className="absolute bottom-0 sm:ml-8 pb-16 md:pb-0 mb-16 md:mb-4">
+    return <section id="first_screen_block" className="h-screen relative flex items-center align-middle justify-center">
+        <div id="corner_block" className="md:w-fit w-full rounded-xl mx-8 px-4 md:pl-8 md:pr-32 py-6 md:min-w-[50%] h-fit md:mr-48 bg-white/[.15] dark:bg-black/5 backdrop-blur-xl backdrop-contrast-[1.2] dark:backdrop-blur-md dark:backdrop-contrast-100 border-[2px] dark:border-[3px] border-white/30 dark:border-gray-800/20 transition-all duration-700">
             <BigName />
-            <div id="click_button_container" className="md:flex mt-2 md:mt-16 pb-24 px-4 sm:px-0 xl:px-4">
-                <AccentedButton text="Check out my work" link="#work_showcase_text" classes={primary} svg={cookie_svg} />
+            <div id="click_button_container" className="md:flex mt-16 lg:mt-20">
+                <AccentedButton text="My work" link="#work_showcase_text" classes={primary} svg={cookie_svg} />
                 <AccentedButton text="Got a job? Let's talk!" link="#contact_me_text" classes={secondary} svg={plane_svg} />
             </div>
         </div>

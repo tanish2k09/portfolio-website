@@ -3,19 +3,19 @@ import RotatingSelfSegment from "./RotatingSelfSegment";
 
 function BigName() {
   return (
-    <div className="font-display my-8 mx-3 sm:mx-0 leading-none font-semibold md:dark:text-shadow-md dark:text-shadow-min">
+    <div className="font-display leading-none font-semibold md:dark:text-shadow-md dark:text-shadow-min">
       <div>
-        <div className="text-textdark dark:text-secondary big-text-sec transition-all backdrop-blur-sm w-fit py-1 md:py-2 rounded-lg">
+        <div className="text-textdark dark:text-secondary big-text-sec transition-all rounded-lg">
           Hi! I'm
         </div>
-        <div className="w-fit text-textdarker dark:text-primary big-text-main transition-all backdrop-blur-sm rounded-lg md:rounded-none md:backdrop-blur-0">
-          Tanish
-          <br />
+        <div className="w-fit text-textdarker dark:text-primary big-text-main transition-all backdrop-blur-sm py-2 md:py-4 rounded-lg md:rounded-none md:backdrop-blur-0">
+          Tanish&nbsp;
+          <br className="md:hidden" />
           Manku
         </div>
-        <div className="flex md:text-xs big-text-sec ml-2 sm:ml-1 xl:ml-4 sm:mt-2 items-center">
-          <div className="text-textdark dark:text-secondary transition-all ">and I&nbsp;</div>
-          <div id="text_morph_container" className="text-accenttrim bg-gray-200/[.2] dark:bg-accenttrim/10 backdrop-blur-sm px-2 py-2 md:py-4 rounded-lg transition-all">
+        <div className="flex md:text-xs big-text-sec mt-2 items-center">
+          <div className="text-textdark dark:text-secondary big-text-sec transition-all ">and I&nbsp;</div>
+          <div id="text_morph_container" className="big-text-sec text-textdarker dark:text-accenttrim dark:bg-accenttrim/10 dark:backdrop-blur-sm dark:md:px-1 md:ml-1 rounded-lg transition-all">
             <RotatingSelfSegment />
           </div>
         </div>

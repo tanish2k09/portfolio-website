@@ -9,7 +9,7 @@ export const AboutBlock = memo(() => {
             <span className="text-textdarker dark:text-primary">About</span> me:
         </div>
         <div
-            className="about-card text-md md:text-xl transition-colors duration-500 bg-primarylight/75 md:bg-primarylight/50 dark:bg-dark/75 dark:md:bg-dark/[.60] backdrop-blur-md md:ml-6 lg:ml-8 xl:ml-12 text-textdarker dark:text-primary md:max-w-75p lg:max-w-80p font-body p-4 sm:p-8 border-[2px] border-gray-100/40 dark:border-dark/50"
+            className="about-card text-md md:text-xl transition-colors duration-500 bg-primarylight/75 md:bg-white/60 dark:bg-dark/75 dark:md:bg-dark/[.60] backdrop-blur-md md:backdrop-blur-xl md:ml-6 lg:ml-8 xl:ml-12 text-textdarker dark:text-primary md:max-w-75p lg:max-w-80p font-body p-4 sm:p-8 border-[2px] border-gray-100/40 dark:border-dark/50"
         >
             <p>So, you made it this far into my website. Hopefully you find it interesting!</p>
             <br />
@@ -50,19 +50,19 @@ export const AboutBlock = memo(() => {
             </p>
             <br />
             <br />
-            <p className="font-mono">
-                <span className="transition-colors duration-500 text-semidark dark:text-accent text-md block"
+            <div>
+                <span className="transition-colors duration-500 text-textdarker font-medium dark:text-accent text-md block"
                 >Languages:</span>
-                <span className="transition-colors duration-500 mt-2 text-hintdark dark:text-hintyellow block"
+                <span className="transition-colors duration-500 mt-2 text-hintdark dark:text-hintyellow block font-mono"
                 >Java, Kotlin, Swift, JavaScript, TypeScript, Dart, C, C++, C#, HTML, SQL, CSS, XML</span
                 >
                 <br /><br />
-                <span className="transition-colors duration-500 text-semidark dark:text-accent text-md block"
+                <span className="transition-colors duration-500 text-textdarker font-medium dark:text-accent text-md block"
                 >Have used:</span>
-                <span className="transition-colors duration-500 mt-2 text-hintdark dark:text-hintyellow block"
+                <span className="transition-colors duration-500 mt-2 text-hintdark dark:text-hintyellow block font-mono"
                 >Android SDK, iOS SDK, Flutter SDK, Spotify Web API, Discord bot API, Twitter bot API, ReactJS,
                     TailwindCSS, Git, Unity</span>
-            </p>
+            </div>
         </div>
     </section>
 });

@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global heading texts */
+.big-text-main {
+    @apply text-dynamic-main;
+}
+
+.big-text-heading {
+    @apply text-2xl;
+    @apply md:text-7xl;
+}
+
+.big-text-sec {
+    @apply text-dynamic-sec;
+}
+
 .nav-blob-wrapper {
     @apply w-3;
     @apply min-w-1;
@@ -173,4 +187,34 @@ body::-webkit-scrollbar-thumb {
 
     @apply stroke-dark;
     @apply dark:stroke-accenttrim;
+}
+
+/* Background gradients */
+.bg-hero-gradients {
+    background-color: hsla(284, 0%, 100%, 1);
+    background-image: radial-gradient(circle at 80% 97%, hsla(310, 94%, 79%, 1) 0px, transparent 50%),
+        radial-gradient(circle at 60% 18%, hsla(43, 65%, 76%, 1) 0px, transparent 50%),
+        radial-gradient(circle at 0% 0%, hsla(241, 89%, 66%, 1) 20px, transparent 50%),
+        /* radial-gradient(at 93% 80%, hsla(95, 64%, 77%, 1) 0px, transparent 50%), */
+            /*    radial-gradient(at 35% 47%, hsla(172, 72%, 71%, 0.5) 0px, transparent 50%), */
+            /* radial-gradient(at 60% 30%, hsla(241, 89%, 66%, 0.6) 0px, transparent 50%), */
+            /* radial-gradient(at 7% 60%, hsla(191, 85%, 65%, 0.5) 0px, transparent 50%), */
+            radial-gradient(at 10% 90%, hsla(167, 70%, 67%, 1) 0px, transparent 60%);
+    /* radial-gradient(at 8% 80%, hsla(351, 70%, 76%, 0.8) 0px, transparent 50%), */
+    /* radial-gradient(at 92% 10%, hsla(200, 72%, 70%, 0.5) 0px, transparent 50%); */
+
+    animation: name duration timing-function delay iteration-count direction fill-mode;
+}
+
+.rotate {
+    animation: rotation 30s infinite linear;
+}
+
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }

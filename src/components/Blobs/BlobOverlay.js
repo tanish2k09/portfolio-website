@@ -35,6 +35,7 @@ const blobEnergyStates = {
 const scaleDuration = 1000; // milliseconds
 const energizeDuration = 2000; // milliseconds
 const fullEnergyDecayDelay = 3000; // milliseconds
+const darkFillColor = "#00d8b6";
 const fillColor = "#00d8b6";
 const expandedDarkColor = "#101924";
 const RADIAN_STEP = 0.5;
@@ -149,6 +150,13 @@ export class Blob {
 
         this.ctx.closePath();
         this.ctx.fillStyle = this.getFillColor();
+
+        if (!this.darkMode) {
+            this.ctx.shadowColor = "rgba(0, 0, 0, 0.2)";
+            this.ctx.shadowBlur = 40 * this.gScale;
+            this.ctx.fill();
+        }
+
         this.ctx.shadowColor = this.getFillColor();
         this.ctx.shadowBlur = 2 * this.gScale;
         this.ctx.fill();
@@ -322,17 +330,18 @@ export class Blob {
     }
 
     getFillColor() {
-        if (!this.darkMode || this.state === blobStates.REGULAR) {
+        // if light mode
+        if (!this.darkMode) {
             return fillColor;
-        }
-
-        if (this.state === blobStates.EXPANDED) {
+        } else if (this.state === blobStates.REGULAR) {
+            return darkFillColor;
+        } else if (this.state === blobStates.EXPANDED) {
             return expandedDarkColor;
         }
 
         // We interpolate color on expansion if dark mode is enabled
         return interpolateColor(
-            fillColor,
+            darkFillColor,
             expandedDarkColor,
             colorInterpolatorValue(scaleInterpolator.currentTimeFraction)
         );
