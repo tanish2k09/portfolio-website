@@ -8,7 +8,7 @@ function BigName() {
         <div className="text-textdark dark:text-secondary big-text-sec transition-all rounded-lg">
           Hi! I'm
         </div>
-        <div className="w-fit text-textdarker dark:text-primary big-text-main transition-all backdrop-blur-sm py-2 md:py-4 rounded-lg md:rounded-none md:backdrop-blur-0">
+        <div className="w-fit text-textdarker dark:text-primary big-text-main transition-all py-2 md:py-4">
           Tanish&nbsp;
           <br className="md:hidden" />
           Manku

@@ -42,10 +42,6 @@
     @apply scale-100;
 }
 
-.work-card:hover {
-    @apply md:scale-[1.02];
-}
-
 .about-card {
     @apply overflow-hidden;
     @apply rounded-bigg;
