@@ -51,13 +51,13 @@ export const AboutBlock = memo(() => {
             <br />
             <br />
             <div>
-                <span className="transition-colors duration-500 text-textdarker font-medium dark:text-accent text-md block"
+                <span className="transition-colors duration-500 text-textdarker font-medium dark:font-normal dark:text-accent text-md block"
                 >Languages:</span>
                 <span className="transition-colors duration-500 mt-2 text-hintdark dark:text-hintyellow block font-mono"
                 >Java, Kotlin, Swift, JavaScript, TypeScript, Dart, C, C++, C#, HTML, SQL, CSS, XML</span
                 >
                 <br /><br />
-                <span className="transition-colors duration-500 text-textdarker font-medium dark:text-accent text-md block"
+                <span className="transition-colors duration-500 text-textdarker font-medium dark:font-normal dark:text-accent text-md block"
                 >Have used:</span>
                 <span className="transition-colors duration-500 mt-2 text-hintdark dark:text-hintyellow block font-mono"
                 >Android SDK, iOS SDK, Flutter SDK, Spotify Web API, Discord bot API, Twitter bot API, ReactJS,

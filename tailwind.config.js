@@ -24,7 +24,7 @@ module.exports = {
         },
         fontFamily: {
             display: ["CircularXXEduWeb", "sans-serif"],
-            mono: ["DM Mono"],
+            mono: ["CircularXXMonoEduWeb"],
             body: ["CircularXXEduWeb"],
             nav: ["CircularXXEduWeb"],
         },

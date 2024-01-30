@@ -161,6 +161,11 @@ body::-webkit-scrollbar-thumb {
         src: url(/font/CircularXXEduWeb-Bold.woff2) format("woff2");
         font-weight: 700;
     }
+
+    @font-face {
+        font-family: "CircularXXMonoEduWeb";
+        src: url(/font/CircularXXMonoEduWeb-Regular.woff2) format("woff2");
+    }
 }
 
 /* Styling for the Portfolio SVG */
