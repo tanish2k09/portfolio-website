@@ -55,6 +55,7 @@ module.exports = {
             portfolio: "#292f35",
             t2syellow: "#ffe0b2",
             transparent: "transparent",
+            cinebon: "#c6bdff",
         },
         extend: {
             colors: {
@@ -116,6 +117,9 @@ module.exports = {
                 portfolio: "#172433",
                 portfoliolight: "#E0E3E6",
                 portfoliodarker: "#292f35",
+                "cinebon-dark": "#090045",
+                "cinebon-light": "#c6bdff",
+                cinebon: "#9b8bfe",
             },
             fontSize: {
                 "009": "0.9rem",
@@ -195,7 +199,7 @@ module.exports = {
                     "colors.klapseyellow-translucent-light"
                 )},${theme("colors.klapsepink-translucent-light")},${theme("colors.klapsepurple-translucent-light")})`,
 
-                klapseborderdark: `linear-gradient(rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0)) padding-box, linear-gradient(to top right, ${theme(
+                klapseborderdark: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.25)) padding-box, linear-gradient(to top right, ${theme(
                     "colors.klapseblue-translucent-light"
                 )},${theme("colors.klapsepink-translucent-light")},${theme(
                     "colors.klapsepurple-translucent-light"
