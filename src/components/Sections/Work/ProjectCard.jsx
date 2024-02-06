@@ -6,6 +6,7 @@ import { ReactComponent as PLAY_STORE_SVG } from '../../../assets/play-logo.svg'
 import { ReactComponent as SHIELD_SVG } from '../../../assets/Shield.svg';
 import { ReactComponent as QUOTES_SVG } from '../../../assets/double_quotes.svg';
 import { ReactComponent as BLOBBY_SVG } from '../../../assets/blobby.svg';
+import { ReactComponent as GLOBE_SVG } from '../../../assets/Globe.svg';
 
 
 // !! These strings should be less than 20 characters long !!
@@ -25,6 +26,7 @@ export const CTA_LOGO = {
   BLOG: { src: QUOTES_SVG, alt: "Closed quote mark for blog" },
   PPOL: { src: SHIELD_SVG, alt: "Shield Logo for Privacy Policy action" },
   BLOBBY: { src: BLOBBY_SVG, alt: "Blobby Logo for blob energize action" },
+  SITE: { src: GLOBE_SVG, alt: "Globe Logo for visiting site" },
 };
 
 export const githubPath = "https://github.com/tanish2k09/"

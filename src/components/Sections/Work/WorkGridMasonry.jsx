@@ -143,7 +143,9 @@ export default function WorkGridMasonry(props) {
                     name={"Cinebon"}
                     description={"A platform for curated movie information, creating a community where users can share their passion and knowledge for the cinematic arts. Craft your own 'Watchlist,' stay updated on the newest releases, and chat with fellow enthusiasts for lively discussions about your favourite media."}
                     ctas={[
-                        { url: github('stormhacks2023'), title: CTA_TEXT.GITHUB, icon: CTA_LOGO.GITHUB, persistent: true, iconClasses: "fill-dark group-hover:fill-primarylight dark:fill-cinebon-light dark:group-hover:fill-dark" }
+                        { url: "https://cinebon.online", title: CTA_TEXT.SITE, icon: CTA_LOGO.SITE, persistent: true, iconClasses: "stroke-dark group-hover:stroke-primarylight dark:stroke-cinebon-light dark:group-hover:stroke-dark" },
+                        { url: "https://github.com/CMPT-362-Group3/Cinebon", title: CTA_TEXT.GITHUB, icon: CTA_LOGO.GITHUB, persistent: false, iconClasses: "fill-dark group-hover:fill-primarylight dark:fill-cinebon-light dark:group-hover:fill-dark" },
+
                     ]}
                     ctaClasses={"bg-white/20 dark:bg-cinebon-light/10 hover:bg-dark hover:text-primary dark:text-cinebon dark:hover:bg-cinebon-light dark:hover:text-dark"}
                 />
