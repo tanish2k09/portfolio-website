@@ -11,6 +11,7 @@ import RESCUEDIALER from '../../../assets/rescuedialer.svg';
 import HUBSFU from '../../../assets/hubSFU.png';
 import { LOGOS_WALL_SVG } from '../../../assets/LogosWallpaper_SVG';
 import { PORTFOLIO_SVG } from '../../../assets/portfolio_svg';
+import CINEBON from '../../../assets/cinebon.png';
 
 export default function WorkGridMasonry(props) {
 
@@ -122,28 +123,29 @@ export default function WorkGridMasonry(props) {
                     ctaClasses={"bg-white/30 text-dark dark:text-rescuedialer hover:bg-dark hover:text-primary dark:bg-rescuedialerlight/10 dark:hover:bg-rescuedialerlight dark:hover:text-dark"}
                 />
 
-                {/* hubSFU */}
+                {/* Cinebon */}
                 <ProjectCard
-                    cardClasses={"w-fit border-hubSFUdark/70 dark:border-hubSFUdark/[.15] border-[0.1rem] dark:backdrop-saturate-50"}
-                    bgColor={"bg-hubSFUdark/70 dark:bg-dark/20 backdrop-blur-lg md:backdrop-blur-sm backdrop-hue-rotate-[178deg] dark:backdrop-hue-rotate-[178deg]"}
-                    asset={HUBSFU}
-                    assetAlt={"hubSFU image"}
-                    imageClasses={"object-contain"}
-                    cardColor={"bg-white/20 dark:bg-hubSFUdarkest/5 dark:md:bg-hubSFUdark/5 dark:backdrop-blur-3xl"}
-                    tagColor={"bg-white/20 dark:bg-hubSFUdarkest/10 dark:md:bg-hubSFUdark/10 text-dark dark:text-hubSFU dark:backdrop-blur-3xl"}
-                    textColor={"text-dark dark:text-hubSFU"}
-                    borderColor={"bg-dark dark:bg-hubSFU"}
+                    cardClasses={"w-fit border-cinebon/70 dark:border-cinebon/[.15] border-[0.1rem] dark:backdrop-saturate-50"}
+                    bgColor={"bg-cinebon/80 dark:bg-cinebon-dark/60 backdrop-blur-lg md:backdrop-blur-sm backdrop-hue-rotate-[178deg] dark:backdrop-hue-rotate-[100deg]"}
+                    asset={CINEBON}
+                    assetAlt={"Cinebon image"}
+                    imageClasses={"w-1/2 p-4"}
+                    cardColor={"bg-white/20 dark:bg-cinebon-dark/[.25] dark:md:bg-cinebon-light/[.05] dark:backdrop-blur-3xl"}
+                    tagColor={"bg-white/20 dark:bg-cinebon-dark/10 dark:md:bg-cinebon-light/[.10] text-dark dark:text-cinebon dark:backdrop-blur-3xl"}
+                    textColor={"text-dark dark:text-cinebon"}
+                    borderColor={"bg-dark dark:bg-cinebon-light"}
                     tags={[
                         { text: "Android" },
                         { text: "Kotlin" },
-                        { text: "XML" }
+                        { text: "Compose" },
+                        { text: "Firebase" }
                     ]}
-                    name={"hubSFU"}
-                    description={"A community-focused Android app, built around the needs and feedback of local university students. This project was developed in 1 effective day - from concept to design to app - during a hackathon."}
+                    name={"Cinebon"}
+                    description={"A platform for curated movie information, creating a community where users can share their passion and knowledge for the cinematic arts. Craft your own 'Watchlist,' stay updated on the newest releases, and chat with fellow enthusiasts for lively discussions about your favourite media."}
                     ctas={[
-                        { url: github('stormhacks2023'), title: CTA_TEXT.GITHUB, icon: CTA_LOGO.GITHUB, persistent: true, iconClasses: "fill-dark group-hover:fill-primarylight dark:fill-hubSFU dark:group-hover:fill-dark" }
+                        { url: github('stormhacks2023'), title: CTA_TEXT.GITHUB, icon: CTA_LOGO.GITHUB, persistent: true, iconClasses: "fill-dark group-hover:fill-primarylight dark:fill-cinebon-light dark:group-hover:fill-dark" }
                     ]}
-                    ctaClasses={"bg-white/20 dark:bg-hubSFUdark/10 dark:bg-hubSFU/10 hover:bg-dark hover:text-primary dark:text-hubSFU dark:hover:bg-hubSFU dark:hover:text-dark"}
+                    ctaClasses={"bg-white/20 dark:bg-cinebon-light/10 hover:bg-dark hover:text-primary dark:text-cinebon dark:hover:bg-cinebon-light dark:hover:text-dark"}
                 />
 
                 {/* Spotify Release Reader */}
@@ -167,6 +169,30 @@ export default function WorkGridMasonry(props) {
                         { url: github("Spotify-Release-Reader"), title: CTA_TEXT.GITHUB, icon: CTA_LOGO.GITHUB, persistent: true, iconClasses: "fill-dark group-hover:fill-primarylight dark:fill-spotify dark:group-hover:fill-dark" }
                     ]}
                     ctaClasses={"bg-white/20 hover:bg-dark hover:text-primary dark:bg-spotify/10 dark:text-spotify dark:hover:bg-spotify dark:hover:text-dark"}
+                />
+
+                {/* hubSFU */}
+                <ProjectCard
+                    cardClasses={"w-fit border-hubSFUdark/70 dark:border-hubSFUdark/[.15] border-[0.1rem] dark:backdrop-saturate-50"}
+                    bgColor={"bg-hubSFUdark/70 dark:bg-dark/20 backdrop-blur-lg md:backdrop-blur-sm backdrop-hue-rotate-[178deg] dark:backdrop-hue-rotate-[178deg]"}
+                    asset={HUBSFU}
+                    assetAlt={"hubSFU image"}
+                    imageClasses={"object-contain"}
+                    cardColor={"bg-white/20 dark:bg-hubSFUdarkest/5 dark:md:bg-hubSFUdark/5 dark:backdrop-blur-3xl"}
+                    tagColor={"bg-white/20 dark:bg-hubSFUdarkest/10 dark:md:bg-hubSFUdark/10 text-dark dark:text-hubSFU dark:backdrop-blur-3xl"}
+                    textColor={"text-dark dark:text-hubSFU"}
+                    borderColor={"bg-dark dark:bg-hubSFU"}
+                    tags={[
+                        { text: "Android" },
+                        { text: "Kotlin" },
+                        { text: "XML" }
+                    ]}
+                    name={"hubSFU"}
+                    description={"A community-focused Android app, built around the needs and feedback of local university students. This project was developed in 1 effective day - from concept to design to app - during a hackathon."}
+                    ctas={[
+                        { url: github('stormhacks2023'), title: CTA_TEXT.GITHUB, icon: CTA_LOGO.GITHUB, persistent: true, iconClasses: "fill-dark group-hover:fill-primarylight dark:fill-hubSFU dark:group-hover:fill-dark" }
+                    ]}
+                    ctaClasses={"bg-white/20 dark:bg-hubSFU/10 hover:bg-dark hover:text-primary dark:text-hubSFU dark:hover:bg-hubSFU dark:hover:text-dark"}
                 />
 
                 {/* Portfolio Website */}
