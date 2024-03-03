@@ -4,15 +4,16 @@ import DarkModeToggle from "./DarkModeToggle.jsx";
 
 function Navbar() {
   return (
-    <div id="nav_child_wrapper" className={
-      `transition-all duration-700
+    <div
+      id="nav_child_wrapper"
+      className={`transition-all duration-700
       xl:mt-4 pb-2 sticky h-full w-full flex md:inline-block justify-evenly overflow-x-hidden float-right
     bg-white/50 dark:bg-black/30 dark:backdrop-contrast-[.80] 
     dark:md:backdrop-contrast-100 backdrop-blur-xl 
     md:backdrop-blur-none md:bg-transparent md:dark:bg-transparent
     border-t-[1px] dark:border-gray-100/10 
-    border-black/10 md:border-none rounded-t-lg md:rounded-none`
-    }>
+    border-black/10 md:border-none rounded-t-lg md:rounded-none`}
+    >
       <DarkModeToggle />
       <ResponsiveNavItem
         text="My Work"
@@ -33,7 +34,7 @@ function Navbar() {
         text="Resume"
         smallText="Resume"
         link={"/assets/resume.pdf"}
-        download="tmanku_resume_07-Feb-2024.pdf"
+        download="tmanku_resume_03-Mar-2024.pdf"
       />
     </div>
   );
