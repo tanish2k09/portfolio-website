@@ -50,5 +50,11 @@
 /github https://github.com/tanish2k09/
 /git https://github.com/tanish2k09
 
+# Privacy .html extension rewrites
+# This isn't forced, so an actual html file should serve before this kicking in
+
+/privacy/* /privacy/:splat.html 200
+
 # This should be the last
+
 /* /index.html 404
