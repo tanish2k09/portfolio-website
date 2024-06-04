@@ -52,7 +52,7 @@
 
 # Jump directly to contact
 
-/contact /%23contact_section 200
+/contact /%23contact_section
 
 # Privacy .html extension rewrites
 # This isn't forced, so an actual html file should serve before this kicking in
