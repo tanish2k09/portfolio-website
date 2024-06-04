@@ -50,10 +50,6 @@
 /github https://github.com/tanish2k09/
 /git https://github.com/tanish2k09
 
-# Jump directly to contact
-
-/contact /%23contact_section
-
 # Privacy .html extension rewrites
 # This isn't forced, so an actual html file should serve before this kicking in
 
