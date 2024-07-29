@@ -1,6 +1,6 @@
 {
     "name": "personal-website",
-    "version": "2.6.7",
+    "version": "2.6.8",
     "private": true,
     "dependencies": {
         "@testing-library/jest-dom": "^5.15.0",
