@@ -2,8 +2,10 @@
 
 # First design of my personal portfolio website
 
+Hosted at - [manku.dev](https://manku.dev)
+
 Created with React and TailwindCSS
 
-Creating an elegant, clean design and fitting informational content while establishing a personal brand identity was a hefty challenge.
+Designing an elegant, fun, interactive experience and showing informational content while establishing a personal brand identity was a hefty challenge.
 
 Discord and Cuberto were my inspirations for this design.
